@@ -154,7 +154,7 @@ export const StakeItem = ({
       <StyledStakeItemRow>
         <span> {t("STAKE.EARNED")}</span>
         <p>
-          {earnedText} + {t("STAKE.FEES")}
+          {earnedText}
         </p>
       </StyledStakeItemRow>
       <StyledStakeItemRowWithButton>

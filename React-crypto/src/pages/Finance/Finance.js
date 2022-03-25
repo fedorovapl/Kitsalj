@@ -72,34 +72,6 @@ export const Finance = () => {
           apr="30.50%"
           activeButton={true}
         />
-        <StakeItem
-          stake="1,500.00"
-          earnedNum="10.00"
-          earnedText="Comic NFT"
-          apr="30.50%"
-          activeButton={false}
-        />
-        <StakeItem
-          stake="0.00"
-          earnedNum="0.00"
-          earnedText="Comic NFT"
-          apr="30.50%"
-          activeButton={true}
-        />
-        <StakeItem
-          stake="1,500.00"
-          earnedNum="15.00"
-          earnedText="GovNFT"
-          apr="30.50%"
-          activeButton={false}
-        />
-        <StakeItem
-          stake="0.00"
-          earnedNum="0.00"
-          earnedText="GovNFT"
-          apr="30.50%"
-          activeButton={true}
-        />
       </SryledStakeItemContainer>
     </div>
   );
