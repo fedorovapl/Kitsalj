@@ -36,6 +36,7 @@ export const StyledRecommendation = styled.p`
   align-self: flex-end;
   box-sizing: border-box;
   cursor: pointer;
+  transition: 0.2s;
   &:hover {
     background: #f1f1f1;
   }
@@ -61,4 +62,6 @@ export const StyledSecondBlock = styled.div`
   gap: 30px;
 `;
 
-export const StyledThirdBlock = styled.div``;
+export const StyledThirdBlock = styled.div`
+  margin-top: 60px;
+`;

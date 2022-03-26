@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledAnswerContainer,
   StyledTextarea,
@@ -8,13 +8,20 @@ import {
   StyledLastAnswerHeader,
   StyledLastAnswerIcon,
 } from "./AnswerStyle";
+import { LastAnswerPopupComponent } from "../Popup/LastAnswer/LastAnswerPopupComponent";
 
 export const AnswerComponent = () => {
+  const [lastAnswerOpen, setLastAnswerOpen] = useState(false);
+
   return (
     <StyledAnswerContainer>
+      <LastAnswerPopupComponent
+        open={lastAnswerOpen}
+        closeModal={() => setLastAnswerOpen(false)}
+      />
       <StyledAnswerHeader>
         <p>Мой ответ</p>
-        <StyledLastAnswerHeader>
+        <StyledLastAnswerHeader onClick={() => setLastAnswerOpen(true)}>
           <StyledLastAnswerIcon />
           Мои прошлые ответы
         </StyledLastAnswerHeader>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledMainContainer,
   StyledMainContent,
@@ -16,11 +16,18 @@ import {
   AnswerContainer,
   HomeworkContainer,
   ConstructorContainer,
+  RecomendationPopupComponent,
 } from "../components";
 
 export const MainContentComponent = () => {
+  const [recOpen, setRecOpen] = useState(false);
+
   return (
     <StyledMainContainer>
+      <RecomendationPopupComponent
+        open={recOpen}
+        closeModal={() => setRecOpen(false)}
+      />
       <StyledMainContent>
         <StyledFirstBlock>
           <div>
@@ -30,7 +37,9 @@ export const MainContentComponent = () => {
             <LessonSelectContainer />
           </div>
           <StyledRecommendationContainer>
-            <StyledRecommendation>Рекомендации к проверке</StyledRecommendation>
+            <StyledRecommendation onClick={() => setRecOpen(true)}>
+              Рекомендации к проверке
+            </StyledRecommendation>
           </StyledRecommendationContainer>
           <StyledTimerContainer>
             <StyledTimer>Время ответа: 18:89</StyledTimer>
