@@ -26,6 +26,9 @@ export const StyledMainContent = styled.div`
 `;
 export const StyledRecommendationContainer = styled.div`
   align-self: end;
+  p {
+    border: 1px solid #d5dfe4;
+  }
 `;
 export const StyledRecommendation = styled.p`
   display: block;

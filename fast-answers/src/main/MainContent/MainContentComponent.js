@@ -18,7 +18,7 @@ import {
   ConstructorContainer,
   RecomendationPopupComponent,
 } from "../components";
-
+import { Button } from "../elements";
 export const MainContentComponent = () => {
   const [recOpen, setRecOpen] = useState(false);
 
@@ -37,9 +37,9 @@ export const MainContentComponent = () => {
             <LessonSelectContainer />
           </div>
           <StyledRecommendationContainer>
-            <StyledRecommendation onClick={() => setRecOpen(true)}>
+            <Button py={13} px={15} handleClick={() => setRecOpen(true)}>
               Рекомендации к проверке
-            </StyledRecommendation>
+            </Button>
           </StyledRecommendationContainer>
           <StyledTimerContainer>
             <StyledTimer>Время ответа: 18:89</StyledTimer>

@@ -12,6 +12,7 @@ import Abstract from "../../../assets/img/abstract.png";
 import Smile from "../../../assets/img/smile.png";
 import { AddFolderPopupComponent } from "../Popup/AddFolder/AddFolderPopupComponent";
 import { EditFolderPopupComponent } from "../Popup/EditFolder/EditFolderPopupComponent";
+import { Button } from "../../elements";
 
 export const ConstructorComponent = () => {
   const [addOpen, setAddOpen] = useState(false);
@@ -40,15 +41,15 @@ export const ConstructorComponent = () => {
       </StyledConstructorHeaderContainer>
       <StyledBreadcrumb>Конструктор</StyledBreadcrumb>
       <StyledConstructorFolderContainer>
-        <p>
-          Смыслы <img src={Meaning} alt=""></img>
-        </p>
-        <p>
-          Тезисы <img src={Abstract} alt=""></img>
-        </p>
-        <p>
-          Смайлы <img src={Smile} alt=""></img>
-        </p>
+        <Button iconPng={Meaning} py={13} px={15}>
+          Смыслы
+        </Button>
+        <Button iconPng={Abstract} py={13} px={15}>
+          Тезисы
+        </Button>
+        <Button iconPng={Smile} py={13} px={15}>
+          Смайлы
+        </Button>
       </StyledConstructorFolderContainer>
     </div>
   );

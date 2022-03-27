@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Select, { StylesConfig } from "react-select";
+import Select from "react-select";
 
 export const StyledSelect = styled(Select)`
   margin-top: 10px;

@@ -24,7 +24,6 @@ export const LessonSelectComponent = () => {
     label: "Выберите урок",
   });
 
-  console.log(selectedLesson);
   return (
     <div>
       <p>Выберите Урок</p>

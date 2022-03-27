@@ -4,8 +4,8 @@ import {
   StyledHomeworkHeader,
   StyledHomeworkInputContainer,
   StyledTextarea,
-  StyledHomeworkButton,
 } from "./HomeworkStyle";
+import { Button } from "../../elements";
 
 export const HomeworkComponent = () => {
   return (
@@ -16,7 +16,9 @@ export const HomeworkComponent = () => {
       <StyledHomeworkInputContainer>
         <StyledTextarea placeholder="Нажмите кнопку «Вставить», чтобы добавить домашку ученика и начать на нее отвечать."></StyledTextarea>
       </StyledHomeworkInputContainer>
-      <StyledHomeworkButton>Вставить</StyledHomeworkButton>
+      <Button bgColor="primary" color="primary" py={13} px={15} children>
+        Вставить
+      </Button>
     </StyledHomeworkContainer>
   );
 };

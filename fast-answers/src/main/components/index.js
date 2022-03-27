@@ -7,7 +7,7 @@ import { AddFolderPopupComponent } from "./Popup/AddFolder/AddFolderPopupCompone
 import { EditFolderPopupComponent } from "./Popup/EditFolder/EditFolderPopupComponent";
 import { RecomendationPopupComponent } from "./Popup/Recomendation/RecomendationPopupComponent";
 import { LastAnswerPopupComponent } from "./Popup/LastAnswer/LastAnswerPopupComponent";
-
+import { LoginPopupComponent } from "./Popup/Login/LoginPopupComponent";
 export {
   ModuleSelectContainer,
   LessonSelectContainer,
@@ -18,4 +18,5 @@ export {
   EditFolderPopupComponent,
   RecomendationPopupComponent,
   LastAnswerPopupComponent,
+  LoginPopupComponent,
 };

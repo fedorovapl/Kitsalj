@@ -50,21 +50,7 @@ export const StyledTextarea = styled.textarea`
   }
 `;
 export const StyledAnswerInputContainer = styled.div``;
-export const StyledAnswerButton = styled.p`
-  margin-top: 22px;
-  background: #b4bdc1;
-  border-radius: 5px;
-  padding: 13px 15px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s;
-  &:hover {
-    background: #a1a9ad;
-  }
-  &:active {
-    background: #848f95;
-  }
-`;
+
 export const StyledLastAnswerIcon = styled(LastAnswer)`
   margin-right: 6px;
 `;

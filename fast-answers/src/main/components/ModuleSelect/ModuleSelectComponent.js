@@ -24,7 +24,6 @@ export const ModuleSelectComponent = () => {
     label: "Выберите модуль",
   });
 
-  console.log(selectedModule);
   return (
     <div>
       <p>Выберите модуль</p>

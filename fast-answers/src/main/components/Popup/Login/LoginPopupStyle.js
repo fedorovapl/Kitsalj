@@ -1,6 +1,5 @@
 import { ReactComponent as ClosePopup } from "../../../../assets/svg/close-popup.svg";
 import styled from "styled-components";
-import Select from "react-select";
 
 export const StyledClosePopup = styled(ClosePopup)`
   align-self: flex-end;
@@ -10,11 +9,6 @@ export const StyledClosePopup = styled(ClosePopup)`
       stroke: #303030;
     }
   }
-`;
-
-export const StyledSelect = styled(Select)`
-  margin-top: 10px;
-  width: 100%;
 `;
 
 export const StyledModalContent = styled.div`
@@ -38,14 +32,18 @@ export const StyledFolderNameInput = styled.input`
   }
 `;
 
-export const StyledFolderNameContainer = styled.div`
-  margin: 20px 0;
+export const StyledUserNameContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
+export const StyledPasswordContainer = styled.div`
+  margin-bottom: 20px;
 `;
 
 export const StyledButtonAdd = styled.p`
   text-align: center;
   padding: 13px;
-  min-width: 150px;
+  width: 150px;
   background: #fadb67;
   border-radius: 5px;
   box-sizing: border-box;

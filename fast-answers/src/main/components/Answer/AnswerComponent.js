@@ -3,12 +3,12 @@ import {
   StyledAnswerContainer,
   StyledTextarea,
   StyledAnswerHeader,
-  StyledAnswerButton,
   StyledAnswerInputContainer,
   StyledLastAnswerHeader,
   StyledLastAnswerIcon,
 } from "./AnswerStyle";
 import { LastAnswerPopupComponent } from "../Popup/LastAnswer/LastAnswerPopupComponent";
+import { Button } from "../../elements";
 
 export const AnswerComponent = () => {
   const [lastAnswerOpen, setLastAnswerOpen] = useState(false);
@@ -29,7 +29,9 @@ export const AnswerComponent = () => {
       <StyledAnswerInputContainer>
         <StyledTextarea placeholder="Сначала вставьте ответ ученика в поле “Домашка ученика” справа 👉"></StyledTextarea>
       </StyledAnswerInputContainer>
-      <StyledAnswerButton>Закончить и скопировать</StyledAnswerButton>
+      <Button bgColor="secondary" color="secondary" py={13} px={15} children>
+        Закончить и скопировать
+      </Button>
     </StyledAnswerContainer>
   );
 };

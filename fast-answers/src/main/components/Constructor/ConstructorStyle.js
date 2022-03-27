@@ -50,24 +50,6 @@ export const StyledConstructorFolderContainer = styled.div`
   display: flex;
   gap: 15px;
   p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 13px 15px;
-    min-width: 165px;
     border: 1px solid #d5dfe4;
-    box-sizing: border-box;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.2s;
-    &:hover {
-      background: #f1f1f1;
-    }
-    &:active {
-      background: #d7d7d7;
-    }
-    img {
-      margin-left: 5px;
-    }
   }
 `;

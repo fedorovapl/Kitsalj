@@ -77,7 +77,7 @@ export const EditFolderPopupComponent = ({ open, closeModal }) => {
             </div>
             <StyledButtonGroup>
               <StyledButtonCancel>Отмена</StyledButtonCancel>
-              <StyledButtonAdd>Добавить</StyledButtonAdd>
+              <StyledButtonAdd>Сохранить изменения</StyledButtonAdd>
             </StyledButtonGroup>
           </StyledModalContent>
         </div>
