@@ -8,7 +8,7 @@ const login = async (username, password) => {
       password,
     })
     .then((response) => {
-      if (response.data.accessToken) {
+      if (response.data.access) {
         TokenService.setUser(response.data);
       }
       return response.data;

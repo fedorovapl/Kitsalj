@@ -50,7 +50,9 @@ export const LoginPopupComponent = ({ open, closeModal, handleClick }) => {
               ></StyledFolderNameInput>
             </StyledPasswordContainer>
             <StyledButtonGroup>
-              <StyledButtonCancel>Отмена</StyledButtonCancel>
+              <StyledButtonCancel onClick={closeModal}>
+                Отмена
+              </StyledButtonCancel>
               <StyledButtonAdd onClick={() => handleClick(nick, pass)}>
                 Войти
               </StyledButtonAdd>

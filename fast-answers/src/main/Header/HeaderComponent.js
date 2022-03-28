@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyledHeaderContainer,
   StyledHeaderWrapper,
@@ -7,26 +7,21 @@ import {
 } from "./HeaderStyle";
 import Logo from "../../assets/img/logo.png";
 import Logout from "../../assets/img/logout.png";
-import AuthService from "../services/auth.service";
+
 import { LoginPopupComponent } from "../components";
 
-export const HeaderComponent = () => {
-  const [logOpen, setLogOpen] = useState(false);
-  const handleLogin = (username, password) => {
-    AuthService.login(username, password).then(
-      (res) => {
-        console.log(res);
-      },
-      (e) => {
-        const resMessage =
-          (e.response && e.response.data && e.response.data.message) ||
-          e.message ||
-          e.toString();
-        console.log(resMessage);
-      }
-    );
-  };
-
+export const HeaderComponent = ({
+  handleLogin,
+  isLoginPending,
+  isLoginSuccess,
+  isLoginError,
+  loginErrorMessage,
+  user,
+  logOpen,
+  setLogOpen,
+  logout,
+  isLoggedIn,
+}) => {
   return (
     <StyledHeaderWrapper>
       <LoginPopupComponent
@@ -42,10 +37,16 @@ export const HeaderComponent = () => {
           </p>
         </StyledLogoContainer>
         <StyledLoginContainer>
-          <p>Kurator</p>
-          <a onClick={() => setLogOpen(true)}>
-            Войти <img src={Logout} alt=""></img>
-          </a>
+          <p>{isLoggedIn ? user.username : ""}</p>
+          {isLoggedIn ? (
+            <a onClick={() => logout()}>
+              Выйти <img src={Logout} alt=""></img>
+            </a>
+          ) : (
+            <a onClick={() => setLogOpen(true)}>
+              Войти <img src={Logout} alt=""></img>
+            </a>
+          )}
         </StyledLoginContainer>
       </StyledHeaderContainer>
     </StyledHeaderWrapper>

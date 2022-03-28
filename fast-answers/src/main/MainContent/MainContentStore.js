@@ -8,6 +8,14 @@ export function mainContentStore(state = initialState, action) {
       return {
         ...state,
       };
+    case MAIN_CONTENT_ACTION_TYPE:
+      return {
+        ...state,
+      };
+    case MAIN_CONTENT_ACTION_TYPE:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

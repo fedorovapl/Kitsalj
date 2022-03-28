@@ -68,3 +68,18 @@ export const StyledSecondBlock = styled.div`
 export const StyledThirdBlock = styled.div`
   margin-top: 60px;
 `;
+
+export const StyledNotLoginContent = styled.div`
+  text-align: center;
+  width: 100%;
+  height: auto;
+  max-width: 1110px;
+  min-width: 1110px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 0px 3px 10px rgba(0, 73, 129, 0.1);
+  border-radius: 10px;
+  flex-direction: column;
+`;

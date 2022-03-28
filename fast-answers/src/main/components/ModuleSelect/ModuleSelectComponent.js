@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyledSelect } from "./ModuleSelectStyle";
-
+import { moduleConvert } from "./ModuleSelectConvert";
 const customStyles = {
   valueContainer: (provided) => ({
     ...provided,
@@ -12,25 +12,18 @@ const customStyles = {
   }),
 };
 
-const options = [
-  { value: "module-1", label: "Модуль-1" },
-  { value: "module-2", label: "Модуль-2" },
-  { value: "module-3", label: "Модуль-3" },
-];
-
-export const ModuleSelectComponent = () => {
-  const [selectedModule, setSelectedModule] = useState({
-    value: "no-value",
-    label: "Выберите модуль",
-  });
-
+export const ModuleSelectComponent = ({
+  modules,
+  currentModule,
+  setCurrentModule,
+}) => {
   return (
     <div>
       <p>Выберите модуль</p>
       <StyledSelect
-        value={selectedModule}
-        onChange={(selectedOption) => setSelectedModule(selectedOption)}
-        options={options}
+        value={currentModule}
+        onChange={(selectedOption) => setCurrentModule(selectedOption)}
+        options={moduleConvert(modules)}
         styles={customStyles}
       />
     </div>

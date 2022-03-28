@@ -4,9 +4,6 @@ const instance = axios.create({
   baseURL: "https://desolate-shore-78177.herokuapp.com/",
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Request-Method": "POST",
-    "Access-Control-Allow-Credentials": true,
   },
 });
 
@@ -14,8 +11,7 @@ instance.interceptors.request.use(
   (config) => {
     const token = TokenService.getLocalAccessToken();
     if (token) {
-      // config.headers["Authorization"] = 'Bearer ' + token;  // for Spring Boot back-end
-      config.headers["x-access-token"] = token; // for Node.js Express back-end
+      config.headers["Authorization"] = "Bearer " + token;
     }
     return config;
   },
@@ -36,10 +32,10 @@ instance.interceptors.response.use(
         originalConfig._retry = true;
         try {
           const rs = await instance.post("/auth/token/refresh/", {
-            refreshToken: TokenService.getLocalRefreshToken(),
+            refresh: TokenService.getLocalRefreshToken(),
           });
-          const { accessToken } = rs.data;
-          TokenService.updateLocalAccessToken(accessToken);
+          const { access } = rs.data;
+          TokenService.updateLocalAccessToken(access);
           return instance(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);

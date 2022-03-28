@@ -1,22 +1,22 @@
-import api from "../services/api";
-import { MAIN_CONTENT_ACTION_TYPE } from "./MainContentConstant";
+import api from "../../services/api";
+import { MODULE_ACTION_TYPE } from "./ModuleSelectConstant";
 
-export const sdsd = () => {
+export const getModules = () => {
   return async (dispatch) => {
     dispatch({
-      type: "",
+      type: MODULE_ACTION_TYPE.GET_MODULE_PENDING,
     });
     try {
       await api.get("module/").then((res) => {
         console.log(res);
         dispatch({
-          type: "",
+          type: MODULE_ACTION_TYPE.GET_MODULE_SUCCESS,
           payload: res.data.results,
         });
       });
     } catch (e) {
       dispatch({
-        type: "",
+        type: MODULE_ACTION_TYPE.GET_MODULE_FAILURE,
         payload: e.message,
       });
     }
