@@ -14,7 +14,7 @@ import { AddFolderPopupComponent } from "../Popup/AddFolder/AddFolderPopupCompon
 import { EditFolderPopupComponent } from "../Popup/EditFolder/EditFolderPopupComponent";
 import { Button } from "../../elements";
 
-export const ConstructorComponent = () => {
+export const ConstructorComponent = ({ folders, subFolders, phrases }) => {
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
 
@@ -41,15 +41,20 @@ export const ConstructorComponent = () => {
       </StyledConstructorHeaderContainer>
       <StyledBreadcrumb>Конструктор</StyledBreadcrumb>
       <StyledConstructorFolderContainer>
-        <Button iconPng={Meaning} py={13} px={15}>
-          Смыслы
-        </Button>
+        {folders?.data?.map((item) => {
+          return (
+            <Button key={item.id} py={13} px={15}>
+              {item.name}
+            </Button>
+          );
+        })}
+        {/* 
         <Button iconPng={Abstract} py={13} px={15}>
           Тезисы
         </Button>
         <Button iconPng={Smile} py={13} px={15}>
           Смайлы
-        </Button>
+        </Button> */}
       </StyledConstructorFolderContainer>
     </div>
   );

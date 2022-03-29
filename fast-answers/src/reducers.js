@@ -4,6 +4,10 @@ import { mainContentStore, MAIN_CONTENT_STORE_NAME } from "./main/MainContent";
 import { moduleStore, MODULE_STORE_NAME } from "./main/components/ModuleSelect";
 import { lessonStore, LESSON_STORE_NAME } from "./main/components/LessonSelect";
 import { homeworkStore, HOMEWORK_STORE_NAME } from "./main/components/Homework";
+import {
+  constructorStore,
+  CONSTRUCTOR_STORE_NAME,
+} from "./main/components/Constructor";
 
 export const reducers = combineReducers({
   [HEADER_STORE_NAME]: headerStore,
@@ -11,4 +15,5 @@ export const reducers = combineReducers({
   [MODULE_STORE_NAME]: moduleStore,
   [LESSON_STORE_NAME]: lessonStore,
   [HOMEWORK_STORE_NAME]: homeworkStore,
+  [CONSTRUCTOR_STORE_NAME]: constructorStore,
 });
