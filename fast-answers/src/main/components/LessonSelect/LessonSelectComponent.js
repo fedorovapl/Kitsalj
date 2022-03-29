@@ -17,11 +17,14 @@ export const LessonSelectComponent = ({
   lessons,
   currentLesson,
   setCurrentLesson,
+  islessonsPending,
 }) => {
   return (
     <div>
       <p>Выберите Урок</p>
       <StyledSelect
+        isLoading={islessonsPending}
+        isDisabled={islessonsPending}
         value={currentLesson}
         onChange={(selectedOption) => setCurrentLesson(selectedOption)}
         options={lessonConvert(lessons)}

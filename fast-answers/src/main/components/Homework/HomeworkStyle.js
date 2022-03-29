@@ -6,13 +6,14 @@ export const StyledHomeworkHeader = styled.div`
   margin-bottom: 16px;
 `;
 export const StyledTextarea = styled.textarea`
+  pointer-events: none;
   width: 100%;
   height: 210px;
   padding: 13px 10px;
   box-sizing: border-box;
   border: 1px solid #d5dfe4;
   border-radius: 5px;
-  background: #f8f8f8;
+  background: ${(props) => (props.disabled ? "#f8f8f8" : "#fff")};
   resize: none;
   font-weight: 400;
   font-size: 14px;
@@ -44,4 +45,13 @@ export const StyledHomeworkButton = styled.p`
   &:active {
     background: #c9ae4d;
   }
+`;
+
+export const StyledOriginText = styled.div`
+  opacity: ${(props) => (props.isVisible ? "1;" : "0;")}
+  transition: 0.1s;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2ad200;
 `;

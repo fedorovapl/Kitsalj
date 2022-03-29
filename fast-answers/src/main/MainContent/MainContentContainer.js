@@ -8,7 +8,7 @@ export const MainContentContainer = () => {
   const dispatch = useDispatch();
   const [recOpen, setRecOpen] = useState(false);
   const [recomendation, setRecomendation] = useState("");
-
+  const [recDisabled, setRecDisabled] = useState(false);
   const { user, isLoggedIn } = useSelector((store) => store[HEADER_STORE_NAME]);
 
   const { lessons, currentLesson } = useSelector(
@@ -23,6 +23,13 @@ export const MainContentContainer = () => {
   };
 
   useEffect(() => {
+    if (recomendation) {
+      setRecDisabled(false);
+    } else {
+      setRecDisabled(true);
+    }
+  }, [recomendation]);
+  useEffect(() => {
     convertRecomendation();
   }, [currentLesson]);
 
@@ -33,6 +40,7 @@ export const MainContentContainer = () => {
       user={user}
       isLoggedIn={isLoggedIn}
       text={recomendation}
+      recDisabled={recDisabled}
     />
   );
 };

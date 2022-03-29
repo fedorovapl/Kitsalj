@@ -6,46 +6,45 @@ const StyledButton = styled.p`
   align-items: center;
   justify-content: center;
   margin-top: 22px;
-  background: ${(props) =>
-    props.bgColor === "primary"
-      ? "#fadb67;"
-      : props.bgColor === "secondary"
-      ? "#B4BDC1;"
-      : props.bgColor === "danger"
-      ? "#FA6767;"
-      : "#FFFFFF;"};
-  color: ${(props) =>
+  ${(props) =>
     props.color === "primary"
-      ? "#192229;"
+      ? "background: #FADB67; color: #192229;"
       : props.color === "secondary"
-      ? "#FFFFFF;"
+      ? "background: #FFFFFF; color: #192229; border: 1px solid #D5DFE4;"
       : props.color === "danger"
-      ? "#FFFFFF;"
-      : "#192229;"};
+      ? "background: #fa6767; color: #ffffff;"
+      : props.color === "disabled"
+      ? "background: #B4BDC1; color: #ffffff;"
+      : ""}
   border-radius: 5px;
   padding: ${(props) => props.py + "px"} ${(props) => props.px + "px;"};
   cursor: pointer;
   transition: 0.2s;
   &:hover {
     background: ${(props) =>
-      props.bgColor === "primary"
+      props.color === "primary"
         ? "#dfc255;"
-        : props.bgColor === "secondary"
+        : props.color === "secondary"
         ? "#a0aaaf;"
-        : props.bgColor === "danger"
+        : props.color === "danger"
         ? "#FA6767;"
+        : props.color === "disabled"
+        ? "#B4BDC1;"
         : "#f1f1f1;"};
   }
   &:active {
     background: ${(props) =>
-      props.bgColor === "primary"
+      props.color === "primary"
         ? "#cfb246;"
-        : props.bgColor === "secondary"
+        : props.color === "secondary"
         ? "#909ba1;"
-        : props.bgColor === "danger"
+        : props.color === "danger"
         ? "#FA6767;"
+        : props.color === "disabled"
+        ? "#B4BDC1;"
         : "#d7d7d7;"};
   }
+  ${(props) => (props.disabled ? "pointer-events: none; cursor: default;" : "")}
 `;
 
 export const Button = ({
@@ -56,11 +55,13 @@ export const Button = ({
   children,
   iconSvg,
   iconPng,
-  handleClick,
+  onClick,
+  disabled,
 }) => {
   return (
     <StyledButton
-      onClick={handleClick}
+      disabled={disabled}
+      onClick={onClick}
       px={px}
       py={py}
       color={color}

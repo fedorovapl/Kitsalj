@@ -5,9 +5,14 @@ import { LESSON_STORE_NAME, LESSON_ACTION_TYPE } from "./LessonSelectConstant";
 
 export const LessonSelectContainer = () => {
   const dispatch = useDispatch();
-  const { lessons, currentLesson } = useSelector(
-    (store) => store[LESSON_STORE_NAME]
-  );
+  const {
+    lessons,
+    currentLesson,
+    islessonsPending,
+    islessonsSuccess,
+    islessonsError,
+    lessonsErrorMessage,
+  } = useSelector((store) => store[LESSON_STORE_NAME]);
 
   const setCurrentLesson = (currentLesson) => {
     dispatch({
@@ -18,6 +23,7 @@ export const LessonSelectContainer = () => {
 
   return (
     <LessonSelectComponent
+      islessonsPending={islessonsPending}
       lessons={lessons}
       currentLesson={currentLesson}
       setCurrentLesson={setCurrentLesson}

@@ -8,9 +8,13 @@ import { getLessons } from "../LessonSelect/LessonSelectAction";
 
 export const ModuleSelectContainer = () => {
   const dispatch = useDispatch();
-  const { modules, currentModule } = useSelector(
-    (store) => store[MODULE_STORE_NAME]
-  );
+  const {
+    modules,
+    currentModule,
+    isModulesPending,
+    isModulesSuccess,
+    isModulesError,
+  } = useSelector((store) => store[MODULE_STORE_NAME]);
   const { isLoggedIn } = useSelector((store) => store[HEADER_STORE_NAME]);
 
   const setCurrentModule = (currentModule) => {
@@ -32,6 +36,7 @@ export const ModuleSelectContainer = () => {
       modules={modules}
       currentModule={currentModule}
       setCurrentModule={setCurrentModule}
+      isModulesPending={isModulesPending}
     />
   );
 };

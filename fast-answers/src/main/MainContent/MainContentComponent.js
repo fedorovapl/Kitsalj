@@ -20,7 +20,13 @@ import {
 } from "../components";
 import { Button } from "../elements";
 
-export const MainContentComponent = ({ setRecOpen, recOpen, user, text }) => {
+export const MainContentComponent = ({
+  setRecOpen,
+  recOpen,
+  user,
+  text,
+  recDisabled,
+}) => {
   return (
     <StyledMainContainer>
       <RecomendationPopupComponent
@@ -38,7 +44,7 @@ export const MainContentComponent = ({ setRecOpen, recOpen, user, text }) => {
               <LessonSelectContainer />
             </div>
             <StyledRecommendationContainer>
-              <Button py={13} px={15} handleClick={() => setRecOpen(true)}>
+              <Button py={13} px={15} onClick={() => setRecOpen(true)}>
                 Рекомендации к проверке
               </Button>
             </StyledRecommendationContainer>

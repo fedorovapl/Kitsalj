@@ -32,7 +32,7 @@ export const StyledTextarea = styled.textarea`
   box-sizing: border-box;
   border: 1px solid #d5dfe4;
   border-radius: 5px;
-  background: #f8f8f8;
+  background: ${(props) => (props.disabled ? "#f8f8f8" : "#fff")};
   resize: none;
   font-weight: 400;
   font-size: 14px;
