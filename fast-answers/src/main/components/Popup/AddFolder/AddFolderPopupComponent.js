@@ -12,12 +12,6 @@ import {
   StyledButtonAdd,
 } from "./AddFolderPopupStyle";
 
-const options = [
-  { value: "folder-1", label: "Смыслы" },
-  { value: "folder-2", label: "Тезисы" },
-  { value: "folder-3", label: "Смайлы" },
-];
-
 const contentStyle = {
   padding: "20px",
   width: "430px",
@@ -25,8 +19,30 @@ const contentStyle = {
   borderRadius: "10px",
 };
 
-export const AddFolderPopupComponent = ({ open, closeModal }) => {
-  const [selectedFolder, setSelectedFolder] = useState(options[0]);
+export const AddFolderPopupComponent = ({
+  open,
+  closeModal,
+  folders,
+  handleAddFolder,
+  currentStage,
+}) => {
+  const [selectedFolder, setSelectedFolder] = useState({
+    value: "no-value",
+    label: "Выберите папку",
+  });
+  const [folderName, setFolderName] = useState("");
+
+  const covertFoldersData = () => {
+    let options = [];
+
+    folders?.data.forEach((element) => {
+      options.push({
+        value: element.id,
+        label: element.name,
+      });
+    });
+    return options;
+  };
 
   const customStyles = {
     valueContainer: (provided) => ({
@@ -52,20 +68,42 @@ export const AddFolderPopupComponent = ({ open, closeModal }) => {
             <StyledClosePopup className="close" onClick={closeModal} />
             <StyledFolderNameContainer>
               <p>Название папки</p>
-              <StyledFolderNameInput placeholder="Например, смыслы"></StyledFolderNameInput>
+              <StyledFolderNameInput
+                value={folderName}
+                onChange={(e) => setFolderName(e.target.value)}
+                placeholder="Например, смыслы"
+              ></StyledFolderNameInput>
             </StyledFolderNameContainer>
             <div>
-              <p>Добавить новую папку после папки</p>
-              <StyledSelect
-                value={selectedFolder}
-                onChange={(selectedOption) => setSelectedFolder(selectedOption)}
-                options={options}
-                styles={customStyles}
-              />
+              <p>
+                {currentStage === "folder"
+                  ? "Папка будет добавлена в текущий урок"
+                  : "Добавить новую папку после папки"}
+              </p>
+              {currentStage === "folder" ? (
+                ""
+              ) : (
+                <StyledSelect
+                  value={selectedFolder}
+                  onChange={(selectedOption) =>
+                    setSelectedFolder(selectedOption)
+                  }
+                  options={covertFoldersData()}
+                  styles={customStyles}
+                />
+              )}
             </div>
             <StyledButtonGroup>
-              <StyledButtonCancel>Отмена</StyledButtonCancel>
-              <StyledButtonAdd>Добавить</StyledButtonAdd>
+              <StyledButtonCancel onClick={closeModal}>
+                Отмена
+              </StyledButtonCancel>
+              <StyledButtonAdd
+                onClick={() =>
+                  handleAddFolder(folderName, selectedFolder.value)
+                }
+              >
+                Добавить
+              </StyledButtonAdd>
             </StyledButtonGroup>
           </StyledModalContent>
         </div>

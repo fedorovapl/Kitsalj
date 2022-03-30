@@ -25,7 +25,11 @@ const contentStyle = {
   borderRadius: "10px",
 };
 
-export const EditFolderPopupComponent = ({ open, closeModal }) => {
+export const EditFolderPopupComponent = ({
+  open,
+  closeModal,
+  currentStage,
+}) => {
   const [selectedEditFolder, setSelectedEditFolder] = useState(options[0]);
   const [selectedFolder, setSelectedFolder] = useState(options[1]);
 

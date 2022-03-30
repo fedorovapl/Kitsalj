@@ -28,7 +28,6 @@ export const ConstructorContainer = () => {
   };
   const handlePhraseClick = (e) => {
     const text = e.target.innerText;
-    console.log(text);
     dispatch({ type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE, payload: text });
   };
 

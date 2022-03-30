@@ -65,6 +65,32 @@ export function constructorStore(state = initialState, action) {
         },
       };
 
+    case CONSTRUCTOR_ACTION_TYPE.ADD_FOLDER_PENDING:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.ADD_FOLDER_SUCCESS:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.ADD_FOLDER_FAILURE:
+      return {
+        ...state,
+      };
+
+    case CONSTRUCTOR_ACTION_TYPE.ADD_SUBFOLDER_PENDING:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.ADD_SUBFOLDER_SUCCESS:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.ADD_SUBFOLDER_FAILURE:
+      return {
+        ...state,
+      };
+
     case CONSTRUCTOR_ACTION_TYPE.GET_SUBFOLDER_PENDING:
       return {
         ...state,

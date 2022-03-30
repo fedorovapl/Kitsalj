@@ -10,7 +10,7 @@ import { ReactComponent as EditFolder } from "../../../assets/svg/edit-folder.sv
 import Meaning from "../../../assets/img/meaning.png";
 import Abstract from "../../../assets/img/abstract.png";
 import Smile from "../../../assets/img/smile.png";
-import { AddFolderPopupComponent } from "../Popup/AddFolder/AddFolderPopupComponent";
+import { AddFolderPopupContainer } from "../Popup/AddFolder/AddFolderPopupContainer";
 import { EditFolderPopupComponent } from "../Popup/EditFolder/EditFolderPopupComponent";
 import { Button } from "../../elements";
 import { ReactComponent as EditAnswer } from "../../../assets/svg/edit-answer.svg";
@@ -32,13 +32,15 @@ export const ConstructorComponent = ({
 
   return (
     <div>
-      <AddFolderPopupComponent
+      <AddFolderPopupContainer
         open={addFolderOpen}
         closeModal={() => setAddFolderOpen(false)}
+        currentStage={currentStage}
       />
       <EditFolderPopupComponent
         open={editFolderOpen}
         closeModal={() => setEditFolderOpen(false)}
+        currentStage={currentStage}
       />
       <StyledConstructorHeaderContainer>
         <p>Конструктор готовых ответов</p>

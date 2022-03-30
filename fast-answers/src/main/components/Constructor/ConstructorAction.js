@@ -22,6 +22,52 @@ export const getFolders = (lessonId) => {
   };
 };
 
+export const addSubFolder = (name, folderId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.ADD_SUBFOLDER_PENDING,
+    });
+    try {
+      await api
+        .post(`/subcategory/`, { name: name, category: folderId })
+        .then((res) => {
+          dispatch({
+            type: CONSTRUCTOR_ACTION_TYPE.ADD_SUBFOLDER_SUCCESS,
+            payload: res.data.results,
+          });
+        });
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.ADD_SUBFOLDER_FAILURE,
+        payload: e.message,
+      });
+    }
+  };
+};
+
+export const addFolder = (name, lessonId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.ADD_FOLDER_PENDING,
+    });
+    try {
+      await api
+        .post(`/category/`, { name: name, lesson: lessonId })
+        .then((res) => {
+          dispatch({
+            type: CONSTRUCTOR_ACTION_TYPE.ADD_FOLDER_SUCCESS,
+            payload: res.data.results,
+          });
+        });
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.ADD_FOLDER_FAILURE,
+        payload: e.message,
+      });
+    }
+  };
+};
+
 export const getSubFolders = (categoryId) => {
   return async (dispatch) => {
     dispatch({
