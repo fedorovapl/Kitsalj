@@ -8,6 +8,7 @@ import {
   constructorStore,
   CONSTRUCTOR_STORE_NAME,
 } from "./main/components/Constructor";
+import { answerStore, ANSWER_STORE_NAME } from "./main/components/Answer";
 
 export const reducers = combineReducers({
   [HEADER_STORE_NAME]: headerStore,
@@ -16,4 +17,5 @@ export const reducers = combineReducers({
   [LESSON_STORE_NAME]: lessonStore,
   [HOMEWORK_STORE_NAME]: homeworkStore,
   [CONSTRUCTOR_STORE_NAME]: constructorStore,
+  [ANSWER_STORE_NAME]: answerStore,
 });

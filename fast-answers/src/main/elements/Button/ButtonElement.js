@@ -5,7 +5,6 @@ const StyledButton = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 22px;
   ${(props) =>
     props.color === "primary"
       ? "background: #FADB67; color: #192229;"
@@ -55,21 +54,35 @@ export const Button = ({
   children,
   iconSvg,
   iconPng,
-  onClick,
-  disabled,
+  EditIcon,
+  DeleteIcon,
+  ...props
 }) => {
   return (
-    <StyledButton
-      disabled={disabled}
-      onClick={onClick}
-      px={px}
-      py={py}
-      color={color}
-      bgColor={bgColor}
-    >
+    <StyledButton px={px} py={py} color={color} {...props}>
       {children}
       {iconPng && <img src={iconPng} alt=""></img>}
       {iconSvg && iconSvg}
+      {EditIcon && (
+        <EditIcon
+          style={{
+            border: "1px solid #D5DFE4",
+            marginLeft: "10px",
+            borderRadius: "5px",
+            padding: "10px",
+          }}
+        />
+      )}
+      {DeleteIcon && (
+        <DeleteIcon
+          style={{
+            border: "1px solid #D5DFE4",
+            marginLeft: "10px",
+            borderRadius: "5px",
+            padding: "10px",
+          }}
+        />
+      )}
     </StyledButton>
   );
 };

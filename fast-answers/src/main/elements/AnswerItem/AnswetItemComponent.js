@@ -20,6 +20,7 @@ export const AnswerItemComponent = ({
   id,
   answerData,
   open,
+  priority,
 }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
@@ -41,7 +42,7 @@ export const AnswerItemComponent = ({
     <StyledAnswerContainer>
       <StyledAnswerHeader>
         <p>
-          Приоритет =<input type="number"></input>
+          Приоритет =<input value={priority} type="number"></input>
           <Popup
             trigger={() => <HelpTooltip />}
             position="right center"

@@ -49,6 +49,7 @@ export const StyledBreadcrumb = styled.p`
 export const StyledConstructorFolderContainer = styled.div`
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
   p {
     border: 1px solid #d5dfe4;
   }

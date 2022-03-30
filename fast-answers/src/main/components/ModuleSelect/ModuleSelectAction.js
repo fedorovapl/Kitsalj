@@ -8,7 +8,6 @@ export const getModules = () => {
     });
     try {
       await api.get("module/").then((res) => {
-        console.log(res);
         dispatch({
           type: MODULE_ACTION_TYPE.GET_MODULE_SUCCESS,
           payload: res.data.results,

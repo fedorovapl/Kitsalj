@@ -1,6 +1,8 @@
 import { MAIN_CONTENT_ACTION_TYPE } from "./MainContentConstant";
 
-const initialState = {};
+const initialState = {
+  timer: 0,
+};
 
 export function mainContentStore(state = initialState, action) {
   switch (action.type) {

@@ -25,7 +25,7 @@ export const HomeworkComponent = ({
         <StyledTextarea
           readOnly
           value={currentText}
-          disabled={false}
+          disabled={true}
           placeholder={
             currentLesson.value === "no-value"
               ? "Выберите урок"
@@ -37,7 +37,7 @@ export const HomeworkComponent = ({
         </StyledOriginText>
       </StyledHomeworkInputContainer>
       <Button
-        disabled={isHomeworkSend}
+        disabled={isHomeworkSend || currentLesson.value === "no-value"}
         onClick={handlePostHomework}
         color={isHomeworkSend ? "secondary" : "primary"}
         py={13}

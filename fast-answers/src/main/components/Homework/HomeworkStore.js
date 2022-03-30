@@ -2,7 +2,7 @@ import { HOMEWORK_ACTION_TYPE } from "./HomeworkConstant";
 
 const initialState = {
   origin: "",
-  currentText: "",
+  currentHomeworkText: "",
   isHomeworkPending: false,
   isHomeworkSuccess: false,
   isHomeworkError: false,
@@ -43,7 +43,7 @@ export function homeworkStore(state = initialState, action) {
     case HOMEWORK_ACTION_TYPE.INPUT_TEXT_HOMEWORK:
       return {
         ...state,
-        currentText: action.payload,
+        currentHomeworkText: action.payload,
       };
 
     default:

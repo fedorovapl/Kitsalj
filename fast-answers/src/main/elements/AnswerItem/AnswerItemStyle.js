@@ -9,6 +9,16 @@ export const StyledAnswerHeader = styled.div`
   p {
     display: flex;
     align-items: center;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
     input {
       background: #ffffff;
       border: 1px solid #d5dfe4;

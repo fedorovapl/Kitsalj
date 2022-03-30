@@ -10,20 +10,26 @@ import {
 import { LastAnswerPopupComponent } from "../Popup/LastAnswer/LastAnswerPopupComponent";
 import { Button } from "../../elements";
 
-export const AnswerComponent = ({ isHomeworkSend }) => {
-  const [lastAnswerOpen, setLastAnswerOpen] = useState(false);
-  const [answerText, setAnswertext] = useState("");
-  console.log("answer: ", answerText);
-
+export const AnswerComponent = ({
+  isHomeworkSend,
+  currentValue,
+  handleAnswerSend,
+  setCurrentValue,
+  handleGetLastAnswer,
+  setLastAnswerOpen,
+  lastAnswerOpen,
+  lastAnswer,
+}) => {
   return (
     <StyledAnswerContainer>
       <LastAnswerPopupComponent
+        lastAnswer={lastAnswer}
         open={lastAnswerOpen}
         closeModal={() => setLastAnswerOpen(false)}
       />
       <StyledAnswerHeader>
         <p>Мой ответ</p>
-        <StyledLastAnswerHeader onClick={() => setLastAnswerOpen(true)}>
+        <StyledLastAnswerHeader onClick={handleGetLastAnswer}>
           <StyledLastAnswerIcon />
           Мои прошлые ответы
         </StyledLastAnswerHeader>
@@ -32,8 +38,8 @@ export const AnswerComponent = ({ isHomeworkSend }) => {
         <StyledTextarea
           disabled={!isHomeworkSend}
           placeholder="Сначала вставьте ответ ученика в поле “Домашка ученика” справа 👉"
-          value={answerText}
-          onChange={(e) => setAnswertext(e.target.value)}
+          value={currentValue}
+          onChange={(e) => setCurrentValue(e)}
         ></StyledTextarea>
         <div style={{ opacity: "0", fontWeight: 500, fontSize: "14px" }}>
           Фикс
@@ -41,6 +47,7 @@ export const AnswerComponent = ({ isHomeworkSend }) => {
       </StyledAnswerInputContainer>
       <Button
         disabled={!isHomeworkSend}
+        onClick={handleAnswerSend}
         color={isHomeworkSend ? "primary" : "disabled"}
         py={13}
         px={15}

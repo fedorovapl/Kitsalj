@@ -1,6 +1,7 @@
 import { CONSTRUCTOR_ACTION_TYPE } from "./ConstructorConstant";
 
 const initialState = {
+  currentStage: "folder",
   folders: {
     data: [],
     isPending: false,
@@ -37,6 +38,7 @@ export function constructorStore(state = initialState, action) {
           isError: false,
           errorMessage: null,
         },
+        currentStage: "folder",
       };
     case CONSTRUCTOR_ACTION_TYPE.GET_FOLDER_SUCCESS:
       return {
@@ -74,6 +76,7 @@ export function constructorStore(state = initialState, action) {
           isError: false,
           errorMessage: null,
         },
+        currentStage: "subfolder",
       };
     case CONSTRUCTOR_ACTION_TYPE.GET_SUBFOLDER_SUCCESS:
       return {
@@ -111,6 +114,7 @@ export function constructorStore(state = initialState, action) {
           isError: false,
           errorMessage: null,
         },
+        currentStage: "phrase",
       };
     case CONSTRUCTOR_ACTION_TYPE.GET_PHRASE_SUCCESS:
       return {

@@ -8,7 +8,6 @@ export const sdsd = () => {
     });
     try {
       await api.get("module/").then((res) => {
-        console.log(res);
         dispatch({
           type: "",
           payload: res.data.results,

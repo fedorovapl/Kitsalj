@@ -4,11 +4,12 @@ import { HomeworkComponent } from "./HomeworkComponent";
 import { HOMEWORK_STORE_NAME, HOMEWORK_ACTION_TYPE } from "./HomeworkConstant";
 import { postHomework } from "./HomeworkAction";
 import { LESSON_STORE_NAME } from "../LessonSelect/LessonSelectConstant";
+
 export const HomeworkContainer = () => {
   const dispatch = useDispatch();
   const {
     origin,
-    currentText,
+    currentHomeworkText,
     isHomeworkPending,
     isHomeworkSuccess,
     isHomeworkError,
@@ -30,7 +31,7 @@ export const HomeworkContainer = () => {
 
   return (
     <HomeworkComponent
-      currentText={currentText}
+      currentText={currentHomeworkText}
       origin={origin}
       isHomeworkPending={isHomeworkPending}
       handlePostHomework={handlePostHomework}

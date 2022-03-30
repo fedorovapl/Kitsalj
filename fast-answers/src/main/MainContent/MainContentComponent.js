@@ -3,8 +3,6 @@ import {
   StyledMainContainer,
   StyledMainContent,
   StyledRecommendationContainer,
-  StyledTimer,
-  StyledTimerContainer,
   StyledFirstBlock,
   StyledSecondBlock,
   StyledThirdBlock,
@@ -19,6 +17,7 @@ import {
   RecomendationPopupComponent,
 } from "../components";
 import { Button } from "../elements";
+import { TimerComponent } from "../elements/Timer/TimerComponent";
 
 export const MainContentComponent = ({
   setRecOpen,
@@ -26,6 +25,10 @@ export const MainContentComponent = ({
   user,
   text,
   recDisabled,
+  minutes,
+  seconds,
+  currentLesson,
+  restartTimer,
 }) => {
   return (
     <StyledMainContainer>
@@ -44,16 +47,23 @@ export const MainContentComponent = ({
               <LessonSelectContainer />
             </div>
             <StyledRecommendationContainer>
-              <Button py={13} px={15} onClick={() => setRecOpen(true)}>
+              <Button
+                disabled={currentLesson.value === "no-value" ? true : false}
+                py={13}
+                px={15}
+                onClick={() => setRecOpen(true)}
+              >
                 Рекомендации к проверке
               </Button>
             </StyledRecommendationContainer>
-            <StyledTimerContainer>
-              <StyledTimer>Время ответа: 18:89</StyledTimer>
-            </StyledTimerContainer>
+            <TimerComponent minutes={minutes} seconds={seconds} />
           </StyledFirstBlock>
           <StyledSecondBlock>
-            <AnswerContainer />
+            <AnswerContainer
+              minutes={minutes}
+              seconds={seconds}
+              restartTimer={restartTimer}
+            />
             <HomeworkContainer />
           </StyledSecondBlock>
           <StyledThirdBlock>
