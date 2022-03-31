@@ -4,17 +4,20 @@ import {
   StyledBreadcrumb,
   StyledConstructorFolderContainer,
   StyledIconButton,
+  StyledBreadItem,
+  StyledBreadItemFirst,
 } from "./ConstructorStyle";
 import { ReactComponent as AddFolder } from "../../../assets/svg/add-folder.svg";
 import { ReactComponent as EditFolder } from "../../../assets/svg/edit-folder.svg";
-import Meaning from "../../../assets/img/meaning.png";
-import Abstract from "../../../assets/img/abstract.png";
-import Smile from "../../../assets/img/smile.png";
-import { AddFolderPopupContainer } from "../Popup/AddFolder/AddFolderPopupContainer";
-import { EditFolderPopupComponent } from "../Popup/EditFolder/EditFolderPopupComponent";
-import { Button } from "../../elements";
-import { ReactComponent as EditAnswer } from "../../../assets/svg/edit-answer.svg";
-import { ReactComponent as DeleteAnswer } from "../../../assets/svg/delete-answer.svg";
+
+import {
+  EditAnswerPopupComponent,
+  EditFolderPopupComponent,
+  AddFolderPopupContainer,
+  AddAnswerPopupComponent,
+} from "../";
+
+import { Button, FolderButton } from "../../elements";
 
 export const ConstructorComponent = ({
   folders,
@@ -24,14 +27,42 @@ export const ConstructorComponent = ({
   handleSubFolderClick,
   handlePhraseClick,
   currentStage,
+  currentLesson,
+  setEditAnswerOpen,
+  editAnswerOpen,
+  selectedAnswerText,
+  handleAnswerChange,
+  handleEditAnswer,
+  handleNewAnswerText,
+  newAnswerText,
+  handleAddAnswer,
+  addAnswerOpen,
+  setAddAnswerOpen,
+  folderId,
+  subFolderId,
+  handleReturnFolder,
+  handleReturnSubFolder,
+  handleReturnPhrases,
 }) => {
   const [addFolderOpen, setAddFolderOpen] = useState(false);
   const [editFolderOpen, setEditFolderOpen] = useState(false);
-  const [editAnswerOpen, setEditAnswerOpen] = useState(false);
-  const [addAnswerOpen, setAddAnswerOpen] = useState(false);
 
   return (
     <div>
+      <AddAnswerPopupComponent
+        handleNewAnswerText={handleNewAnswerText}
+        newAnswerText={newAnswerText}
+        handleAddAnswer={handleAddAnswer}
+        open={addAnswerOpen}
+        closeModal={() => setAddAnswerOpen(false)}
+      />
+      <EditAnswerPopupComponent
+        handleAnswerChange={handleAnswerChange}
+        selectedAnswerText={selectedAnswerText}
+        handleEditAnswer={handleEditAnswer}
+        open={editAnswerOpen}
+        closeModal={() => setEditAnswerOpen(false)}
+      />
       <AddFolderPopupContainer
         open={addFolderOpen}
         closeModal={() => setAddFolderOpen(false)}
@@ -51,19 +82,56 @@ export const ConstructorComponent = ({
           </StyledIconButton>
         ) : (
           <React.Fragment>
-            <StyledIconButton onClick={() => setAddFolderOpen(true)}>
+            <StyledIconButton
+              disabled={currentLesson.value === "no-value"}
+              onClick={() => setAddFolderOpen(true)}
+            >
               <AddFolder />
               Добавить папку
             </StyledIconButton>
-            <StyledIconButton onClick={() => setEditFolderOpen(true)}>
+            <StyledIconButton
+              disabled={currentLesson.value === "no-value"}
+              onClick={() => setEditFolderOpen(true)}
+            >
               <EditFolder />
               Редактировать папку
             </StyledIconButton>
           </React.Fragment>
         )}
       </StyledConstructorHeaderContainer>
-      <StyledBreadcrumb>Конструктор</StyledBreadcrumb>
-      <StyledConstructorFolderContainer>
+      <StyledBreadcrumb>
+        {currentStage === "folder" ? (
+          <StyledBreadItemFirst onClick={handleReturnFolder}>
+            Конструктор
+          </StyledBreadItemFirst>
+        ) : currentStage === "subfolder" ? (
+          <React.Fragment>
+            <StyledBreadItemFirst onClick={handleReturnFolder}>
+              Конструктор
+            </StyledBreadItemFirst>
+            <StyledBreadItem onClick={handleReturnSubFolder}>
+              {folders.data.find((item) => item.id === folderId).name}
+            </StyledBreadItem>
+          </React.Fragment>
+        ) : currentStage === "phrase" ? (
+          <React.Fragment>
+            <StyledBreadItemFirst onClick={handleReturnFolder}>
+              Конструктор
+            </StyledBreadItemFirst>
+            <StyledBreadItem onClick={handleReturnSubFolder}>
+              {folders.data.find((item) => item.id === folderId).name}
+            </StyledBreadItem>
+            <StyledBreadItem onClick={handleReturnPhrases}>
+              {subFolders.data.find((item) => item.id === subFolderId).name}
+            </StyledBreadItem>
+          </React.Fragment>
+        ) : (
+          ""
+        )}
+      </StyledBreadcrumb>
+      <StyledConstructorFolderContainer
+        currentStage={currentStage === "phrase"}
+      >
         {currentStage === "folder" &&
           folders?.data?.map((item) => {
             return (
@@ -95,19 +163,22 @@ export const ConstructorComponent = ({
         {currentStage === "phrase" &&
           phrases?.data?.map((item) => {
             return (
-              <Button
+              <FolderButton
                 onClick={(e) => handlePhraseClick(e)}
-                id={"p" + item.id}
+                id={item.id}
                 key={item.id}
-                py={13}
-                px={15}
-                EditIcon={EditAnswer}
-                DeleteIcon={DeleteAnswer}
               >
                 {item.phrase}
-              </Button>
+              </FolderButton>
             );
           })}
+        {currentStage !== "phrase" &&
+        currentStage !== "subfolder" &&
+        currentStage !== "folder" ? (
+          <div>Выберите урок для отображения папок</div>
+        ) : (
+          ""
+        )}
       </StyledConstructorFolderContainer>
     </div>
   );

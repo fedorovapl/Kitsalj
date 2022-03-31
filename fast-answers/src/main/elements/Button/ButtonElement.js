@@ -44,6 +44,8 @@ const StyledButton = styled.p`
         : "#d7d7d7;"};
   }
   ${(props) => (props.disabled ? "pointer-events: none; cursor: default;" : "")}
+
+  box-sizing: border-box;
 `;
 
 export const Button = ({
@@ -56,33 +58,22 @@ export const Button = ({
   iconPng,
   EditIcon,
   DeleteIcon,
+  onDelete,
+  onEdit,
+  currentStage,
+  onClick,
   ...props
 }) => {
   return (
-    <StyledButton px={px} py={py} color={color} {...props}>
+    <StyledButton
+      onClick={onClick}
+      currentStage={currentStage}
+      px={px}
+      py={py}
+      color={color}
+      {...props}
+    >
       {children}
-      {iconPng && <img src={iconPng} alt=""></img>}
-      {iconSvg && iconSvg}
-      {EditIcon && (
-        <EditIcon
-          style={{
-            border: "1px solid #D5DFE4",
-            marginLeft: "10px",
-            borderRadius: "5px",
-            padding: "10px",
-          }}
-        />
-      )}
-      {DeleteIcon && (
-        <DeleteIcon
-          style={{
-            border: "1px solid #D5DFE4",
-            marginLeft: "10px",
-            borderRadius: "5px",
-            padding: "10px",
-          }}
-        />
-      )}
     </StyledButton>
   );
 };

@@ -8,6 +8,9 @@ import { EditFolderPopupComponent } from "./Popup/EditFolder/EditFolderPopupComp
 import { RecomendationPopupComponent } from "./Popup/Recomendation/RecomendationPopupComponent";
 import { LastAnswerPopupComponent } from "./Popup/LastAnswer/LastAnswerPopupComponent";
 import { LoginPopupComponent } from "./Popup/Login/LoginPopupComponent";
+import { EditAnswerPopupComponent } from "./Popup/EditAnswer/EditAnswerPopupComponent";
+import { AddAnswerPopupComponent } from "./Popup/AddAnswer/AddAnswerComponent";
+
 export {
   ModuleSelectContainer,
   LessonSelectContainer,
@@ -19,4 +22,6 @@ export {
   RecomendationPopupComponent,
   LastAnswerPopupComponent,
   LoginPopupComponent,
+  EditAnswerPopupComponent,
+  AddAnswerPopupComponent,
 };

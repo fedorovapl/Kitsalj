@@ -4,9 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { HOMEWORK_STORE_NAME } from "../Homework/HomeworkConstant";
 import { ANSWER_STORE_NAME, ANSWER_ACTION_TYPE } from "./AnswerConstant";
 import { LESSON_STORE_NAME } from "../LessonSelect";
-import { getLasAnswer, postAnswer } from "./AnswerAction";
+import { getLasAnswer, postAnswer, changePriority } from "./AnswerAction";
 
-export const AnswerContainer = ({ minutes, seconds, restartTimer }) => {
+export const AnswerContainer = ({
+  minutes,
+  seconds,
+  restartTimer,
+  stopTimer,
+}) => {
   const dispatch = useDispatch();
   const [lastAnswerOpen, setLastAnswerOpen] = useState(false);
   const { isHomeworkSend, origin, currentHomeworkText } = useSelector(
@@ -23,7 +28,8 @@ export const AnswerContainer = ({ minutes, seconds, restartTimer }) => {
 
   const handleAnswerSend = () => {
     const response_time = 1200 - (minutes * 60 + seconds);
-    restartTimer();
+    navigator.clipboard.writeText(currentAnswerValue);
+    stopTimer();
     dispatch(
       postAnswer(
         currentHomeworkText,
@@ -32,6 +38,10 @@ export const AnswerContainer = ({ minutes, seconds, restartTimer }) => {
         currentAnswerValue,
         response_time
       )
+    ).then(() =>
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000)
     );
   };
 
@@ -45,6 +55,33 @@ export const AnswerContainer = ({ minutes, seconds, restartTimer }) => {
     dispatch(getLasAnswer(value));
   };
 
+  const handleChangePriority = (e) => {
+    let id = e.target.id.split("");
+    id.shift();
+    id = Number(id.join(""));
+
+    let newAnsweArray = lastAnswer;
+    newAnsweArray[
+      lastAnswer.indexOf(lastAnswer.filter((item) => item.id === id)[0])
+    ].priority = Number(e.target.value);
+
+    dispatch({
+      type: ANSWER_ACTION_TYPE.CHANGE_PRIORIRY,
+      payload: newAnsweArray,
+    });
+  };
+  const handleSendNewPriority = (e) => {
+    const priorValue = e.target.value;
+    let id = e.target.id.split("");
+    id.shift();
+    id = Number(id.join(""));
+    dispatch(changePriority(id, priorValue)).then(() =>
+      setTimeout(() => {
+        dispatch(getLasAnswer(value));
+      }, 2000)
+    );
+  };
+
   return (
     <AnswerComponent
       isHomeworkSend={isHomeworkSend}
@@ -55,6 +92,9 @@ export const AnswerContainer = ({ minutes, seconds, restartTimer }) => {
       setLastAnswerOpen={setLastAnswerOpen}
       handleGetLastAnswer={handleGetLastAnswer}
       lastAnswer={lastAnswer}
+      handleChangePriority={handleChangePriority}
+      handleSendNewPriority={handleSendNewPriority}
+      currentLessonId={value}
     />
   );
 };

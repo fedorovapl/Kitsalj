@@ -36,17 +36,41 @@ export const StyledIconButton = styled.a`
   &:last-child {
     margin-left: 21px;
   }
+  ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
 `;
 
-export const StyledBreadcrumb = styled.p`
+export const StyledBreadcrumb = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #b4bdc1;
   margin-bottom: 15px;
 `;
+export const StyledBreadItem = styled.div`
+  cursor: pointer;
+  color: #b4bdc1;
+  &:hover {
+    color: #828789;
+  }
+  margin-left: 10px;
+  ::before {
+    margin-right: 10px;
+    content: "—";
+  }
+`;
+
+export const StyledBreadItemFirst = styled.div`
+  cursor: pointer;
+  color: #b4bdc1;
+  &:hover {
+    color: #828789;
+  }
+`;
 
 export const StyledConstructorFolderContainer = styled.div`
+  ${(props) => props.currentStage && "justify-content: space-between;"}
   display: flex;
   gap: 15px;
   flex-wrap: wrap;

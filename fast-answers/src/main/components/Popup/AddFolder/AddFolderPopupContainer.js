@@ -22,14 +22,8 @@ export const AddFolderPopupContainer = ({ open, closeModal }) => {
   const handleAddFolder = (name, folderId) => {
     if (currentStage === "folder") {
       dispatch(addFolder(name, value));
-      setTimeout(() => {
-        dispatch(getFolders(value));
-      }, 500);
     } else if (currentStage === "subfolder") {
       dispatch(addSubFolder(name, folderId));
-      setTimeout(() => {
-        dispatch(getSubFolders(folderId));
-      }, 500);
     } else {
     }
     closeModal();

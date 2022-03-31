@@ -15,6 +15,13 @@ const contentStyle = {
 };
 
 export const RecomendationPopupComponent = ({ open, closeModal, text }) => {
+  const textElement = (
+    <>
+      {text.split("\n").map((item, index) => (
+        <p key={index}>{item}</p>
+      ))}
+    </>
+  );
   return (
     <div>
       <Popup
@@ -27,7 +34,7 @@ export const RecomendationPopupComponent = ({ open, closeModal, text }) => {
           <StyledModalContent>
             <StyledClosePopup className="close" onClick={closeModal} />
             <p>Рекомендации к проверке</p>
-            <StyledScrollableContent>{text}</StyledScrollableContent>
+            <StyledScrollableContent>{textElement}</StyledScrollableContent>
           </StyledModalContent>
         </div>
       </Popup>

@@ -57,3 +57,25 @@ export const getLasAnswer = (lessonId) => {
     }
   };
 };
+
+export const changePriority = (homeworkId, priority) => {
+  return async (dispatch) => {
+    dispatch({
+      type: ANSWER_ACTION_TYPE.POST_CHANGE_PRIORITY_PENDING,
+    });
+    try {
+      await api
+        .patch(`homework/${homeworkId}/`, { priority: priority })
+        .then(() => {
+          dispatch({
+            type: ANSWER_ACTION_TYPE.POST_CHANGE_PRIORITY_SUCCESS,
+          });
+        });
+    } catch (e) {
+      dispatch({
+        type: ANSWER_ACTION_TYPE.POST_CHANGE_PRIORITY_FAILURE,
+        payload: e.message,
+      });
+    }
+  };
+};

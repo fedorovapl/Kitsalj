@@ -71,6 +71,25 @@ export function answerStore(state = initialState, action) {
         errorMessage: action.payload,
       };
 
+    case ANSWER_ACTION_TYPE.CHANGE_PRIORIRY:
+      return {
+        ...state,
+        lastAnswer: action.payload,
+      };
+
+    case ANSWER_ACTION_TYPE.POST_CHANGE_PRIORITY_PENDING:
+      return {
+        ...state,
+      };
+    case ANSWER_ACTION_TYPE.POST_CHANGE_PRIORITY_SUCCESS:
+      return {
+        ...state,
+      };
+    case ANSWER_ACTION_TYPE.POST_CHANGE_PRIORITY_FAILURE:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }

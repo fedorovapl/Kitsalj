@@ -15,16 +15,19 @@ const contentStyle = {
   borderRadius: "10px",
 };
 
-export const LastAnswerPopupComponent = ({ open, closeModal, lastAnswer }) => {
-  const [fullAnswer, setFullAnswer] = useState([
-    { id: "1", open: false },
-    { id: "2", open: false },
-    { id: "3", open: false },
-    { id: "4", open: false },
-  ]);
+export const LastAnswerPopupComponent = ({
+  open,
+  closeModal,
+  lastAnswer,
+  handleChangePriority,
+  handleSendNewPriority,
+}) => {
+  const [fullAnswer, setFullAnswer] = useState(
+    lastAnswer.map((item) => ({ ...item, open: false }))
+  );
 
   const handleFullAnswer = (e) => {
-    const id = e.target.id;
+    const id = Number(e.target.id);
     let selectedId = "";
     fullAnswer.filter((item) => {
       id === item.id && (selectedId = item.id);
@@ -53,18 +56,22 @@ export const LastAnswerPopupComponent = ({ open, closeModal, lastAnswer }) => {
             <StyledClosePopup className="close" onClick={closeModal} />
             <p>Мои прошлые ответы</p>
             <StyledScrollableContent>
-              {lastAnswer?.map((item) => {
-                return (
-                  <AnswerItemComponent
-                    answerText={item.text}
-                    handleFullAnswer={handleFullAnswer}
-                    id={item.id}
-                    answerData="10.02.2022 в 10:37"
-                    open={fullAnswer[1].open}
-                    priority={item.priority}
-                  />
-                );
-              })}
+              {fullAnswer
+                ?.sort((a, b) => a.priority > b.priority)
+                .map((item) => {
+                  return (
+                    <AnswerItemComponent
+                      answerText={item.text}
+                      handleFullAnswer={handleFullAnswer}
+                      id={item.id}
+                      answerData="10.02.2022 в 10:37"
+                      open={item.open}
+                      priority={item.priority}
+                      handleChangePriority={handleChangePriority}
+                      handleSendNewPriority={handleSendNewPriority}
+                    />
+                  );
+                })}
             </StyledScrollableContent>
           </StyledModalContent>
         </div>

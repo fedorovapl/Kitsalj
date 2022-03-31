@@ -19,6 +19,9 @@ export const AnswerComponent = ({
   setLastAnswerOpen,
   lastAnswerOpen,
   lastAnswer,
+  handleChangePriority,
+  handleSendNewPriority,
+  currentLessonId,
 }) => {
   return (
     <StyledAnswerContainer>
@@ -26,10 +29,15 @@ export const AnswerComponent = ({
         lastAnswer={lastAnswer}
         open={lastAnswerOpen}
         closeModal={() => setLastAnswerOpen(false)}
+        handleChangePriority={handleChangePriority}
+        handleSendNewPriority={handleSendNewPriority}
       />
       <StyledAnswerHeader>
         <p>Мой ответ</p>
-        <StyledLastAnswerHeader onClick={handleGetLastAnswer}>
+        <StyledLastAnswerHeader
+          disabled={currentLessonId === "no-value"}
+          onClick={handleGetLastAnswer}
+        >
           <StyledLastAnswerIcon />
           Мои прошлые ответы
         </StyledLastAnswerHeader>

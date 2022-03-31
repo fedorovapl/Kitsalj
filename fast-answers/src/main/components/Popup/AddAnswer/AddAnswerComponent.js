@@ -91,12 +91,12 @@ const contentStyle = {
   borderRadius: "10px",
 };
 
-export const EditAnswerPopupComponent = ({
+export const AddAnswerPopupComponent = ({
   open,
   closeModal,
-  selectedAnswerText,
-  handleAnswerChange,
-  handleEditAnswer,
+  newAnswerText,
+  handleNewAnswerText,
+  handleAddAnswer,
 }) => {
   return (
     <div>
@@ -110,18 +110,19 @@ export const EditAnswerPopupComponent = ({
           <StyledEditAnswerContainer>
             <StyledClosePopup className="close" onClick={closeModal} />
             <div>
-              <p>Отредактируйте ответ</p>
+              <p>Новый ответ</p>
               <StyledTextarea
-                onChange={(e) => handleAnswerChange(e)}
-                value={selectedAnswerText}
+                placeholder="Введите ответ в это поле"
+                onChange={(e) => handleNewAnswerText(e)}
+                value={newAnswerText}
               ></StyledTextarea>
             </div>
             <StyledButtonGroup>
               <StyledButtonCancel onClick={closeModal}>
                 Отмена
               </StyledButtonCancel>
-              <StyledButtonAdd onClick={handleEditAnswer}>
-                Сохранить изменения
+              <StyledButtonAdd onClick={handleAddAnswer}>
+                Сохранить
               </StyledButtonAdd>
             </StyledButtonGroup>
           </StyledEditAnswerContainer>

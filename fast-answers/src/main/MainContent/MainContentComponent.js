@@ -29,6 +29,7 @@ export const MainContentComponent = ({
   seconds,
   currentLesson,
   restartTimer,
+  stopTimer,
 }) => {
   return (
     <StyledMainContainer>
@@ -63,6 +64,7 @@ export const MainContentComponent = ({
               minutes={minutes}
               seconds={seconds}
               restartTimer={restartTimer}
+              stopTimer={stopTimer}
             />
             <HomeworkContainer />
           </StyledSecondBlock>

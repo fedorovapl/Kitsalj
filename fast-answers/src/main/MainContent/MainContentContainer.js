@@ -63,7 +63,6 @@ export const MainContentContainer = () => {
     }
   }, [isHomeworkSend]);
 
-  console.log(seconds);
   return (
     <MainContentComponent
       setRecOpen={setRecOpen}
@@ -76,6 +75,7 @@ export const MainContentContainer = () => {
       seconds={seconds}
       currentLesson={currentLesson}
       restartTimer={restart}
+      stopTimer={pause}
     />
   );
 };

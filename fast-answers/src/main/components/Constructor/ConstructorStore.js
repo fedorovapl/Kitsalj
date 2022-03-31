@@ -1,7 +1,7 @@
 import { CONSTRUCTOR_ACTION_TYPE } from "./ConstructorConstant";
 
 const initialState = {
-  currentStage: "folder",
+  currentStage: "",
   folders: {
     data: [],
     isPending: false,
@@ -165,6 +165,45 @@ export function constructorStore(state = initialState, action) {
           isError: true,
           errorMessage: action.payload,
         },
+      };
+
+    case CONSTRUCTOR_ACTION_TYPE.EDIT_PHRASE_PENDING:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.EDIT_PHRASE_SUCCESS:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.EDIT_PHRASE_FAILURE:
+      return {
+        ...state,
+      };
+
+    case CONSTRUCTOR_ACTION_TYPE.DELETE_PHRASE_PENDING:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.DELETE_PHRASE_SUCCESS:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.DELETE_PHRASE_FAILURE:
+      return {
+        ...state,
+      };
+
+    case CONSTRUCTOR_ACTION_TYPE.ADD_PHRASE_PENDING:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.ADD_PHRASE_SUCCESS:
+      return {
+        ...state,
+      };
+    case CONSTRUCTOR_ACTION_TYPE.ADD_PHRASE_FAILURE:
+      return {
+        ...state,
       };
 
     default:

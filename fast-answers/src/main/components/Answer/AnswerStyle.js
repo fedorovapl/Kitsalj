@@ -24,6 +24,7 @@ export const StyledLastAnswerHeader = styled.p`
       }
     }
   }
+  ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
 `;
 export const StyledTextarea = styled.textarea`
   width: 100%;

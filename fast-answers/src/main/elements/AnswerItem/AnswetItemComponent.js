@@ -13,6 +13,11 @@ import {
 import { ReactComponent as ShowMore } from "../../../assets/svg/show-more.svg";
 import { ReactComponent as CopyAnswer } from "../../../assets/svg/copy-answer.svg";
 import { ReactComponent as HelpTooltip } from "../../../assets/svg/help-tooltip.svg";
+import {
+  ANSWER_ACTION_TYPE,
+  ANSWER_STORE_NAME,
+} from "../../components/Answer/AnswerConstant";
+import { useDispatch, useSelector } from "react-redux";
 
 export const AnswerItemComponent = ({
   answerText,
@@ -21,15 +26,24 @@ export const AnswerItemComponent = ({
   answerData,
   open,
   priority,
+  handleChangePriority,
+  handleSendNewPriority,
 }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { currentAnswerValue } = useSelector(
+    (store) => store[ANSWER_STORE_NAME]
+  );
 
   const copyAnswer = () => {
     setTooltipOpen(true);
+    dispatch({
+      type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE,
+      payload: currentAnswerValue + answerText,
+    });
     setTimeout(() => {
       setTooltipOpen(false);
-    }, 2000);
-    navigator.clipboard.writeText(answerText);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -42,7 +56,14 @@ export const AnswerItemComponent = ({
     <StyledAnswerContainer>
       <StyledAnswerHeader>
         <p>
-          Приоритет =<input value={priority} type="number"></input>
+          Приоритет =
+          <input
+            id={"p" + id}
+            onBlur={handleSendNewPriority}
+            onChange={handleChangePriority}
+            value={priority}
+            type="number"
+          ></input>
           <Popup
             trigger={() => <HelpTooltip />}
             position="right center"

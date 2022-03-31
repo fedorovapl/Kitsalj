@@ -98,6 +98,11 @@ export const AddFolderPopupComponent = ({
                 Отмена
               </StyledButtonCancel>
               <StyledButtonAdd
+                disabled={
+                  currentStage === "subfolder"
+                    ? selectedFolder.value === "no-value" || !folderName
+                    : !folderName
+                }
                 onClick={() =>
                   handleAddFolder(folderName, selectedFolder.value)
                 }

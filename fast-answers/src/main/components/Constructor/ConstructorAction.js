@@ -35,7 +35,8 @@ export const addSubFolder = (name, folderId) => {
             type: CONSTRUCTOR_ACTION_TYPE.ADD_SUBFOLDER_SUCCESS,
             payload: res.data.results,
           });
-        });
+        })
+        .then(() => dispatch(getSubFolders(folderId)));
     } catch (e) {
       dispatch({
         type: CONSTRUCTOR_ACTION_TYPE.ADD_SUBFOLDER_FAILURE,
@@ -58,7 +59,8 @@ export const addFolder = (name, lessonId) => {
             type: CONSTRUCTOR_ACTION_TYPE.ADD_FOLDER_SUCCESS,
             payload: res.data.results,
           });
-        });
+        })
+        .then(() => dispatch(getFolders(lessonId)));
     } catch (e) {
       dispatch({
         type: CONSTRUCTOR_ACTION_TYPE.ADD_FOLDER_FAILURE,
@@ -103,7 +105,82 @@ export const getPhrases = (subCategoryId) => {
       });
     } catch (e) {
       dispatch({
-        type: CONSTRUCTOR_ACTION_TYPE.GET_PHRASE_SUCCESS,
+        type: CONSTRUCTOR_ACTION_TYPE.GET_PHRASE_FAILURE,
+        payload: e.message,
+      });
+    }
+  };
+};
+
+export const editPhrases = (selectedPhraseId, selectedPhrase, subFolderId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.EDIT_PHRASE_PENDING,
+    });
+    try {
+      await api
+        .patch(`/phrase/${selectedPhraseId}/`, {
+          phrase: selectedPhrase,
+          subcategory: subFolderId,
+        })
+        .then((res) => {
+          dispatch({
+            type: CONSTRUCTOR_ACTION_TYPE.EDIT_PHRASE_SUCCESS,
+            payload: res.data.results,
+          });
+        })
+        .then(() => dispatch(getPhrases(subFolderId)));
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.EDIT_PHRASE_FAILURE,
+        payload: e.message,
+      });
+    }
+  };
+};
+
+export const deletePhrases = (selectedPhraseId, subFolderId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.DELETE_PHRASE_PENDING,
+    });
+    try {
+      await api
+        .delete(`/phrase/${selectedPhraseId}/`)
+        .then((res) => {
+          dispatch({
+            type: CONSTRUCTOR_ACTION_TYPE.DELETE_PHRASE_SUCCESS,
+            payload: res.data.results,
+          });
+        })
+        .then(() => dispatch(getPhrases(subFolderId)));
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.DELETE_PHRASE_FAILURE,
+        payload: e.message,
+      });
+    }
+  };
+};
+
+export const addPhrase = (subFolderId, phrase) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.ADD_PHRASE_PENDING,
+    });
+    try {
+      await api
+        .post(`/phrase/`, { phrase: phrase, subcategory: subFolderId })
+        .then((res) => {
+          dispatch({
+            type: CONSTRUCTOR_ACTION_TYPE.ADD_PHRASE_SUCCESS,
+            payload: res.data.results,
+          });
+        })
+        .then(() => dispatch(getPhrases(subFolderId)));
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.ADD_PHRASE_FAILURE,
         payload: e.message,
       });
     }

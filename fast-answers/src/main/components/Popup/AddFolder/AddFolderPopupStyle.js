@@ -50,12 +50,14 @@ export const StyledButtonAdd = styled.p`
   border-radius: 5px;
   box-sizing: border-box;
   transition: 0.2s;
+  cursor: pointer;
   &:hover {
     background: #ddc053;
   }
   &:active {
     background: #c3a947;
   }
+  ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
 `;
 
 export const StyledButtonCancel = styled.p`
@@ -79,5 +81,4 @@ export const StyledButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  cursor: pointer;
 `;
