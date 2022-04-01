@@ -10,6 +10,7 @@ const initialState = {
     errorMessage: null,
   },
   subFolders: {
+    currentFolder: "",
     data: [],
     isPending: false,
     isSuccess: false,
@@ -109,7 +110,8 @@ export function constructorStore(state = initialState, action) {
         ...state,
         subFolders: {
           ...state.subFolders,
-          data: action.payload,
+          currentFolder: action.payload.currentFolder,
+          data: action.payload.data,
           isPending: false,
           isSuccess: true,
           isError: false,

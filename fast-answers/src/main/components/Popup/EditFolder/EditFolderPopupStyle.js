@@ -50,12 +50,14 @@ export const StyledButtonAdd = styled.p`
   border-radius: 5px;
   box-sizing: border-box;
   transition: 0.2s;
+  cursor: pointer;
   &:hover {
     background: #ddc053;
   }
   &:active {
     background: #c3a947;
   }
+  ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
 `;
 
 export const StyledButtonCancel = styled.p`
@@ -79,5 +81,45 @@ export const StyledButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+`;
+
+export const StyledButtonDelete = styled.p`
+  text-align: center;
+  padding: 13px;
+  min-width: 150px;
+  background: #fadb67;
+  transition: 0.2s;
+  box-sizing: border-box;
+  border-radius: 5px;
   cursor: pointer;
+  background: #fa6767;
+  &:hover {
+    background: #f14f4f;
+  }
+  &:active {
+    background: #f14242;
+  }
+`;
+
+export const StyledDeleteFolderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fa6767;
+  margin-top: 20px;
+  div {
+    transition: 0.2s;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    &:hover {
+      background: #fff3f3;
+    }
+    &:active {
+      background: #ffdada;
+    }
+  }
 `;

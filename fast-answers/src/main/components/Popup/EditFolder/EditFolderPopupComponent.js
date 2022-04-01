@@ -10,13 +10,18 @@ import {
   StyledButtonGroup,
   StyledButtonCancel,
   StyledButtonAdd,
+  StyledDeleteFolderContainer,
+  StyledButtonDelete,
 } from "./EditFolderPopupStyle";
-
-const options = [
-  { value: "folder-1", label: "Смыслы" },
-  { value: "folder-2", label: "Тезисы" },
-  { value: "folder-3", label: "Смайлы" },
-];
+import {
+  editFolder,
+  editSubFolder,
+  getFolders,
+  getSubFolders,
+  deleteFolder,
+  deleteSubFolder,
+} from "../../Constructor/ConstructorAction";
+import { useDispatch } from "react-redux";
 
 const contentStyle = {
   padding: "20px",
@@ -29,9 +34,39 @@ export const EditFolderPopupComponent = ({
   open,
   closeModal,
   currentStage,
+  subFolders,
+  folders,
+  currentLesson,
+  username,
 }) => {
-  const [selectedEditFolder, setSelectedEditFolder] = useState(options[0]);
-  const [selectedFolder, setSelectedFolder] = useState(options[1]);
+  const dispatch = useDispatch();
+  const [selectedEditFolder, setSelectedEditFolder] = useState({
+    value: "no-value",
+    label: "---------",
+  });
+  const [selectedFolder, setSelectedFolder] = useState({
+    value: "no-value",
+    label: "---------",
+  });
+  const [newFolderName, setNewFolderName] = useState("");
+  const [acceptOpen, setAcceptOpen] = useState(false);
+
+  const convertFolder = (array) => {
+    let temp = array.filter((item) => item.creator.username === username);
+    let options = [];
+
+    if (temp) {
+      temp.forEach((element) => {
+        options.push({
+          value: element.id,
+          label: element.name,
+        });
+      });
+    } else {
+      options = [];
+    }
+    return options;
+  };
 
   const customStyles = {
     valueContainer: (provided) => ({
@@ -44,8 +79,81 @@ export const EditFolderPopupComponent = ({
     }),
   };
 
+  const handleDestinationFolder = (value) => {
+    setSelectedEditFolder(value);
+  };
+  const handleEditFolder = (value) => {
+    setSelectedFolder(value);
+  };
+
+  const handleDeleteFolder = () => {
+    if (currentStage === "folder") {
+      dispatch(deleteFolder(selectedEditFolder.value))
+        .then(() => setAcceptOpen(false))
+        .then(() => dispatch(getFolders(currentLesson.value)));
+    } else {
+      dispatch(deleteSubFolder(selectedEditFolder.value))
+        .then(() => setAcceptOpen(false))
+        .then(() => dispatch(getSubFolders(Number(subFolders.currentFolder))));
+    }
+  };
+
+  const handlePostEditFolder = () => {
+    if (currentStage === "folder") {
+      dispatch(
+        editFolder(selectedEditFolder.value, newFolderName, currentLesson.value)
+      )
+        .then(() => closeModal())
+        .then(() => dispatch(getFolders(currentLesson.value)));
+      setSelectedEditFolder({
+        value: "no-value",
+        label: "---------",
+      });
+    } else {
+      dispatch(
+        editSubFolder(
+          selectedEditFolder.value,
+          newFolderName,
+          selectedFolder.value
+        )
+      )
+        .then(() => closeModal())
+        .then(() => dispatch(getSubFolders(Number(subFolders.currentFolder))));
+      setSelectedFolder({
+        value: "no-value",
+        label: "---------",
+      });
+    }
+  };
+
   return (
     <div>
+      <Popup
+        {...{ contentStyle }}
+        open={acceptOpen}
+        closeOnDocumentClick
+        onClose={() => setAcceptOpen(false)}
+      >
+        <div className="modal">
+          <StyledModalContent>
+            <StyledClosePopup
+              className="close"
+              onClick={() => setAcceptOpen(false)}
+            />
+            <p>
+              Вы действительно хотите удалить папку {selectedEditFolder.label} ?
+            </p>
+            <StyledButtonGroup>
+              <StyledButtonCancel onClick={() => setAcceptOpen(false)}>
+                Не удалять
+              </StyledButtonCancel>
+              <StyledButtonDelete onClick={handleDeleteFolder}>
+                Удалить
+              </StyledButtonDelete>
+            </StyledButtonGroup>
+          </StyledModalContent>
+        </div>
+      </Popup>
       <Popup
         {...{ contentStyle }}
         open={open}
@@ -60,29 +168,72 @@ export const EditFolderPopupComponent = ({
               <StyledSelect
                 value={selectedEditFolder}
                 onChange={(selectedOption) =>
-                  setSelectedEditFolder(selectedOption)
+                  handleDestinationFolder(selectedOption)
                 }
-                options={options}
+                options={
+                  currentStage === "subfolder"
+                    ? [
+                        {
+                          value: "no-value",
+                          label: "---------",
+                        },
+                        ...convertFolder(subFolders.data),
+                      ]
+                    : [
+                        {
+                          value: "no-value",
+                          label: "---------",
+                        },
+                        ...convertFolder(folders.data),
+                      ]
+                }
                 styles={customStyles}
               />
             </div>
             <StyledFolderNameContainer>
               <p>Новое имя папки</p>
-              <StyledFolderNameInput placeholder="Например, смыслы"></StyledFolderNameInput>
+              <StyledFolderNameInput
+                value={newFolderName}
+                onChange={(e) => setNewFolderName(e.target.value)}
+                placeholder="Например, смыслы"
+              ></StyledFolderNameInput>
             </StyledFolderNameContainer>
             <div>
               <p>Переместить папку после папки</p>
               <StyledSelect
+                isDisabled={currentStage === "folder"}
                 value={selectedFolder}
-                onChange={(selectedOption) => setSelectedFolder(selectedOption)}
-                options={options}
+                onChange={(selectedOption) => handleEditFolder(selectedOption)}
+                options={[
+                  {
+                    value: "no-value",
+                    label: "---------",
+                  },
+                  ...convertFolder(folders.data),
+                ]}
                 styles={customStyles}
               />
             </div>
             <StyledButtonGroup>
-              <StyledButtonCancel>Отмена</StyledButtonCancel>
-              <StyledButtonAdd>Сохранить изменения</StyledButtonAdd>
+              <StyledButtonCancel onClick={closeModal}>
+                Отмена
+              </StyledButtonCancel>
+              <StyledButtonAdd
+                disabled={
+                  currentStage === "subfolder" &&
+                  (selectedFolder.value === "no-value" ||
+                    selectedEditFolder.value === "no-value")
+                }
+                onClick={handlePostEditFolder}
+              >
+                Сохранить изменения
+              </StyledButtonAdd>
             </StyledButtonGroup>
+            <StyledDeleteFolderContainer
+              disabled={selectedEditFolder.value === "no-value"}
+            >
+              <div onClick={() => setAcceptOpen(true)}>Удалить папку</div>
+            </StyledDeleteFolderContainer>
           </StyledModalContent>
         </div>
       </Popup>

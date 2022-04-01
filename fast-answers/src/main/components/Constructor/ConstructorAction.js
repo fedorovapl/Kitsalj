@@ -22,6 +22,58 @@ export const getFolders = (lessonId) => {
   };
 };
 
+export const editFolder = (folderId, newName, lessonId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.EDIT_FOLDER_PENDING,
+    });
+    try {
+      await api
+        .patch(`/category/${folderId}/`, {
+          name: newName,
+          lesson: lessonId,
+        })
+        .then((res) => {
+          dispatch({
+            type: CONSTRUCTOR_ACTION_TYPE.EDIT_FOLDER_SUCCESS,
+            payload: res.data.results,
+          });
+        });
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.EDIT_FOLDER_SUCCESS,
+        payload: e.message,
+      });
+    }
+  };
+};
+
+export const editSubFolder = (subfolderId, newName, folderId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.EDIT_SUBFOLDER_PENDING,
+    });
+    try {
+      await api
+        .patch(`/subcategory/${subfolderId}/`, {
+          name: newName,
+          category: folderId,
+        })
+        .then((res) => {
+          dispatch({
+            type: CONSTRUCTOR_ACTION_TYPE.EDIT_SUBFOLDER_SUCCESS,
+            payload: res.data.results,
+          });
+        });
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.EDIT_SUBFOLDER_SUCCESS,
+        payload: e.message,
+      });
+    }
+  };
+};
+
 export const addSubFolder = (name, folderId) => {
   return async (dispatch) => {
     dispatch({
@@ -79,7 +131,7 @@ export const getSubFolders = (categoryId) => {
       await api.get(`/subcategory/?category=${categoryId}`).then((res) => {
         dispatch({
           type: CONSTRUCTOR_ACTION_TYPE.GET_SUBFOLDER_SUCCESS,
-          payload: res.data.results,
+          payload: { data: res.data.results, currentFolder: categoryId },
         });
       });
     } catch (e) {
@@ -157,6 +209,46 @@ export const deletePhrases = (selectedPhraseId, subFolderId) => {
     } catch (e) {
       dispatch({
         type: CONSTRUCTOR_ACTION_TYPE.DELETE_PHRASE_FAILURE,
+        payload: e.message,
+      });
+    }
+  };
+};
+
+export const deleteFolder = (folderId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.DELETE_FOLDER_PENDING,
+    });
+    try {
+      await api.delete(`/category/${folderId}/`).then((res) => {
+        dispatch({
+          type: CONSTRUCTOR_ACTION_TYPE.DELETE_FOLDER_SUCCESS,
+        });
+      });
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.DELETE_FOLDER_FAILURE,
+        payload: e.message,
+      });
+    }
+  };
+};
+
+export const deleteSubFolder = (subFolderId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: CONSTRUCTOR_ACTION_TYPE.DELETE_SUBFOLDER_PENDING,
+    });
+    try {
+      await api.delete(`/subcategory/${subFolderId}/`).then((res) => {
+        dispatch({
+          type: CONSTRUCTOR_ACTION_TYPE.DELETE_SUBFOLDER_SUCCESS,
+        });
+      });
+    } catch (e) {
+      dispatch({
+        type: CONSTRUCTOR_ACTION_TYPE.DELETE_SUBFOLDER_FAILURE,
         payload: e.message,
       });
     }

@@ -43,6 +43,8 @@ export const ConstructorComponent = ({
   handleReturnFolder,
   handleReturnSubFolder,
   handleReturnPhrases,
+  username,
+  selectedPhraseId,
 }) => {
   const [addFolderOpen, setAddFolderOpen] = useState(false);
   const [editFolderOpen, setEditFolderOpen] = useState(false);
@@ -61,6 +63,8 @@ export const ConstructorComponent = ({
         selectedAnswerText={selectedAnswerText}
         handleEditAnswer={handleEditAnswer}
         open={editAnswerOpen}
+        selectedPhraseId={selectedPhraseId}
+        subFolderId={subFolderId}
         closeModal={() => setEditAnswerOpen(false)}
       />
       <AddFolderPopupContainer
@@ -72,6 +76,10 @@ export const ConstructorComponent = ({
         open={editFolderOpen}
         closeModal={() => setEditFolderOpen(false)}
         currentStage={currentStage}
+        subFolders={subFolders}
+        folders={folders}
+        currentLesson={currentLesson}
+        username={username}
       />
       <StyledConstructorHeaderContainer>
         <p>Конструктор готовых ответов</p>
@@ -167,6 +175,8 @@ export const ConstructorComponent = ({
                 onClick={(e) => handlePhraseClick(e)}
                 id={item.id}
                 key={item.id}
+                creator={item?.creator?.username}
+                username={username}
               >
                 {item.phrase}
               </FolderButton>

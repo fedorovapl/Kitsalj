@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { AnswerItemComponent } from "../../../elements";
@@ -22,27 +22,6 @@ export const LastAnswerPopupComponent = ({
   handleChangePriority,
   handleSendNewPriority,
 }) => {
-  const [fullAnswer, setFullAnswer] = useState(
-    lastAnswer.map((item) => ({ ...item, open: false }))
-  );
-
-  const handleFullAnswer = (e) => {
-    const id = Number(e.target.id);
-    let selectedId = "";
-    fullAnswer.filter((item) => {
-      id === item.id && (selectedId = item.id);
-    });
-    setFullAnswer(
-      fullAnswer.map((obj) => {
-        if (obj.id === selectedId) {
-          return { ...obj, open: !obj.open };
-        } else {
-          return obj;
-        }
-      })
-    );
-  };
-
   return (
     <div>
       <Popup
@@ -56,15 +35,15 @@ export const LastAnswerPopupComponent = ({
             <StyledClosePopup className="close" onClick={closeModal} />
             <p>Мои прошлые ответы</p>
             <StyledScrollableContent>
-              {fullAnswer
+              {lastAnswer
                 ?.sort((a, b) => a.priority > b.priority)
                 .map((item) => {
                   return (
                     <AnswerItemComponent
+                      key={item.id}
+                      created={item.created}
                       answerText={item.text}
-                      handleFullAnswer={handleFullAnswer}
                       id={item.id}
-                      answerData="10.02.2022 в 10:37"
                       open={item.open}
                       priority={item.priority}
                       handleChangePriority={handleChangePriority}

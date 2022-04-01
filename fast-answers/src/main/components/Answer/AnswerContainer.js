@@ -41,7 +41,7 @@ export const AnswerContainer = ({
     ).then(() =>
       setTimeout(() => {
         window.location.reload();
-      }, 1000)
+      }, 1500)
     );
   };
 

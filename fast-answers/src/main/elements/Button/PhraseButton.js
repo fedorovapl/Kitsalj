@@ -50,7 +50,15 @@ export const StyledTooltipText = styled(Popup)`
   }
 `;
 
-export const FolderButton = ({ onEdit, onClick, onDelete, children, id }) => {
+export const FolderButton = ({
+  onEdit,
+  onClick,
+  onDelete,
+  children,
+  id,
+  creator,
+  username,
+}) => {
   return (
     <StyledButton id={"p" + id} onClick={onClick}>
       {children.length > 90 ? (
@@ -67,34 +75,35 @@ export const FolderButton = ({ onEdit, onClick, onDelete, children, id }) => {
       ) : (
         <div id={"pp" + id}>{children}</div>
       )}
+      {creator === username && (
+        <StyledIconContainer>
+          <StyledImgIcon
+            style={{
+              border: "1px solid #D5DFE4",
+              marginLeft: "10px",
+              borderRadius: "5px",
+              padding: "10px",
+            }}
+            id={"e" + id}
+            onClick={onEdit}
+            src={Edit}
+            alt=""
+          ></StyledImgIcon>
 
-      <StyledIconContainer>
-        <StyledImgIcon
-          style={{
-            border: "1px solid #D5DFE4",
-            marginLeft: "10px",
-            borderRadius: "5px",
-            padding: "10px",
-          }}
-          id={"e" + id}
-          onClick={onEdit}
-          src={Edit}
-          alt=""
-        ></StyledImgIcon>
-
-        <StyledImgIcon
-          style={{
-            border: "1px solid #D5DFE4",
-            marginLeft: "10px",
-            borderRadius: "5px",
-            padding: "10px",
-          }}
-          id={"d" + id}
-          onClick={onDelete}
-          src={Delete}
-          alt=""
-        ></StyledImgIcon>
-      </StyledIconContainer>
+          <StyledImgIcon
+            style={{
+              border: "1px solid #D5DFE4",
+              marginLeft: "10px",
+              borderRadius: "5px",
+              padding: "10px",
+            }}
+            id={"d" + id}
+            onClick={onDelete}
+            src={Delete}
+            alt=""
+          ></StyledImgIcon>
+        </StyledIconContainer>
+      )}
     </StyledButton>
   );
 };

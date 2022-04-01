@@ -21,15 +21,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const AnswerItemComponent = ({
   answerText,
-  handleFullAnswer,
   id,
-  answerData,
   open,
   priority,
   handleChangePriority,
   handleSendNewPriority,
+  created,
 }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [fullText, setFulltext] = useState(false);
   const dispatch = useDispatch();
   const { currentAnswerValue } = useSelector(
     (store) => store[ANSWER_STORE_NAME]
@@ -44,6 +44,12 @@ export const AnswerItemComponent = ({
     setTimeout(() => {
       setTooltipOpen(false);
     }, 1000);
+  };
+
+  const handleFullAnswer = (e) => {
+    const id = Number(e.target.id);
+    setFulltext(!fullText);
+    console.log(id);
   };
 
   useEffect(() => {
@@ -76,10 +82,14 @@ export const AnswerItemComponent = ({
             </StyledPopupTooltip>
           </Popup>
         </p>
-        <p>{answerData}</p>
+        <p>{new Date(created).toLocaleString()}</p>
       </StyledAnswerHeader>
       <StyledAnswerContent>
-        <StyledAnswerText fullText={open}>{answerText}</StyledAnswerText>
+        <StyledAnswerText fullText={fullText}>
+          {answerText.split("\n").map((item, index) => (
+            <p key={index}>{item}</p>
+          ))}
+        </StyledAnswerText>
         <StyledAnswerContentButtonGroup>
           <p id={id} onClick={(e) => handleFullAnswer(e)}>
             Показать ответ полностью <ShowMore />

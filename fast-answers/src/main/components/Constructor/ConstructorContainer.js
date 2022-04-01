@@ -15,6 +15,7 @@ import {
   ANSWER_ACTION_TYPE,
   ANSWER_STORE_NAME,
 } from "../Answer/AnswerConstant";
+import { HEADER_STORE_NAME } from "../../Header";
 
 export const ConstructorContainer = () => {
   const [editAnswerOpen, setEditAnswerOpen] = useState(false);
@@ -36,6 +37,9 @@ export const ConstructorContainer = () => {
   const { currentAnswerValue } = useSelector(
     (store) => store[ANSWER_STORE_NAME]
   );
+  const {
+    user: { username },
+  } = useSelector((store) => store[HEADER_STORE_NAME]);
 
   const handleFolderClick = (e) => {
     const id = e.target.id.split("");
@@ -49,16 +53,13 @@ export const ConstructorContainer = () => {
     setSubFolderId(Number(id.join("")));
     dispatch(getPhrases(id.join("")));
   };
-
   const handleAnswerChange = (e) => {
     setSelectedPhrase(e.target.value);
   };
-
   const handleEditAnswer = () => {
     dispatch(editPhrases(selectedPhraseId, selectedPhrase, subFolderId));
     setEditAnswerOpen(false);
   };
-
   const handlePhraseClick = (e) => {
     let id = e.target.id.split("");
     const prefix = id[0];
@@ -80,16 +81,13 @@ export const ConstructorContainer = () => {
       dispatch(deletePhrases(selectedPhraseId, subFolderId));
     }
   };
-
   const handleNewAnswerText = (e) => {
     setNewAnswerText(e.target.value);
   };
-
   const handleAddAnswer = () => {
     dispatch(addPhrase(subFolderId, newAnswerText));
     setAddAnswerOpen(false);
   };
-
   const handleReturnFolder = () => {
     dispatch(getFolders(currentLesson.value));
   };
@@ -131,6 +129,8 @@ export const ConstructorContainer = () => {
       handleReturnFolder={handleReturnFolder}
       handleReturnSubFolder={handleReturnSubFolder}
       handleReturnPhrases={handleReturnPhrases}
+      username={username}
+      selectedPhraseId={selectedPhraseId}
     />
   );
 };

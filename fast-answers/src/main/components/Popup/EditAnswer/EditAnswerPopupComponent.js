@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { ReactComponent as ClosePopup } from "../../../../assets/svg/close-popup.svg";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { deletePhrases } from "../../Constructor/ConstructorAction";
 
 const StyledClosePopup = styled(ClosePopup)`
   align-self: flex-end;
@@ -91,15 +93,92 @@ const contentStyle = {
   borderRadius: "10px",
 };
 
+const StyledButtonDelete = styled.p`
+  text-align: center;
+  padding: 13px;
+  min-width: 150px;
+  background: #fadb67;
+  transition: 0.2s;
+  box-sizing: border-box;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #fa6767;
+  &:hover {
+    background: #f14f4f;
+  }
+  &:active {
+    background: #f14242;
+  }
+`;
+const StyledModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+`;
+
+const StyledDeleteButton = styled.div`
+  transition: 0.2s;
+  box-sizing: border-box;
+  border-radius: 5px;
+  align-self: center;
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fa6767;
+  cursor: pointer;
+  padding: 10px;
+  &:hover {
+    background: #fff3f3;
+  }
+  &:active {
+    background: #ffdada;
+  }
+`;
+
 export const EditAnswerPopupComponent = ({
   open,
   closeModal,
   selectedAnswerText,
   handleAnswerChange,
   handleEditAnswer,
+  selectedPhraseId,
+  subFolderId,
 }) => {
+  const dispatch = useDispatch();
+  const [acceptOpen, setAcceptOpen] = useState(false);
+
+  const handleDeleteAnswer = () => {
+    dispatch(deletePhrases(selectedPhraseId, subFolderId)).then(() =>
+      setAcceptOpen(false)
+    );
+  };
   return (
     <div>
+      <Popup
+        {...{ contentStyle }}
+        open={acceptOpen}
+        closeOnDocumentClick
+        onClose={() => setAcceptOpen(false)}
+      >
+        <div className="modal">
+          <StyledModalContent>
+            <StyledClosePopup
+              className="close"
+              onClick={() => setAcceptOpen(false)}
+            />
+            <p>Вы действительно хотите удалить выбранный ответ?</p>
+            <StyledButtonGroup>
+              <StyledButtonCancel onClick={() => setAcceptOpen(false)}>
+                Не удалять
+              </StyledButtonCancel>
+              <StyledButtonDelete onClick={handleDeleteAnswer}>
+                Удалить
+              </StyledButtonDelete>
+            </StyledButtonGroup>
+          </StyledModalContent>
+        </div>
+      </Popup>
       <Popup
         {...{ contentStyle }}
         open={open}
@@ -124,6 +203,9 @@ export const EditAnswerPopupComponent = ({
                 Сохранить изменения
               </StyledButtonAdd>
             </StyledButtonGroup>
+            <StyledDeleteButton onClick={() => setAcceptOpen(true)}>
+              Удалить ответ
+            </StyledDeleteButton>
           </StyledEditAnswerContainer>
         </div>
       </Popup>
