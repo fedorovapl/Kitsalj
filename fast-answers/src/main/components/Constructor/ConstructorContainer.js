@@ -17,7 +17,7 @@ import {
 } from "../Answer/AnswerConstant";
 import { HEADER_STORE_NAME } from "../../Header";
 
-export const ConstructorContainer = () => {
+export const ConstructorContainer = ({ caretRow, caretCol }) => {
   const [editAnswerOpen, setEditAnswerOpen] = useState(false);
 
   const [selectedPhrase, setSelectedPhrase] = useState("");
@@ -67,10 +67,16 @@ export const ConstructorContainer = () => {
     id = Number(id.join(""));
     const text = e.target.innerText;
 
+    let temp = currentAnswerValue.split("\n");
+    let splitted = temp[caretRow - 1].split("");
+
+    splitted.splice(caretCol, 0, text);
+
+    temp[caretRow - 1] = splitted.join("");
     if (prefix === "p") {
       dispatch({
         type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE,
-        payload: currentAnswerValue + text,
+        payload: temp.join("\n"),
       });
     } else if (prefix === "e") {
       setSelectedPhraseId(id);

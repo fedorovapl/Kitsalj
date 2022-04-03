@@ -53,5 +53,12 @@ export const StyledOriginText = styled.div`
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-  color: #2ad200;
+  color: ${(props) =>
+    props.origin > 75
+      ? "#2ad200;"
+      : props.origin < 75 && props.origin > 50
+      ? "#d5b648;"
+      : props.origin < 50
+      ? "#ff0c0c;"
+      : ""};
 `;

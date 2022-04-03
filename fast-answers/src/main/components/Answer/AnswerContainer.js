@@ -5,23 +5,23 @@ import { HOMEWORK_STORE_NAME } from "../Homework/HomeworkConstant";
 import { ANSWER_STORE_NAME, ANSWER_ACTION_TYPE } from "./AnswerConstant";
 import { LESSON_STORE_NAME } from "../LessonSelect";
 import { getLasAnswer, postAnswer, changePriority } from "./AnswerAction";
+import getCaretCoordinates from "textarea-caret-position";
 
 export const AnswerContainer = ({
   minutes,
   seconds,
   restartTimer,
   stopTimer,
+  handleCaretPosition,
 }) => {
   const dispatch = useDispatch();
   const [lastAnswerOpen, setLastAnswerOpen] = useState(false);
   const { isHomeworkSend, origin, currentHomeworkText } = useSelector(
     (store) => store[HOMEWORK_STORE_NAME]
   );
-
   const {
     currentLesson: { value },
   } = useSelector((store) => store[LESSON_STORE_NAME]);
-
   const { currentAnswerValue, lastAnswer } = useSelector(
     (store) => store[ANSWER_STORE_NAME]
   );
@@ -47,7 +47,10 @@ export const AnswerContainer = ({
 
   const setCurrentValue = (e) => {
     const value = e.target.value;
-    dispatch({ type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE, payload: value });
+    dispatch({
+      type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE,
+      payload: value,
+    });
   };
 
   const handleGetLastAnswer = () => {
@@ -70,6 +73,7 @@ export const AnswerContainer = ({
       payload: newAnsweArray,
     });
   };
+
   const handleSendNewPriority = (e) => {
     const priorValue = e.target.value;
     let id = e.target.id.split("");
@@ -95,6 +99,7 @@ export const AnswerContainer = ({
       handleChangePriority={handleChangePriority}
       handleSendNewPriority={handleSendNewPriority}
       currentLessonId={value}
+      handleCaretPosition={handleCaretPosition}
     />
   );
 };

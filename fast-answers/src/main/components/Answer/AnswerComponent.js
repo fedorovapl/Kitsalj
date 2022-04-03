@@ -22,6 +22,7 @@ export const AnswerComponent = ({
   handleChangePriority,
   handleSendNewPriority,
   currentLessonId,
+  handleCaretPosition,
 }) => {
   return (
     <StyledAnswerContainer>
@@ -48,6 +49,7 @@ export const AnswerComponent = ({
           placeholder="Сначала вставьте ответ ученика в поле “Домашка ученика” справа 👉"
           value={currentValue}
           onChange={(e) => setCurrentValue(e)}
+          onPointerLeave={(e) => handleCaretPosition(e)}
         ></StyledTextarea>
         <div style={{ opacity: "0", fontWeight: 500, fontSize: "14px" }}>
           Фикс

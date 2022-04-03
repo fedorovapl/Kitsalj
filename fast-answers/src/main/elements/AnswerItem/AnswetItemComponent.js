@@ -49,7 +49,6 @@ export const AnswerItemComponent = ({
   const handleFullAnswer = (e) => {
     const id = Number(e.target.id);
     setFulltext(!fullText);
-    console.log(id);
   };
 
   useEffect(() => {

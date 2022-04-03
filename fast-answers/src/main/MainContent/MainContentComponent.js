@@ -31,6 +31,9 @@ export const MainContentComponent = ({
   currentLesson,
   restartTimer,
   stopTimer,
+  handleCaretPosition,
+  caretRow,
+  caretCol,
 }) => {
   return (
     <StyledMainContainer>
@@ -62,6 +65,7 @@ export const MainContentComponent = ({
           </StyledFirstBlock>
           <StyledSecondBlock>
             <AnswerContainer
+              handleCaretPosition={handleCaretPosition}
               minutes={minutes}
               seconds={seconds}
               restartTimer={restartTimer}
@@ -70,7 +74,7 @@ export const MainContentComponent = ({
             <HomeworkContainer />
           </StyledSecondBlock>
           <StyledThirdBlock>
-            <ConstructorContainer />
+            <ConstructorContainer caretCol={caretCol} caretRow={caretRow} />
           </StyledThirdBlock>
         </StyledMainContent>
       ) : (

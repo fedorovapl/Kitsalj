@@ -32,8 +32,14 @@ export const HomeworkComponent = ({
               : "Нажмите кнопку «Вставить», чтобы добавить домашку ученика из буфера обмена и начать на нее отвечать."
           }
         ></StyledTextarea>
-        <StyledOriginText isVisible={!!origin}>
-          Уникальность: {origin}%. Снижение баллов не требуется.
+        <StyledOriginText origin={origin} isVisible={!!origin}>
+          {origin > 75
+            ? `Уникальность: ${origin}%. Снижение баллов не требуется.`
+            : origin < 75 && origin > 50
+            ? `Уникальность:  ${origin}%. Средняя уникальность`
+            : origin < 50
+            ? `Уникальность:  ${origin}%. Уникальность низкая, требуется снижение балов`
+            : ""}
         </StyledOriginText>
       </StyledHomeworkInputContainer>
       <Button
