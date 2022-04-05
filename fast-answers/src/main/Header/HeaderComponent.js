@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   StyledHeaderContainer,
   StyledHeaderWrapper,
@@ -12,8 +12,6 @@ import { LoginPopupComponent } from "../components";
 
 export const HeaderComponent = ({
   handleLogin,
-  isLoginPending,
-  isLoginSuccess,
   isLoginError,
   loginErrorMessage,
   user,
@@ -25,9 +23,12 @@ export const HeaderComponent = ({
   return (
     <StyledHeaderWrapper>
       <LoginPopupComponent
-        open={logOpen}
+        open={logOpen || !isLoggedIn}
         closeModal={() => setLogOpen(false)}
         handleClick={handleLogin}
+        isLoginError={isLoginError}
+        loginErrorMessage={loginErrorMessage}
+        isLoggedIn={isLoggedIn}
       />
       <StyledHeaderContainer>
         <StyledLogoContainer>

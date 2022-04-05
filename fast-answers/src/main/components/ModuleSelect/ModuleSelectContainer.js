@@ -6,7 +6,7 @@ import { HEADER_STORE_NAME } from "../../Header";
 import { getModules } from "./ModuleSelectAction";
 import { getLessons } from "../LessonSelect/LessonSelectAction";
 
-export const ModuleSelectContainer = () => {
+export const ModuleSelectContainer = ({ isHomeworkSend }) => {
   const dispatch = useDispatch();
   const {
     modules,
@@ -31,12 +31,18 @@ export const ModuleSelectContainer = () => {
     }
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    return function cleanUp() {
+      dispatch({ type: MODULE_ACTION_TYPE.CLEAN_UP });
+    };
+  }, []);
   return (
     <ModuleSelectComponent
       modules={modules}
       currentModule={currentModule}
       setCurrentModule={setCurrentModule}
       isModulesPending={isModulesPending}
+      isHomeworkSend={isHomeworkSend}
     />
   );
 };

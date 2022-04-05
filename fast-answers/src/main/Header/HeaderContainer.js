@@ -17,28 +17,33 @@ export const HeaderContainer = () => {
   } = useSelector((store) => store[HEADER_STORE_NAME]);
 
   const handleLogin = (username, password) => {
-    dispatch({
-      type: HEADER_ACTION_TYPE.LOGIN_PENDING,
-    });
-    AuthService.login(username, password).then(
-      (res) => {
-        dispatch({
-          type: HEADER_ACTION_TYPE.LOGIN_SUCCESS,
-          payload: res.user,
-        });
-        setLogOpen(false);
-      },
-      (e) => {
-        const resMessage =
-          (e.response && e.response.data && e.response.data.message) ||
-          e.message ||
+    if (username === "" || password === "") {
+      dispatch({
+        type: HEADER_ACTION_TYPE.LOGIN_FAILURE,
+        payload: "Поля не могу быть пустыми",
+      });
+    } else {
+      dispatch({
+        type: HEADER_ACTION_TYPE.LOGIN_PENDING,
+      });
+      AuthService.login(username, password).then(
+        (res) => {
+          dispatch({
+            type: HEADER_ACTION_TYPE.LOGIN_SUCCESS,
+            payload: res.user,
+          });
+          setLogOpen(false);
+        },
+        (e) => {
+          const resMessage = e.response?.data?.detail;
           e.toString();
-        dispatch({
-          type: HEADER_ACTION_TYPE.LOGIN_FAILURE,
-          payload: resMessage,
-        });
-      }
-    );
+          dispatch({
+            type: HEADER_ACTION_TYPE.LOGIN_FAILURE,
+            payload: resMessage,
+          });
+        }
+      );
+    }
   };
 
   const handleLogout = () => {

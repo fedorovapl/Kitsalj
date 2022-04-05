@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import {
   StyledMainContainer,
   StyledMainContent,
@@ -34,6 +33,8 @@ export const MainContentComponent = ({
   handleCaretPosition,
   caretRow,
   caretCol,
+  isHomeworkSend,
+  isLoggedIn,
 }) => {
   return (
     <StyledMainContainer>
@@ -42,14 +43,14 @@ export const MainContentComponent = ({
         open={recOpen}
         closeModal={() => setRecOpen(false)}
       />
-      {user?.username ? (
+      {isLoggedIn && (
         <StyledMainContent>
           <StyledFirstBlock>
             <div>
-              <ModuleSelectContainer />
+              <ModuleSelectContainer isHomeworkSend={isHomeworkSend} />
             </div>
             <div>
-              <LessonSelectContainer />
+              <LessonSelectContainer isHomeworkSend={isHomeworkSend} />
             </div>
             <StyledRecommendationContainer>
               <Button
@@ -70,6 +71,8 @@ export const MainContentComponent = ({
               seconds={seconds}
               restartTimer={restartTimer}
               stopTimer={stopTimer}
+              caretCol={caretCol}
+              caretRow={caretRow}
             />
             <HomeworkContainer />
           </StyledSecondBlock>
@@ -77,10 +80,6 @@ export const MainContentComponent = ({
             <ConstructorContainer caretCol={caretCol} caretRow={caretRow} />
           </StyledThirdBlock>
         </StyledMainContent>
-      ) : (
-        <StyledNotLoginContent>
-          Для продолжения войдите в систему
-        </StyledNotLoginContent>
       )}
     </StyledMainContainer>
   );

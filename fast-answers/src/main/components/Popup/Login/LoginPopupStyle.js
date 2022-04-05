@@ -1,6 +1,15 @@
 import { ReactComponent as ClosePopup } from "../../../../assets/svg/close-popup.svg";
 import styled from "styled-components";
 
+export const StyledLoginHeader = styled.p`
+  text-align: center;
+  margin-bottom: 25px;
+`;
+export const StyledErrorMessage = styled.p`
+  margin-top: 5px;
+  color: #d71414;
+`;
+
 export const StyledClosePopup = styled(ClosePopup)`
   align-self: flex-end;
   cursor: pointer;
@@ -29,6 +38,30 @@ export const StyledFolderNameInput = styled.input`
     font-size: 14px;
     line-height: 17px;
     color: #b4bdc1;
+  }
+`;
+
+export const StyledFolderPassInput = styled.input`
+  width: 100%;
+  padding: 13px 10px;
+  border: 1px solid #d5dfe4;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-top: 7px;
+  ::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #b4bdc1;
+  }
+`;
+
+export const StyledShowPassIcon = styled.i`
+  margin-left: -30px;
+  color: #606060;
+  cursor: pointer;
+  &:hover {
+    color: #000000;
   }
 `;
 
@@ -75,7 +108,6 @@ export const StyledButtonCancel = styled.p`
 
 export const StyledButtonGroup = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  justify-content: space-around;
   cursor: pointer;
 `;

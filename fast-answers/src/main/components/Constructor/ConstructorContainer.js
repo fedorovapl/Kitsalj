@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ConstructorComponent } from "./ConstructorComponent";
-import { CONSTRUCTOR_STORE_NAME } from "./ConstructorConstant";
+import {
+  CONSTRUCTOR_ACTION_TYPE,
+  CONSTRUCTOR_STORE_NAME,
+} from "./ConstructorConstant";
 import { LESSON_STORE_NAME } from "../LessonSelect/LessonSelectConstant";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -16,20 +19,21 @@ import {
   ANSWER_STORE_NAME,
 } from "../Answer/AnswerConstant";
 import { HEADER_STORE_NAME } from "../../Header";
+import { HOMEWORK_STORE_NAME } from "../Homework/HomeworkConstant";
 
 export const ConstructorContainer = ({ caretRow, caretCol }) => {
-  const [editAnswerOpen, setEditAnswerOpen] = useState(false);
+  const dispatch = useDispatch();
 
+  const [editAnswerOpen, setEditAnswerOpen] = useState(false);
   const [selectedPhrase, setSelectedPhrase] = useState("");
   const [selectedPhraseId, setSelectedPhraseId] = useState();
-
   const [subFolderId, setSubFolderId] = useState();
   const [folderId, setFolderId] = useState();
-
   const [addAnswerOpen, setAddAnswerOpen] = useState(false);
   const [newAnswerText, setNewAnswerText] = useState("");
+  const [acceptDeletePhraseOpen, setAcceptDeletePhraseOpen] = useState(false);
 
-  const dispatch = useDispatch();
+  const { isHomeworkSend } = useSelector((store) => store[HOMEWORK_STORE_NAME]);
   const { folders, subFolders, phrases, currentStage } = useSelector(
     (store) => store[CONSTRUCTOR_STORE_NAME]
   );
@@ -84,8 +88,12 @@ export const ConstructorContainer = ({ caretRow, caretCol }) => {
       setEditAnswerOpen(true);
     } else if (prefix === "d") {
       setSelectedPhraseId(id);
-      dispatch(deletePhrases(selectedPhraseId, subFolderId));
+      setAcceptDeletePhraseOpen(true);
     }
+  };
+  const handleDeletePhrase = () => {
+    dispatch(deletePhrases(selectedPhraseId, subFolderId));
+    setAcceptDeletePhraseOpen(false);
   };
   const handleNewAnswerText = (e) => {
     setNewAnswerText(e.target.value);
@@ -110,8 +118,16 @@ export const ConstructorContainer = ({ caretRow, caretCol }) => {
     }
   }, [currentLesson]);
 
+  useEffect(() => {
+    return function cleanUp() {
+      dispatch({ type: CONSTRUCTOR_ACTION_TYPE.CLEAN_UP });
+    };
+  }, []);
   return (
     <ConstructorComponent
+      handleDeletePhrase={handleDeletePhrase}
+      acceptDeletePhraseOpen={acceptDeletePhraseOpen}
+      setAcceptDeletePhraseOpen={setAcceptDeletePhraseOpen}
       folders={folders}
       subFolders={subFolders}
       phrases={phrases}
@@ -137,6 +153,8 @@ export const ConstructorContainer = ({ caretRow, caretCol }) => {
       handleReturnPhrases={handleReturnPhrases}
       username={username}
       selectedPhraseId={selectedPhraseId}
+      isHomeworkSend={isHomeworkSend}
+      setNewAnswerText={setNewAnswerText}
     />
   );
 };

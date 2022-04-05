@@ -10,6 +10,7 @@ import { LastAnswerPopupComponent } from "./Popup/LastAnswer/LastAnswerPopupComp
 import { LoginPopupComponent } from "./Popup/Login/LoginPopupComponent";
 import { EditAnswerPopupComponent } from "./Popup/EditAnswer/EditAnswerPopupComponent";
 import { AddAnswerPopupComponent } from "./Popup/AddAnswer/AddAnswerComponent";
+import { AcceptDeletePhrasePopupComponent } from "./Popup/DeleteAnswer/AcceptDeletePhrasePopupComponent";
 
 export {
   ModuleSelectContainer,
@@ -24,4 +25,5 @@ export {
   LoginPopupComponent,
   EditAnswerPopupComponent,
   AddAnswerPopupComponent,
+  AcceptDeletePhrasePopupComponent,
 };

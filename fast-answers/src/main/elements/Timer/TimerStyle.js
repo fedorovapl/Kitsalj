@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const StyledTimerContainer = styled.div`
+  align-self: flex-end;
   justify-self: flex-end;
+  width: 180px;
 `;
 export const StyledTimer = styled.p`
   background: #f8f8f8;

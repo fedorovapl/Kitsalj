@@ -42,6 +42,11 @@ export function moduleStore(state = initialState, action) {
         ...state,
         currentModule: action.payload,
       };
+    case MODULE_ACTION_TYPE.CLEAN_UP:
+      return {
+        ...initialState,
+      };
+
     default:
       return state;
   }

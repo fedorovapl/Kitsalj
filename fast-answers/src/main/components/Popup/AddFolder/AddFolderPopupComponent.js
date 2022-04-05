@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import {
@@ -54,6 +54,16 @@ export const AddFolderPopupComponent = ({
       border: "1px solid #d5dfe4",
     }),
   };
+
+  useEffect(() => {
+    return function cleanUp() {
+      setFolderName("");
+      setSelectedFolder({
+        value: "no-value",
+        label: "Выберите папку",
+      });
+    };
+  }, [open]);
 
   return (
     <div>

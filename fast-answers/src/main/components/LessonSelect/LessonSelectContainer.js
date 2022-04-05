@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LessonSelectComponent } from "./LessonSelectComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { LESSON_STORE_NAME, LESSON_ACTION_TYPE } from "./LessonSelectConstant";
 
-export const LessonSelectContainer = () => {
+export const LessonSelectContainer = ({ isHomeworkSend }) => {
   const dispatch = useDispatch();
   const {
     lessons,
@@ -21,12 +21,19 @@ export const LessonSelectContainer = () => {
     });
   };
 
+  useEffect(() => {
+    return function cleanUp() {
+      dispatch({ type: LESSON_ACTION_TYPE.CLEAN_UP });
+    };
+  }, []);
+
   return (
     <LessonSelectComponent
       islessonsPending={islessonsPending}
       lessons={lessons}
       currentLesson={currentLesson}
       setCurrentLesson={setCurrentLesson}
+      isHomeworkSend={isHomeworkSend}
     />
   );
 };

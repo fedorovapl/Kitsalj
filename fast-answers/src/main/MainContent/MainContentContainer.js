@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { MainContentComponent } from "./MainContentComponent";
 import { HEADER_STORE_NAME } from "../Header";
 import { LESSON_STORE_NAME } from "../components/LessonSelect";
 import { HOMEWORK_STORE_NAME } from "../components/Homework";
-import { ANSWER_STORE_NAME } from "../components/Answer/AnswerConstant";
 import { useTimer } from "react-timer-hook";
 
 export const MainContentContainer = () => {
-  const [time, setTime] = useState(new Date());
+  const [checkTime, setCheckTime] = useState(0);
+  const time = new Date();
   const {
     seconds,
     minutes,
@@ -21,12 +21,11 @@ export const MainContentContainer = () => {
     resume,
     restart,
   } = useTimer({
-    expiryTimestamp: time.setSeconds(time.getSeconds() + 1200),
+    expiryTimestamp: time.setSeconds(time.getSeconds() + checkTime),
     onExpire: () => console.log("onExpire called"),
     autoStart: false,
   });
 
-  const dispatch = useDispatch();
   const [recOpen, setRecOpen] = useState(false);
   const [recomendation, setRecomendation] = useState("");
   const [recDisabled, setRecDisabled] = useState(false);
@@ -38,16 +37,17 @@ export const MainContentContainer = () => {
     (store) => store[LESSON_STORE_NAME]
   );
   const { isHomeworkSend } = useSelector((store) => store[HOMEWORK_STORE_NAME]);
-  const { currentAnswerValue } = useSelector(
-    (store) => store[ANSWER_STORE_NAME]
-  );
+
   const convertRecomendation = () => {
     lessons.filter(
       (item) =>
-        item.id == currentLesson.value && setRecomendation(item.recommendation)
+        item.id === currentLesson.value && setRecomendation(item.recommendation)
+    );
+    lessons.filter(
+      (item) =>
+        item.id === currentLesson.value && setCheckTime(item.check_time * 60)
     );
   };
-
   const handleCaretPosition = (e) => {
     let textLines = e.target.value
       .substr(0, e.target.selectionStart)
@@ -72,10 +72,17 @@ export const MainContentContainer = () => {
 
   useEffect(() => {
     if (isHomeworkSend) {
-      setTime(new Date());
       start();
     }
   }, [isHomeworkSend]);
+
+  useEffect(() => {
+    const currentTime = new Date();
+    restart(
+      currentTime.setSeconds(currentTime.getSeconds() + checkTime),
+      false
+    );
+  }, [checkTime]);
 
   return (
     <MainContentComponent
@@ -93,6 +100,7 @@ export const MainContentContainer = () => {
       handleCaretPosition={handleCaretPosition}
       caretRow={caretRow}
       caretCol={caretCol}
+      isHomeworkSend={isHomeworkSend}
     />
   );
 };

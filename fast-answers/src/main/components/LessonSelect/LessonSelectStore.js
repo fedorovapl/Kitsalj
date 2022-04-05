@@ -42,6 +42,10 @@ export function lessonStore(state = initialState, action) {
         ...state,
         currentLesson: action.payload,
       };
+    case LESSON_ACTION_TYPE.CLEAN_UP:
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

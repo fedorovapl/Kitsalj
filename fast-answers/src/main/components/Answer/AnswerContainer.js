@@ -13,6 +13,8 @@ export const AnswerContainer = ({
   restartTimer,
   stopTimer,
   handleCaretPosition,
+  caretCol,
+  caretRow,
 }) => {
   const dispatch = useDispatch();
   const [lastAnswerOpen, setLastAnswerOpen] = useState(false);
@@ -22,7 +24,7 @@ export const AnswerContainer = ({
   const {
     currentLesson: { value },
   } = useSelector((store) => store[LESSON_STORE_NAME]);
-  const { currentAnswerValue, lastAnswer } = useSelector(
+  const { currentAnswerValue, lastAnswer, isLastAnswerPending } = useSelector(
     (store) => store[ANSWER_STORE_NAME]
   );
 
@@ -41,7 +43,7 @@ export const AnswerContainer = ({
     ).then(() =>
       setTimeout(() => {
         window.location.reload();
-      }, 1500)
+      }, 500)
     );
   };
 
@@ -80,9 +82,7 @@ export const AnswerContainer = ({
     id.shift();
     id = Number(id.join(""));
     dispatch(changePriority(id, priorValue)).then(() =>
-      setTimeout(() => {
-        dispatch(getLasAnswer(value));
-      }, 2000)
+      dispatch(getLasAnswer(value))
     );
   };
 
@@ -100,6 +100,9 @@ export const AnswerContainer = ({
       handleSendNewPriority={handleSendNewPriority}
       currentLessonId={value}
       handleCaretPosition={handleCaretPosition}
+      caretCol={caretCol}
+      caretRow={caretRow}
+      isLastAnswerPending={isLastAnswerPending}
     />
   );
 };

@@ -110,6 +110,7 @@ export const StyledDeleteFolderContainer = styled.div`
   color: #fa6767;
   margin-top: 20px;
   div {
+    ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
     transition: 0.2s;
     box-sizing: border-box;
     border-radius: 5px;

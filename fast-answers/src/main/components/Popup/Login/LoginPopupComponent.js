@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import {
@@ -10,6 +10,10 @@ import {
   StyledButtonCancel,
   StyledButtonAdd,
   StyledPasswordContainer,
+  StyledErrorMessage,
+  StyledFolderPassInput,
+  StyledShowPassIcon,
+  StyledLoginHeader,
 } from "./LoginPopupStyle";
 
 const contentStyle = {
@@ -19,23 +23,46 @@ const contentStyle = {
   borderRadius: "10px",
 };
 
-export const LoginPopupComponent = ({ open, closeModal, handleClick }) => {
+export const LoginPopupComponent = ({
+  open,
+  closeModal,
+  handleClick,
+  isLoginError,
+  loginErrorMessage,
+  isLoggedIn,
+}) => {
   const [nick, setNick] = useState("");
   const [pass, setPass] = useState("");
+  const inputPass = useRef(null);
+
+  const handleShowPass = () => {
+    if (inputPass.current.type === "password") {
+      inputPass.current.type = "text";
+    } else {
+      inputPass.current.type = "password";
+    }
+  };
   return (
     <div>
       <Popup
         {...{ contentStyle }}
         open={open}
-        closeOnDocumentClick
+        closeOnDocumentClick={false}
+        closeOnEscape={false}
         onClose={closeModal}
       >
         <div className="modal">
           <StyledModalContent>
-            <StyledClosePopup className="close" onClick={closeModal} />
+            {isLoggedIn && (
+              <StyledClosePopup className="close" onClick={closeModal} />
+            )}
+            <StyledLoginHeader>
+              Для продолжения войдите в систему
+            </StyledLoginHeader>
             <StyledUserNameContainer>
               <p>Имя пользователя</p>
               <StyledFolderNameInput
+                type="email"
                 value={nick}
                 onChange={(e) => setNick(e.target.value)}
                 placeholder="Имя пользователя"
@@ -43,16 +70,29 @@ export const LoginPopupComponent = ({ open, closeModal, handleClick }) => {
             </StyledUserNameContainer>
             <StyledPasswordContainer>
               <p>Пароль</p>
-              <StyledFolderNameInput
+              <StyledFolderPassInput
+                ref={inputPass}
+                type="password"
                 value={pass}
                 onChange={(e) => setPass(e.target.value)}
                 placeholder="Пароль"
-              ></StyledFolderNameInput>
+              ></StyledFolderPassInput>
+              <StyledShowPassIcon
+                onClick={handleShowPass}
+                className="far fa-eye"
+                id="togglePassword"
+              ></StyledShowPassIcon>
+              {isLoginError && (
+                <StyledErrorMessage>{loginErrorMessage}</StyledErrorMessage>
+              )}
             </StyledPasswordContainer>
+
             <StyledButtonGroup>
-              <StyledButtonCancel onClick={closeModal}>
-                Отмена
-              </StyledButtonCancel>
+              {isLoggedIn && (
+                <StyledButtonCancel onClick={closeModal}>
+                  Отмена
+                </StyledButtonCancel>
+              )}
               <StyledButtonAdd onClick={() => handleClick(nick, pass)}>
                 Войти
               </StyledButtonAdd>

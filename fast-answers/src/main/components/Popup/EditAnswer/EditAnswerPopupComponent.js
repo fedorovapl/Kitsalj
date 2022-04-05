@@ -16,7 +16,6 @@ const StyledClosePopup = styled(ClosePopup)`
     }
   }
 `;
-
 const StyledButtonAdd = styled.p`
   text-align: center;
   padding: 13px;
@@ -54,6 +53,14 @@ const StyledButtonGroup = styled.div`
   justify-content: space-between;
   margin-top: 20px;
 `;
+const StyledButtonGroupDelete = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  p:first-child {
+    margin-right: 10px;
+  }
+`;
 
 const StyledTextarea = styled.textarea`
   width: 100%;
@@ -85,14 +92,12 @@ const StyledEditAnswerContainer = styled.div`
   flex-direction: column;
   align-items: stretch;
 `;
-
 const contentStyle = {
   padding: "20px",
   width: "430px",
   boxShadow: "0px 3px 10px rgba(0, 73, 129, 0.1)",
   borderRadius: "10px",
 };
-
 const StyledButtonDelete = styled.p`
   text-align: center;
   padding: 13px;
@@ -115,7 +120,6 @@ const StyledModalContent = styled.div`
   flex-direction: column;
   align-items: stretch;
 `;
-
 const StyledDeleteButton = styled.div`
   transition: 0.2s;
   box-sizing: border-box;
@@ -135,7 +139,16 @@ const StyledDeleteButton = styled.div`
     background: #ffdada;
   }
 `;
-
+const StyledPopupAcceptDelet = styled(Popup)`
+  &-content {
+    padding: 20px;
+    width: 430px;
+    height: 110px;
+    margin: 100px auto !important;
+    box-shadow: 0px 3px 10px rgba(0, 73, 129, 0.1);
+    border-radius: 10px;
+  }
+`;
 export const EditAnswerPopupComponent = ({
   open,
   closeModal,
@@ -149,14 +162,12 @@ export const EditAnswerPopupComponent = ({
   const [acceptOpen, setAcceptOpen] = useState(false);
 
   const handleDeleteAnswer = () => {
-    dispatch(deletePhrases(selectedPhraseId, subFolderId)).then(() =>
-      setAcceptOpen(false)
-    );
+    setAcceptOpen(false);
+    dispatch(deletePhrases(selectedPhraseId, subFolderId));
   };
   return (
     <div>
-      <Popup
-        {...{ contentStyle }}
+      <StyledPopupAcceptDelet
         open={acceptOpen}
         closeOnDocumentClick
         onClose={() => setAcceptOpen(false)}
@@ -168,17 +179,17 @@ export const EditAnswerPopupComponent = ({
               onClick={() => setAcceptOpen(false)}
             />
             <p>Вы действительно хотите удалить выбранный ответ?</p>
-            <StyledButtonGroup>
+            <StyledButtonGroupDelete>
               <StyledButtonCancel onClick={() => setAcceptOpen(false)}>
                 Не удалять
               </StyledButtonCancel>
               <StyledButtonDelete onClick={handleDeleteAnswer}>
                 Удалить
               </StyledButtonDelete>
-            </StyledButtonGroup>
+            </StyledButtonGroupDelete>
           </StyledModalContent>
         </div>
-      </Popup>
+      </StyledPopupAcceptDelet>
       <Popup
         {...{ contentStyle }}
         open={open}

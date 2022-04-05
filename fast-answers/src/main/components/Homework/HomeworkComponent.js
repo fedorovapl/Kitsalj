@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   StyledHomeworkContainer,
   StyledHomeworkHeader,
@@ -22,6 +22,15 @@ export const HomeworkComponent = ({
         <p>Домашка ученика</p>
       </StyledHomeworkHeader>
       <StyledHomeworkInputContainer>
+        <StyledOriginText origin={origin} isVisible={!!origin}>
+          {origin > 75
+            ? `Уникальность: ${origin}%. Снижение баллов не требуется.`
+            : origin <= 75 && origin >= 50
+            ? `Уникальность:  ${origin}%. Средняя уникальность`
+            : origin < 50
+            ? `Уникальность:  ${origin}%. Уникальность низкая, требуется снижение балов`
+            : ""}
+        </StyledOriginText>
         <StyledTextarea
           readOnly
           value={currentText}
@@ -32,15 +41,6 @@ export const HomeworkComponent = ({
               : "Нажмите кнопку «Вставить», чтобы добавить домашку ученика из буфера обмена и начать на нее отвечать."
           }
         ></StyledTextarea>
-        <StyledOriginText origin={origin} isVisible={!!origin}>
-          {origin > 75
-            ? `Уникальность: ${origin}%. Снижение баллов не требуется.`
-            : origin < 75 && origin > 50
-            ? `Уникальность:  ${origin}%. Средняя уникальность`
-            : origin < 50
-            ? `Уникальность:  ${origin}%. Уникальность низкая, требуется снижение балов`
-            : ""}
-        </StyledOriginText>
       </StyledHomeworkInputContainer>
       <Button
         disabled={isHomeworkSend || currentLesson.value === "no-value"}

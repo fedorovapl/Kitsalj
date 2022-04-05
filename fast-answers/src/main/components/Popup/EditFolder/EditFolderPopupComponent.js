@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import styled from "styled-components";
 import {
   StyledClosePopup,
   StyledModalContent,
@@ -30,6 +31,25 @@ const contentStyle = {
   borderRadius: "10px",
 };
 
+const StyledPopupAcceptDelet = styled(Popup)`
+  &-content {
+    padding: 20px;
+    width: 430px;
+    height: 110px;
+    margin: 100px auto !important;
+    box-shadow: 0px 3px 10px rgba(0, 73, 129, 0.1);
+    border-radius: 10px;
+  }
+`;
+const StyledButtonGroupDelete = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  p:first-child {
+    margin-right: 10px;
+  }
+`;
+
 export const EditFolderPopupComponent = ({
   open,
   closeModal,
@@ -51,8 +71,14 @@ export const EditFolderPopupComponent = ({
   const [newFolderName, setNewFolderName] = useState("");
   const [acceptOpen, setAcceptOpen] = useState(false);
 
-  const convertFolder = (array) => {
-    let temp = array.filter((item) => item.creator.username === username);
+  const convertFilterFolder = (array) => {
+    let temp = [];
+    if (array) {
+      temp = array.filter((item) => item.creator.username === username);
+    } else {
+      temp = null;
+    }
+
     let options = [];
 
     if (temp) {
@@ -67,7 +93,21 @@ export const EditFolderPopupComponent = ({
     }
     return options;
   };
+  const converFolder = (array) => {
+    let options = [];
 
+    if (array) {
+      array.forEach((element) => {
+        options.push({
+          value: element.id,
+          label: element.name,
+        });
+      });
+    } else {
+      options = [];
+    }
+    return options;
+  };
   const customStyles = {
     valueContainer: (provided) => ({
       ...provided,
@@ -78,7 +118,6 @@ export const EditFolderPopupComponent = ({
       border: "1px solid #d5dfe4",
     }),
   };
-
   const handleDestinationFolder = (value) => {
     setSelectedEditFolder(value);
   };
@@ -91,10 +130,28 @@ export const EditFolderPopupComponent = ({
       dispatch(deleteFolder(selectedEditFolder.value))
         .then(() => setAcceptOpen(false))
         .then(() => dispatch(getFolders(currentLesson.value)));
+      setSelectedEditFolder({
+        value: "no-value",
+        label: "---------",
+      });
+      setSelectedFolder({
+        value: "no-value",
+        label: "---------",
+      });
+      setNewFolderName("");
     } else {
       dispatch(deleteSubFolder(selectedEditFolder.value))
         .then(() => setAcceptOpen(false))
         .then(() => dispatch(getSubFolders(Number(subFolders.currentFolder))));
+      setSelectedEditFolder({
+        value: "no-value",
+        label: "---------",
+      });
+      setSelectedFolder({
+        value: "no-value",
+        label: "---------",
+      });
+      setNewFolderName("");
     }
   };
 
@@ -109,6 +166,11 @@ export const EditFolderPopupComponent = ({
         value: "no-value",
         label: "---------",
       });
+      setSelectedFolder({
+        value: "no-value",
+        label: "---------",
+      });
+      setNewFolderName("");
     } else {
       dispatch(
         editSubFolder(
@@ -119,17 +181,34 @@ export const EditFolderPopupComponent = ({
       )
         .then(() => closeModal())
         .then(() => dispatch(getSubFolders(Number(subFolders.currentFolder))));
+      setSelectedEditFolder({
+        value: "no-value",
+        label: "---------",
+      });
       setSelectedFolder({
         value: "no-value",
         label: "---------",
       });
+      setNewFolderName("");
     }
   };
 
+  useEffect(() => {
+    return function cleanUp() {
+      setSelectedFolder({
+        value: "no-value",
+        label: "---------",
+      });
+      setNewFolderName("");
+      setSelectedEditFolder({
+        value: "no-value",
+        label: "---------",
+      });
+    };
+  }, [open]);
   return (
     <div>
-      <Popup
-        {...{ contentStyle }}
+      <StyledPopupAcceptDelet
         open={acceptOpen}
         closeOnDocumentClick
         onClose={() => setAcceptOpen(false)}
@@ -143,21 +222,21 @@ export const EditFolderPopupComponent = ({
             <p>
               Вы действительно хотите удалить папку {selectedEditFolder.label} ?
             </p>
-            <StyledButtonGroup>
+            <StyledButtonGroupDelete>
               <StyledButtonCancel onClick={() => setAcceptOpen(false)}>
                 Не удалять
               </StyledButtonCancel>
               <StyledButtonDelete onClick={handleDeleteFolder}>
                 Удалить
               </StyledButtonDelete>
-            </StyledButtonGroup>
+            </StyledButtonGroupDelete>
           </StyledModalContent>
         </div>
-      </Popup>
+      </StyledPopupAcceptDelet>
       <Popup
         {...{ contentStyle }}
         open={open}
-        closeOnDocumentClick
+        closeOnDocumentClick={false}
         onClose={closeModal}
       >
         <div className="modal">
@@ -177,14 +256,14 @@ export const EditFolderPopupComponent = ({
                           value: "no-value",
                           label: "---------",
                         },
-                        ...convertFolder(subFolders.data),
+                        ...convertFilterFolder(subFolders?.data),
                       ]
                     : [
                         {
                           value: "no-value",
                           label: "---------",
                         },
-                        ...convertFolder(folders.data),
+                        ...convertFilterFolder(folders?.data),
                       ]
                 }
                 styles={customStyles}
@@ -209,7 +288,7 @@ export const EditFolderPopupComponent = ({
                     value: "no-value",
                     label: "---------",
                   },
-                  ...convertFolder(folders.data),
+                  ...converFolder(folders?.data),
                 ]}
                 styles={customStyles}
               />

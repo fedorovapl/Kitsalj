@@ -8,6 +8,14 @@ export const StyledModalContent = styled.div`
   }
 `;
 
+export const StyledNoAnswers = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #192229;
+  margin-top: 10px;
+`;
+
 export const StyledScrollableContent = styled.div`
   overflow: auto;
   max-height: 500px;

@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { AnswerItemComponent } from "../../../elements";
+import { LoaderComponent } from "../../../elements/Loader/LoaderComponent";
 import {
   StyledModalContent,
   StyledScrollableContent,
   StyledClosePopup,
+  StyledNoAnswers,
 } from "./LastAnswerPopupStyle";
 
 const contentStyle = {
@@ -21,7 +23,23 @@ export const LastAnswerPopupComponent = ({
   lastAnswer,
   handleChangePriority,
   handleSendNewPriority,
+  caretRow,
+  caretCol,
+  isLastAnswerPending,
+  isHomeworkSend,
 }) => {
+  const sortAnswers = (a, b) => {
+    if (a.priority === 0 || b.priority === 0) {
+      return 1;
+    }
+    if (a.priority < b.priority) {
+      return -1;
+    }
+    if (a.priority > b.priority) {
+      return 1;
+    }
+    return 0;
+  };
   return (
     <div>
       <Popup
@@ -33,24 +51,36 @@ export const LastAnswerPopupComponent = ({
         <div className="modal">
           <StyledModalContent>
             <StyledClosePopup className="close" onClick={closeModal} />
-            <p>Мои прошлые ответы</p>
+            <p>Мои ответы для этого урока</p>
             <StyledScrollableContent>
-              {lastAnswer
-                ?.sort((a, b) => a.priority > b.priority)
-                .map((item) => {
-                  return (
-                    <AnswerItemComponent
-                      key={item.id}
-                      created={item.created}
-                      answerText={item.text}
-                      id={item.id}
-                      open={item.open}
-                      priority={item.priority}
-                      handleChangePriority={handleChangePriority}
-                      handleSendNewPriority={handleSendNewPriority}
-                    />
-                  );
-                })}
+              {isLastAnswerPending ? (
+                <LoaderComponent />
+              ) : lastAnswer.length === 0 ? (
+                <StyledNoAnswers>
+                  Ответов на данный урок еще не было
+                </StyledNoAnswers>
+              ) : (
+                lastAnswer
+                  ?.sort((a, b) => sortAnswers(a, b))
+                  .map((item) => {
+                    return (
+                      <AnswerItemComponent
+                        closeModal={closeModal}
+                        key={item.id}
+                        created={item.created}
+                        answerText={item.text}
+                        id={item.id}
+                        open={item.open}
+                        priority={item.priority}
+                        handleChangePriority={handleChangePriority}
+                        handleSendNewPriority={handleSendNewPriority}
+                        caretRow={caretRow}
+                        caretCol={caretCol}
+                        isHomeworkSend={isHomeworkSend}
+                      />
+                    );
+                  })
+              )}
             </StyledScrollableContent>
           </StyledModalContent>
         </div>

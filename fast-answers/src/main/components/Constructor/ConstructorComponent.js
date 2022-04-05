@@ -17,7 +17,8 @@ import {
   AddAnswerPopupComponent,
 } from "../";
 
-import { Button, FolderButton } from "../../elements";
+import { Button, FolderButton, LoaderComponent } from "../../elements";
+import { AcceptDeletePhrasePopupComponent } from "../Popup/DeleteAnswer/AcceptDeletePhrasePopupComponent";
 
 export const ConstructorComponent = ({
   folders,
@@ -45,18 +46,32 @@ export const ConstructorComponent = ({
   handleReturnPhrases,
   username,
   selectedPhraseId,
+  isHomeworkSend,
+  acceptDeletePhraseOpen,
+  setAcceptDeletePhraseOpen,
+  handleDeletePhrase,
+  setNewAnswerText,
 }) => {
   const [addFolderOpen, setAddFolderOpen] = useState(false);
   const [editFolderOpen, setEditFolderOpen] = useState(false);
 
   return (
     <div>
+      <AcceptDeletePhrasePopupComponent
+        handleDeletePhrase={handleDeletePhrase}
+        acceptDeletePhraseOpen={acceptDeletePhraseOpen}
+        setAcceptDeletePhraseOpen={setAcceptDeletePhraseOpen}
+      />
       <AddAnswerPopupComponent
         handleNewAnswerText={handleNewAnswerText}
         newAnswerText={newAnswerText}
         handleAddAnswer={handleAddAnswer}
         open={addAnswerOpen}
-        closeModal={() => setAddAnswerOpen(false)}
+        setNewAnswerText={setNewAnswerText}
+        closeModal={() => {
+          setAddAnswerOpen(false);
+          setNewAnswerText("");
+        }}
       />
       <EditAnswerPopupComponent
         handleAnswerChange={handleAnswerChange}
@@ -65,7 +80,10 @@ export const ConstructorComponent = ({
         open={editAnswerOpen}
         selectedPhraseId={selectedPhraseId}
         subFolderId={subFolderId}
-        closeModal={() => setEditAnswerOpen(false)}
+        closeModal={() => {
+          setEditAnswerOpen(false);
+          selectedAnswerText("");
+        }}
       />
       <AddFolderPopupContainer
         open={addFolderOpen}
@@ -137,59 +155,71 @@ export const ConstructorComponent = ({
           ""
         )}
       </StyledBreadcrumb>
-      <StyledConstructorFolderContainer
-        currentStage={currentStage === "phrase"}
-      >
-        {currentStage === "folder" &&
-          folders?.data?.map((item) => {
-            return (
-              <Button
-                onClick={(e) => handleFolderClick(e)}
-                id={"f" + item.id}
-                key={item.id}
-                py={13}
-                px={15}
-              >
-                {item.name}
-              </Button>
-            );
-          })}
-        {currentStage === "subfolder" &&
-          subFolders?.data?.map((item) => {
-            return (
-              <Button
-                onClick={(e) => handleSubFolderClick(e)}
-                id={"s" + item.id}
-                key={item.id}
-                py={13}
-                px={15}
-              >
-                {item.name}
-              </Button>
-            );
-          })}
-        {currentStage === "phrase" &&
-          phrases?.data?.map((item) => {
-            return (
-              <FolderButton
-                onClick={(e) => handlePhraseClick(e)}
-                id={item.id}
-                key={item.id}
-                creator={item?.creator?.username}
-                username={username}
-              >
-                {item.phrase}
-              </FolderButton>
-            );
-          })}
-        {currentStage !== "phrase" &&
-        currentStage !== "subfolder" &&
-        currentStage !== "folder" ? (
-          <div>Выберите урок для отображения папок</div>
-        ) : (
-          ""
-        )}
-      </StyledConstructorFolderContainer>
+      {folders?.isPending || subFolders?.isPending || phrases?.isPending ? (
+        <LoaderComponent />
+      ) : (
+        <StyledConstructorFolderContainer
+          currentStage={currentStage === "phrase"}
+        >
+          {currentStage === "folder" &&
+            (folders?.data.length === 0
+              ? "Нет ни одной доступной папки"
+              : folders?.data?.map((item) => {
+                  return (
+                    <Button
+                      onClick={(e) => handleFolderClick(e)}
+                      id={"f" + item.id}
+                      key={item.id}
+                      py={13}
+                      px={15}
+                    >
+                      {item.name}
+                    </Button>
+                  );
+                }))}
+          {currentStage === "subfolder" &&
+            (subFolders?.data.length === 0
+              ? "Нет ни одной доступной подпапки"
+              : subFolders?.data?.map((item) => {
+                  return (
+                    <Button
+                      onClick={(e) => handleSubFolderClick(e)}
+                      id={"s" + item.id}
+                      key={item.id}
+                      py={13}
+                      px={15}
+                    >
+                      {item.name}
+                    </Button>
+                  );
+                }))}
+          {currentStage === "phrase" &&
+            (!isHomeworkSend
+              ? "Вставьте домашнее заданее для работы с ответами"
+              : phrases?.data.length === 0
+              ? "Нет ни одной доступной фразы"
+              : phrases?.data?.map((item) => {
+                  return (
+                    <FolderButton
+                      onClick={(e) => handlePhraseClick(e)}
+                      id={item.id}
+                      key={item.id}
+                      creator={item?.creator?.username}
+                      username={username}
+                    >
+                      {item.phrase}
+                    </FolderButton>
+                  );
+                }))}
+          {currentStage !== "phrase" &&
+          currentStage !== "subfolder" &&
+          currentStage !== "folder" ? (
+            <div>Выберите урок для отображения папок</div>
+          ) : (
+            ""
+          )}
+        </StyledConstructorFolderContainer>
+      )}
     </div>
   );
 };

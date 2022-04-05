@@ -17,13 +17,14 @@ export const ModuleSelectComponent = ({
   currentModule,
   setCurrentModule,
   isModulesPending,
+  isHomeworkSend,
 }) => {
   return (
     <div>
       <p>Выберите модуль</p>
       <StyledSelect
         isLoading={isModulesPending}
-        isDisabled={isModulesPending}
+        isDisabled={isModulesPending || isHomeworkSend}
         value={currentModule}
         onChange={(selectedOption) => setCurrentModule(selectedOption)}
         options={moduleConvert(modules)}

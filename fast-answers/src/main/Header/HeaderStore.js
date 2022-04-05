@@ -49,7 +49,7 @@ export function headerStore(state = initialState, action) {
 
     case HEADER_ACTION_TYPE.LOGOUT:
       return {
-        initialState,
+        ...initialState,
       };
     default:
       return state;

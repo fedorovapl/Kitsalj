@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledAnswerContainer,
   StyledTextarea,
@@ -23,15 +23,22 @@ export const AnswerComponent = ({
   handleSendNewPriority,
   currentLessonId,
   handleCaretPosition,
+  caretCol,
+  caretRow,
+  isLastAnswerPending,
 }) => {
   return (
     <StyledAnswerContainer>
       <LastAnswerPopupComponent
+        isLastAnswerPending={isLastAnswerPending}
+        caretRow={caretRow}
+        caretCol={caretCol}
         lastAnswer={lastAnswer}
         open={lastAnswerOpen}
         closeModal={() => setLastAnswerOpen(false)}
         handleChangePriority={handleChangePriority}
         handleSendNewPriority={handleSendNewPriority}
+        isHomeworkSend={isHomeworkSend}
       />
       <StyledAnswerHeader>
         <p>Мой ответ</p>
@@ -40,10 +47,13 @@ export const AnswerComponent = ({
           onClick={handleGetLastAnswer}
         >
           <StyledLastAnswerIcon />
-          Мои прошлые ответы
+          Мои ответы для этого урока
         </StyledLastAnswerHeader>
       </StyledAnswerHeader>
       <StyledAnswerInputContainer>
+        <div style={{ opacity: "0", fontWeight: 500, fontSize: "14px" }}>
+          Фикс
+        </div>
         <StyledTextarea
           disabled={!isHomeworkSend}
           placeholder="Сначала вставьте ответ ученика в поле “Домашка ученика” справа 👉"
@@ -51,9 +61,6 @@ export const AnswerComponent = ({
           onChange={(e) => setCurrentValue(e)}
           onPointerLeave={(e) => handleCaretPosition(e)}
         ></StyledTextarea>
-        <div style={{ opacity: "0", fontWeight: 500, fontSize: "14px" }}>
-          Фикс
-        </div>
       </StyledAnswerInputContainer>
       <Button
         disabled={!isHomeworkSend}

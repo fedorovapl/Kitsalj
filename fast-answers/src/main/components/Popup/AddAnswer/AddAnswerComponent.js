@@ -97,6 +97,7 @@ export const AddAnswerPopupComponent = ({
   newAnswerText,
   handleNewAnswerText,
   handleAddAnswer,
+  setNewAnswerText,
 }) => {
   return (
     <div>

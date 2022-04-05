@@ -67,6 +67,7 @@ export const StyledAnswerContentButtonGroup = styled.div`
 
 export const StyledAnswerContainer = styled.div`
   margin-top: 24px;
+  margin-right: 15px;
 `;
 
 export const StyledAnswerText = styled.div`
@@ -87,7 +88,10 @@ export const StyledPopupTooltip = styled.div`
 
 export const StyledCopyTooltip = styled(Popup)`
   &-content {
-    border: 1px solid #2ad200;
+    ${(props) =>
+      props.isHomeworkSend
+        ? "border: 1px solid #2ad200;"
+        : "border: 1px solid #d11414;"}
     box-sizing: border-box;
     border-radius: 5px;
     font-weight: 500;

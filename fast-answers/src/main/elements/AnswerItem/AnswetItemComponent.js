@@ -27,6 +27,10 @@ export const AnswerItemComponent = ({
   handleChangePriority,
   handleSendNewPriority,
   created,
+  caretRow,
+  caretCol,
+  isHomeworkSend,
+  closeModal,
 }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [fullText, setFulltext] = useState(false);
@@ -35,19 +39,33 @@ export const AnswerItemComponent = ({
     (store) => store[ANSWER_STORE_NAME]
   );
 
+  const convertAnswerText = () => {
+    let temp = currentAnswerValue.split("\n");
+    let splitted = temp[caretRow - 1].split("");
+    splitted.splice(caretCol, 0, answerText);
+
+    temp[caretRow - 1] = splitted.join("");
+
+    return temp.join("\n");
+  };
+
   const copyAnswer = () => {
     setTooltipOpen(true);
-    dispatch({
-      type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE,
-      payload: currentAnswerValue + answerText,
-    });
+
+    if (isHomeworkSend) {
+      dispatch({
+        type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE,
+        payload: convertAnswerText(),
+      });
+      closeModal();
+    }
+
     setTimeout(() => {
       setTooltipOpen(false);
     }, 1000);
   };
 
   const handleFullAnswer = (e) => {
-    const id = Number(e.target.id);
     setFulltext(!fullText);
   };
 
@@ -96,6 +114,7 @@ export const AnswerItemComponent = ({
           <StyledCopyTooltip
             open={tooltipOpen}
             onOpen={copyAnswer}
+            isHomeworkSend={isHomeworkSend}
             trigger={() => (
               <p>
                 Скопировать в «Мой ответ» <CopyAnswer />
@@ -104,7 +123,11 @@ export const AnswerItemComponent = ({
             position="top center"
             closeOnDocumentClick
           >
-            <p>Ответ скопирован в поле «Мой ответ»</p>
+            {isHomeworkSend ? (
+              <p>Ответ скопирован в поле «Мой ответ»</p>
+            ) : (
+              <p>Вставьте домашнее заданее для работы с ответами</p>
+            )}
           </StyledCopyTooltip>
         </StyledAnswerContentButtonGroup>
       </StyledAnswerContent>

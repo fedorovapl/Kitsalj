@@ -4,7 +4,7 @@ import { ReactComponent as LastAnswer } from "../../../assets/svg/answer.svg";
 export const StyledAnswerContainer = styled.div``;
 export const StyledAnswerHeader = styled.div`
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
 `;
 export const StyledLastAnswerHeader = styled.p`
   display: flex;
@@ -27,6 +27,7 @@ export const StyledLastAnswerHeader = styled.p`
   ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
 `;
 export const StyledTextarea = styled.textarea`
+  font-family: "PT sans";
   width: 100%;
   height: 210px;
   padding: 13px 10px;
@@ -50,7 +51,9 @@ export const StyledTextarea = styled.textarea`
     color: #b4bdc1;
   }
 `;
-export const StyledAnswerInputContainer = styled.div``;
+export const StyledAnswerInputContainer = styled.div`
+  margin-bottom: 15px;
+`;
 
 export const StyledLastAnswerIcon = styled(LastAnswer)`
   margin-right: 6px;

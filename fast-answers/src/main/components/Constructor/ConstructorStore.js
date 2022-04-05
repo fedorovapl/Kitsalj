@@ -208,6 +208,11 @@ export function constructorStore(state = initialState, action) {
         ...state,
       };
 
+    case CONSTRUCTOR_ACTION_TYPE.CLEAN_UP:
+      return {
+        initialState,
+      };
+
     default:
       return state;
   }
