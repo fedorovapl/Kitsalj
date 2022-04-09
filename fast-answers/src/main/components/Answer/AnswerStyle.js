@@ -58,3 +58,22 @@ export const StyledAnswerInputContainer = styled.div`
 export const StyledLastAnswerIcon = styled(LastAnswer)`
   margin-right: 6px;
 `;
+
+export const StyledPhraseCheckboxContainer = styled.div`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 10px 0;
+  width: 250px;
+  label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    span {
+      margin-left: 5px;
+    }
+    input {
+      cursor: pointer;
+    }
+  }
+`;

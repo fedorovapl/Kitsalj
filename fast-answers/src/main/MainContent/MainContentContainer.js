@@ -9,6 +9,7 @@ import { useTimer } from "react-timer-hook";
 
 export const MainContentContainer = () => {
   const [checkTime, setCheckTime] = useState(0);
+  const [isTimerOver, setIsTimerOver] = useState(false);
   const time = new Date();
   const {
     seconds,
@@ -22,7 +23,7 @@ export const MainContentContainer = () => {
     restart,
   } = useTimer({
     expiryTimestamp: time.setSeconds(time.getSeconds() + checkTime),
-    onExpire: () => console.log("onExpire called"),
+    onExpire: () => setIsTimerOver(true),
     autoStart: false,
   });
 
@@ -101,6 +102,7 @@ export const MainContentContainer = () => {
       caretRow={caretRow}
       caretCol={caretCol}
       isHomeworkSend={isHomeworkSend}
+      isTimerOver={isTimerOver}
     />
   );
 };

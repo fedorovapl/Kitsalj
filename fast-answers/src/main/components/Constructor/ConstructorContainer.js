@@ -38,7 +38,7 @@ export const ConstructorContainer = ({ caretRow, caretCol }) => {
     (store) => store[CONSTRUCTOR_STORE_NAME]
   );
   const { currentLesson } = useSelector((store) => store[LESSON_STORE_NAME]);
-  const { currentAnswerValue } = useSelector(
+  const { currentAnswerValue, isPhraseBreak } = useSelector(
     (store) => store[ANSWER_STORE_NAME]
   );
   const {
@@ -70,17 +70,19 @@ export const ConstructorContainer = ({ caretRow, caretCol }) => {
     id.shift();
     id = Number(id.join(""));
     const text = e.target.innerText;
-
-    let temp = currentAnswerValue.split("\n");
-    let splitted = temp[caretRow - 1].split("");
-
-    splitted.splice(caretCol, 0, text);
-
-    temp[caretRow - 1] = splitted.join("");
+    //Реализация вставки текста на место курсора
+    // let temp = currentAnswerValue.split("\n");
+    // let splitted = temp[caretRow - 1].split("");
+    // splitted.splice(caretCol, 0, text);
+    // temp[caretRow - 1] = splitted.join("");
     if (prefix === "p") {
       dispatch({
         type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE,
-        payload: temp.join("\n"),
+        payload: currentAnswerValue
+          ? isPhraseBreak
+            ? currentAnswerValue + "\n\n" + text
+            : currentAnswerValue + text
+          : text,
       });
     } else if (prefix === "e") {
       setSelectedPhraseId(id);

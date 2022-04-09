@@ -35,6 +35,7 @@ export const MainContentComponent = ({
   caretCol,
   isHomeworkSend,
   isLoggedIn,
+  isTimerOver,
 }) => {
   return (
     <StyledMainContainer>
@@ -62,7 +63,11 @@ export const MainContentComponent = ({
                 Рекомендации к проверке
               </Button>
             </StyledRecommendationContainer>
-            <TimerComponent minutes={minutes} seconds={seconds} />
+            <TimerComponent
+              isTimerOver={isTimerOver}
+              minutes={minutes}
+              seconds={seconds}
+            />
           </StyledFirstBlock>
           <StyledSecondBlock>
             <AnswerContainer

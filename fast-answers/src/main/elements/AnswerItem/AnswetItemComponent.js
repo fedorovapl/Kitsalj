@@ -9,10 +9,13 @@ import {
   StyledAnswerContentButtonGroup,
   StyledPopupTooltip,
   StyledCopyTooltip,
+  StyledPriorityContainer,
+  StyledCopyIcon,
 } from "./AnswerItemStyle";
 import { ReactComponent as ShowMore } from "../../../assets/svg/show-more.svg";
 import { ReactComponent as CopyAnswer } from "../../../assets/svg/copy-answer.svg";
 import { ReactComponent as HelpTooltip } from "../../../assets/svg/help-tooltip.svg";
+import Copy from "../../../assets/img/copy.png";
 import {
   ANSWER_ACTION_TYPE,
   ANSWER_STORE_NAME,
@@ -39,23 +42,13 @@ export const AnswerItemComponent = ({
     (store) => store[ANSWER_STORE_NAME]
   );
 
-  const convertAnswerText = () => {
-    let temp = currentAnswerValue.split("\n");
-    let splitted = temp[caretRow - 1].split("");
-    splitted.splice(caretCol, 0, answerText);
-
-    temp[caretRow - 1] = splitted.join("");
-
-    return temp.join("\n");
-  };
-
   const copyAnswer = () => {
     setTooltipOpen(true);
 
     if (isHomeworkSend) {
       dispatch({
         type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE,
-        payload: convertAnswerText(),
+        payload: currentAnswerValue + "\n\n" + answerText,
       });
       closeModal();
     }
@@ -78,27 +71,81 @@ export const AnswerItemComponent = ({
   return (
     <StyledAnswerContainer>
       <StyledAnswerHeader>
-        <p>
-          Приоритет =
-          <input
-            id={"p" + id}
-            onBlur={handleSendNewPriority}
-            onChange={handleChangePriority}
-            value={priority}
-            type="number"
-          ></input>
+        <StyledPriorityContainer>
+          <p>Приоритет</p>
+          <div>
+            <input
+              id={"r0-" + id}
+              type="radio"
+              name={"priority" + id}
+              checked={priority === 0}
+              onChange={(e) => handleSendNewPriority(e)}
+            ></input>
+            <label htmlFor={"r0-" + id}>0</label>
+          </div>
+          <div>
+            <input
+              id={"r1-" + id}
+              type="radio"
+              name={"priority" + id}
+              checked={priority === 1}
+              onChange={(e) => handleSendNewPriority(e)}
+            ></input>
+            <label htmlFor={"r1-" + id}>1</label>
+          </div>
+          <div>
+            <input
+              id={"r2-" + id}
+              type="radio"
+              name={"priority" + id}
+              checked={priority === 2}
+              onChange={(e) => handleSendNewPriority(e)}
+            ></input>
+            <label htmlFor={"r2-" + id}>2</label>
+          </div>
+          <div>
+            <input
+              id={"r3-" + id}
+              type="radio"
+              name={"priority" + id}
+              checked={priority === 3}
+              onChange={(e) => handleSendNewPriority(e)}
+            ></input>
+            <label htmlFor={"r3-" + id}>3</label>
+          </div>
+          <div>
+            <input
+              id={"r4-" + id}
+              type="radio"
+              name={"priority" + id}
+              checked={priority === 4}
+              onChange={(e) => handleSendNewPriority(e)}
+            ></input>
+            <label htmlFor={"r4-" + id}>4</label>
+          </div>
+          <div>
+            <input
+              id={"r5-" + id}
+              type="radio"
+              name={"priority" + id}
+              checked={priority === 5}
+              onChange={(e) => handleSendNewPriority(e)}
+            ></input>
+            <label htmlFor={"r5-" + id}>5</label>
+          </div>
           <Popup
             trigger={() => <HelpTooltip />}
             position="right center"
-            on={["hover", "focus"]}
+            on={["click"]}
             closeOnDocumentClick
           >
             <StyledPopupTooltip>
-              Чтобы изменить расположение ответов, поставьте число по порядку в
-              поле слева
+              Вы можете расставить порядок ответов так, как вам нравится,
+              изменив их приоритетность. 5 - ответ будет в самом верху, 0 -
+              внизу, в порядке от нового к старому
             </StyledPopupTooltip>
           </Popup>
-        </p>
+        </StyledPriorityContainer>
         <p>{new Date(created).toLocaleString()}</p>
       </StyledAnswerHeader>
       <StyledAnswerContent>
@@ -108,16 +155,14 @@ export const AnswerItemComponent = ({
           ))}
         </StyledAnswerText>
         <StyledAnswerContentButtonGroup>
-          <p id={id} onClick={(e) => handleFullAnswer(e)}>
-            Показать ответ полностью <ShowMore />
-          </p>
           <StyledCopyTooltip
             open={tooltipOpen}
             onOpen={copyAnswer}
             isHomeworkSend={isHomeworkSend}
             trigger={() => (
               <p>
-                Скопировать в «Мой ответ» <CopyAnswer />
+                Вставить в «Мой ответ»{" "}
+                <StyledCopyIcon src={Copy} alt=""></StyledCopyIcon>
               </p>
             )}
             position="top center"
@@ -129,6 +174,9 @@ export const AnswerItemComponent = ({
               <p>Вставьте домашнее заданее для работы с ответами</p>
             )}
           </StyledCopyTooltip>
+          <p id={id} onClick={(e) => handleFullAnswer(e)}>
+            {fullText ? "Свернуть ответ" : "Развернуть ответ"}
+          </p>
         </StyledAnswerContentButtonGroup>
       </StyledAnswerContent>
     </StyledAnswerContainer>

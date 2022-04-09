@@ -36,6 +36,9 @@ export const StyledFolderNameInput = styled.input`
     line-height: 17px;
     color: #b4bdc1;
   }
+  :focus-visible {
+    outline: none;
+  }
 `;
 
 export const StyledFolderNameContainer = styled.div`
@@ -92,12 +95,12 @@ export const StyledButtonDelete = styled.p`
   box-sizing: border-box;
   border-radius: 5px;
   cursor: pointer;
-  background: #fa6767;
+  background: #e1e1e1;
   &:hover {
-    background: #f14f4f;
+    background: #c3c3c3;
   }
   &:active {
-    background: #f14242;
+    background: #9f9f9f;
   }
 `;
 

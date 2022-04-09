@@ -14,6 +14,7 @@ function App() {
       payload: user.user,
     });
   }
+
   return (
     <div>
       <HeaderContainer />

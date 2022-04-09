@@ -36,6 +36,9 @@ export const StyledFolderNameInput = styled.input`
     line-height: 17px;
     color: #b4bdc1;
   }
+  :focus-visible {
+    outline: none;
+  }
 `;
 
 export const StyledFolderNameContainer = styled.div`

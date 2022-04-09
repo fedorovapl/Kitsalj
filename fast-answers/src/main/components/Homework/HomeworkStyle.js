@@ -6,6 +6,7 @@ export const StyledHomeworkHeader = styled.div`
   margin-bottom: 5px;
 `;
 export const StyledTextarea = styled.textarea`
+  font-family: "PT sans";
   width: 100%;
   height: 210px;
   padding: 13px 10px;
@@ -49,7 +50,8 @@ export const StyledHomeworkButton = styled.p`
 `;
 
 export const StyledOriginText = styled.div`
-  opacity: ${(props) => (props.isVisible ? "1;" : "0;")}
+  margin: 10px 0;
+  opacity: ${(props) => (props.isVisible ? "1;" : "0;")};
   transition: 0.1s;
   font-weight: 500;
   font-size: 14px;

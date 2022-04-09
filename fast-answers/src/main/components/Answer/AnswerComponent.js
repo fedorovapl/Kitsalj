@@ -6,6 +6,7 @@ import {
   StyledAnswerInputContainer,
   StyledLastAnswerHeader,
   StyledLastAnswerIcon,
+  StyledPhraseCheckboxContainer,
 } from "./AnswerStyle";
 import { LastAnswerPopupComponent } from "../Popup/LastAnswer/LastAnswerPopupComponent";
 import { Button } from "../../elements";
@@ -26,6 +27,8 @@ export const AnswerComponent = ({
   caretCol,
   caretRow,
   isLastAnswerPending,
+  handlePhraseBreak,
+  isPhraseBreak,
 }) => {
   return (
     <StyledAnswerContainer>
@@ -51,19 +54,34 @@ export const AnswerComponent = ({
         </StyledLastAnswerHeader>
       </StyledAnswerHeader>
       <StyledAnswerInputContainer>
-        <div style={{ opacity: "0", fontWeight: 500, fontSize: "14px" }}>
-          Фикс
-        </div>
+        <StyledPhraseCheckboxContainer>
+          <label>
+            <input
+              type="checkbox"
+              checked={isPhraseBreak}
+              onChange={handlePhraseBreak}
+            ></input>
+            <span>Вставлять фразы с новой строки</span>
+          </label>
+        </StyledPhraseCheckboxContainer>
         <StyledTextarea
           disabled={!isHomeworkSend}
-          placeholder="Сначала вставьте ответ ученика в поле “Домашка ученика” справа 👉"
-          value={currentValue}
+          placeholder={
+            isHomeworkSend
+              ? "Чтобы закончить и скопировать, составьте свой ответ в этом поле 👇"
+              : "Сначала вставьте ответ ученика в поле “Домашка ученика” справа 👉"
+          }
+          value={
+            lastAnswerOpen && currentValue
+              ? currentValue + "\n" + "👇"
+              : currentValue
+          }
           onChange={(e) => setCurrentValue(e)}
           onPointerLeave={(e) => handleCaretPosition(e)}
         ></StyledTextarea>
       </StyledAnswerInputContainer>
       <Button
-        disabled={!isHomeworkSend}
+        disabled={!isHomeworkSend || !currentValue}
         onClick={handleAnswerSend}
         color={isHomeworkSend ? "primary" : "disabled"}
         py={13}

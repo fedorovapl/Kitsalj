@@ -4,6 +4,8 @@ const initialState = {
   currentAnswerValue: "",
   lastAnswer: [],
 
+  isPhraseBreak: true,
+
   isLastAnswerPending: false,
   isLastAnswerSuccess: false,
   isLastAnswerError: false,
@@ -88,6 +90,11 @@ export function answerStore(state = initialState, action) {
     case ANSWER_ACTION_TYPE.POST_CHANGE_PRIORITY_FAILURE:
       return {
         ...state,
+      };
+    case ANSWER_ACTION_TYPE.PHRASE_INPUT_TYPE:
+      return {
+        ...state,
+        isPhraseBreak: !state.isPhraseBreak,
       };
 
     default:

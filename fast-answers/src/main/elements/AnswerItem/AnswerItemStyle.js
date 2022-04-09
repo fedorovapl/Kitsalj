@@ -41,14 +41,12 @@ export const StyledAnswerContent = styled.div`
 
 export const StyledAnswerContentButtonGroup = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 15px;
   margin-top: 10px;
   p {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
     border: 1px solid #d5dfe4;
     box-sizing: border-box;
     border-radius: 5px;
@@ -102,4 +100,43 @@ export const StyledCopyTooltip = styled(Popup)`
     color: #192229;
     width: 300px !important;
   }
+`;
+
+export const StyledPriorityContainer = styled.div`
+  display: flex;
+  align-items: center;
+  p {
+    margin-right: 10px;
+  }
+  div {
+    margin-right: 10px;
+    input[type="radio"] {
+      display: none;
+    }
+    input[type="radio"]:checked + label {
+      background: #fadb67;
+      border: 1px solid #fadb67;
+    }
+    label:hover {
+      background-color: #e7e7e7;
+    }
+    input[type="radio"]:disabled + label {
+      background: #efefef;
+      color: #666;
+    }
+    label {
+      display: inline-block;
+      cursor: pointer;
+      padding: 2px 10px;
+      border: 1px solid #d5dfe4;
+      border-radius: 6px;
+      user-select: none;
+    }
+  }
+`;
+
+export const StyledCopyIcon = styled.img`
+  margin-left: 10px;
+  width: 22px;
+  color: #192229;
 `;

@@ -24,9 +24,8 @@ export const AnswerContainer = ({
   const {
     currentLesson: { value },
   } = useSelector((store) => store[LESSON_STORE_NAME]);
-  const { currentAnswerValue, lastAnswer, isLastAnswerPending } = useSelector(
-    (store) => store[ANSWER_STORE_NAME]
-  );
+  const { currentAnswerValue, lastAnswer, isLastAnswerPending, isPhraseBreak } =
+    useSelector((store) => store[ANSWER_STORE_NAME]);
 
   const handleAnswerSend = () => {
     const response_time = 1200 - (minutes * 60 + seconds);
@@ -77,15 +76,23 @@ export const AnswerContainer = ({
   };
 
   const handleSendNewPriority = (e) => {
-    const priorValue = e.target.value;
-    let id = e.target.id.split("");
+    let priorValue = e.target.id.split("-");
+    priorValue = priorValue[0].split("");
+    priorValue.shift();
+    priorValue = Number(priorValue.join(""));
+
+    let id = e.target.id.split("-");
     id.shift();
     id = Number(id.join(""));
+
     dispatch(changePriority(id, priorValue)).then(() =>
       dispatch(getLasAnswer(value))
     );
   };
 
+  const handlePhraseBreak = () => {
+    dispatch({ type: ANSWER_ACTION_TYPE.PHRASE_INPUT_TYPE });
+  };
   return (
     <AnswerComponent
       isHomeworkSend={isHomeworkSend}
@@ -103,6 +110,8 @@ export const AnswerContainer = ({
       caretCol={caretCol}
       caretRow={caretRow}
       isLastAnswerPending={isLastAnswerPending}
+      handlePhraseBreak={handlePhraseBreak}
+      isPhraseBreak={isPhraseBreak}
     />
   );
 };

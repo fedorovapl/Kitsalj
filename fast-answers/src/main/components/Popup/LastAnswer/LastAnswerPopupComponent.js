@@ -29,13 +29,16 @@ export const LastAnswerPopupComponent = ({
   isHomeworkSend,
 }) => {
   const sortAnswers = (a, b) => {
-    if (a.priority === 0 || b.priority === 0) {
-      return 1;
-    }
-    if (a.priority < b.priority) {
+    if (a.priority > b.priority) {
       return -1;
     }
-    if (a.priority > b.priority) {
+    if (a.priority < b.priority) {
+      return 1;
+    }
+    if (a.priority === 0 || b.priority === 0) {
+      if (new Date(a.created) > new Date(b.created)) {
+        return -1;
+      }
       return 1;
     }
     return 0;
