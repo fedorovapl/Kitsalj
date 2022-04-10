@@ -60,7 +60,8 @@ export const StyledButtonAdd = styled.p`
   &:active {
     background: #c3a947;
   }
-  ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
+  ${(props) =>
+    props.disabled && "pointer-events: none; cursor: default; opacity: 0.6;"}
 `;
 
 export const StyledButtonCancel = styled.p`

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledFirstBlock = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 25% 25% 30% 20%;
+  grid-template-columns: 25% 25% 25% 25%;
   margin-bottom: 62px;
 `;
 export const StyledMainContainer = styled.div`

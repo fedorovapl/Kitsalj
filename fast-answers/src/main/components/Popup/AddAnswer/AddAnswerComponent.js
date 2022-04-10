@@ -29,7 +29,8 @@ const StyledButtonAdd = styled.p`
   &:active {
     background: #c3a947;
   }
-  ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
+  ${(props) =>
+    props.disabled && "pointer-events: none; cursor: default; opacity: 0.6;"}
 `;
 const StyledButtonCancel = styled.p`
   text-align: center;
@@ -122,7 +123,10 @@ export const AddAnswerPopupComponent = ({
               <StyledButtonCancel onClick={closeModal}>
                 Отмена
               </StyledButtonCancel>
-              <StyledButtonAdd onClick={handleAddAnswer}>
+              <StyledButtonAdd
+                disabled={!newAnswerText}
+                onClick={handleAddAnswer}
+              >
                 Сохранить
               </StyledButtonAdd>
             </StyledButtonGroup>

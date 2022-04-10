@@ -43,7 +43,10 @@ const StyledButton = styled.p`
         ? "#B4BDC1;"
         : "#d7d7d7;"};
   }
-  ${(props) => (props.disabled ? "pointer-events: none; cursor: default;" : "")}
+  ${(props) =>
+    props.disabled
+      ? "pointer-events: none; cursor: default; opacity: 0.6;"
+      : ""}
 
   box-sizing: border-box;
 `;

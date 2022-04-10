@@ -60,7 +60,8 @@ export const StyledButtonAdd = styled.p`
   &:active {
     background: #c3a947;
   }
-  ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
+  ${(props) =>
+    props.disabled && "pointer-events: none; cursor: default; opacity: 0.6;"}
 `;
 
 export const StyledButtonCancel = styled.p`
@@ -113,7 +114,8 @@ export const StyledDeleteFolderContainer = styled.div`
   color: #fa6767;
   margin-top: 20px;
   div {
-    ${(props) => props.disabled && "pointer-events: none; cursor: default;"}
+    ${(props) =>
+      props.disabled && "pointer-events: none; cursor: default; color: #ccc;"}
     transition: 0.2s;
     box-sizing: border-box;
     border-radius: 5px;

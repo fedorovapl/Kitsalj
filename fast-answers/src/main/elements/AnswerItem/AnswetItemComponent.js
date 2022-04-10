@@ -48,7 +48,9 @@ export const AnswerItemComponent = ({
     if (isHomeworkSend) {
       dispatch({
         type: ANSWER_ACTION_TYPE.SET_ANSWER_VALUE,
-        payload: currentAnswerValue + "\n\n" + answerText,
+        payload: currentAnswerValue
+          ? currentAnswerValue + "\n👇\n" + answerText
+          : answerText,
       });
       closeModal();
     }
