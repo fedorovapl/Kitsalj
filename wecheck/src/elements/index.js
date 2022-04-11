@@ -4,7 +4,8 @@ import { Container } from "./Container/Container";
 import { PrimaryButton } from "./PrimaryButton/PrimaryButton";
 import { SecondaryButton } from "./SecondaryButton/SecondaryButton";
 import { RateButton } from "./RateButton/RateButton";
-
+import { RateItem } from "./RateItem/RateItem";
+import { AccordionItem } from "./Accordion/Accordion";
 export {
   NavButton,
   GreenButton,
@@ -12,4 +13,6 @@ export {
   PrimaryButton,
   SecondaryButton,
   RateButton,
+  RateItem,
+  AccordionItem,
 };

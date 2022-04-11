@@ -6,6 +6,11 @@ export const StyledAnalyticContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   margin-right: 40px;
+  @media (max-width: 1080px) {
+    flex-direction: row;
+    margin-right: 0;
+    justify-content: space-around;
+  }
 `;
 
 export const StyledHeader2Text = styled.h2`
@@ -24,6 +29,9 @@ export const StyledAnalytic = styled.div`
   margin: 80px 0 74px;
   div:last-child {
     margin-right: 0;
+  }
+  @media (max-width: 1080px) {
+    flex-direction: column;
   }
 `;
 

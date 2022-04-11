@@ -15,6 +15,7 @@ import {
 } from "./BenefitsCardSectionStyle";
 import Benefits1 from "../../assets/img/benefits1.png";
 import Benefits2 from "../../assets/img/benefits2.png";
+import Benefits3 from "../../assets/img/benefits3.png";
 
 export const BenefitsCardSection = () => {
   return (
@@ -71,6 +72,7 @@ export const BenefitsCardSection = () => {
               buttonText="Расширение для браузера"
               ttitle="Смотрите аналитику на сайте маркетплейсов"
               text="Удобно смотреть аналитику продаж прямо на сайте маркетплейса. Просто установите расширение в Chrome и анализируйте продажи на сайтах Wildberries и Ozon"
+              img={Benefits3}
             />
           </StyledSubBlock4>
           <StyledSubBlock2>

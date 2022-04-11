@@ -13,7 +13,7 @@ export const StyledButton = styled.button`
   line-height: 140%;
   cursor: pointer;
   &:hover {
-    color: #213a2b;
-    background-color: #ffffff;
+    background: #f0fcf5;
+    color: #279653;
   }
 `;

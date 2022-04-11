@@ -10,6 +10,7 @@ export const StyledSection = styled.section`
   padding: 0;
   background-repeat: no-repeat;
   padding: 120px;
+  z-index: 1;
 `;
 
 export const StyledTitle = styled.p`

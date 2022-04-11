@@ -12,6 +12,10 @@ export const StyledButton = styled.button`
   color: #219653;
   padding: 8px 24px;
   background: transparent;
+  cursor: pointer;
+  &:hover {
+    color: #333d37;
+  }
   ${(props) =>
     props.active &&
     "color: #FFFFFF; background: #219653; border-radius: 120px;"}

@@ -8,8 +8,10 @@ import {
   DoubtSection,
   ChoseForSection,
   RateSection,
+  AnswerSection,
+  ContactSection,
+  Footer,
 } from "./components";
-import { Container } from "./elements";
 
 function App() {
   return (
@@ -23,11 +25,10 @@ function App() {
         <DoubtSection />
         <ChoseForSection />
         <RateSection />
-        <section>
-          <Container></Container>
-        </section>
+        <AnswerSection />
+        <ContactSection />
       </main>
-      <footer></footer>
+      <Footer />
     </React.Fragment>
   );
 }

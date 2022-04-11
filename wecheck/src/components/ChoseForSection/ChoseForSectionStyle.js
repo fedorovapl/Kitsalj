@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const StyledSection = styled.section`
+  padding-bottom: 2px;
+  border-radius: 80px;
+  z-index: 2;
+  background: #fff;
+`;
+
 export const StyledContent = styled.div`
   display: flex;
   gap: 40px;
@@ -51,4 +58,8 @@ export const StyledAlertButton = styled.p`
   line-height: 173.81%;
   color: #299f5b;
   white-space: nowrap;
+  cursor: pointer;
+  &:hover {
+    color: #333d37;
+  }
 `;

@@ -5,6 +5,7 @@ export const StyledCardContainer = styled.div`
   box-sizing: border-box;
   background: #fff;
   border-radius: 32px;
+  cursor: pointer;
 `;
 
 export const StyledTitle = styled.p`
@@ -17,6 +18,9 @@ export const StyledTitle = styled.p`
   line-height: 44px;
   letter-spacing: -0.3px;
   color: #213a2b;
+  ${StyledCardContainer}:hover & {
+    color: #279d5a;
+  }
 `;
 
 export const StyledText = styled.p`

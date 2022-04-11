@@ -11,11 +11,12 @@ import {
   StyledAlert,
   StyledAlertText,
   StyledAlertButton,
+  StyledSection,
 } from "./ChoseForSectionStyle";
 
 export const ChoseForSection = () => {
   return (
-    <section>
+    <StyledSection>
       <Container>
         <StyledTitle>WeCheck выбирают за</StyledTitle>
         <StyledContent>
@@ -44,6 +45,6 @@ export const ChoseForSection = () => {
           <StyledAlertButton>Получить демо-доступ {">"}</StyledAlertButton>
         </StyledAlertContainer>
       </Container>
-    </section>
+    </StyledSection>
   );
 };

@@ -9,6 +9,7 @@ export const StyledCardContainer = styled.div`
   max-width: 373px;
   box-sizing: border-box;
   margin-bottom: 40px;
+  cursor: pointer;
 `;
 export const StyledIconContainer = styled.div`
   width: 44px;
@@ -33,6 +34,9 @@ export const StyledTitleContainer = styled.div`
   padding-bottom: 16px;
   margin-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  ${StyledCardContainer}:hover & {
+    color: #289e5b;
+  }
 `;
 export const StyledTextContainer = styled.div`
   margin-bottom: 16px;

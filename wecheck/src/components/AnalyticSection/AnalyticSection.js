@@ -12,6 +12,7 @@ import { ReactComponent as Analytic2 } from "../../assets/svg/analytic2.svg";
 import { ReactComponent as Analytic3 } from "../../assets/svg/analytic3.svg";
 import { ReactComponent as Analytic4 } from "../../assets/svg/analytic4.svg";
 import { ReactComponent as Analytic5 } from "../../assets/svg/analytic5.svg";
+import { ReactComponent as Analytic6 } from "../../assets/svg/analytic6.svg";
 
 export const AnalyticSection = () => {
   return (
@@ -43,6 +44,13 @@ export const AnalyticSection = () => {
                 по категориям"
               subText="WeCheck покажет объемы продаж
                 по категориям. Изучите потенциал, конкурентность и перспективы в каждой категории маркетплейса"
+            />
+            <AnalyticCardComponent
+              Icon={Analytic6}
+              title="По складам и регионам"
+              text="Планируйте стратегию продаж по регионам"
+              subText="WeCheck покажет по каким складам
+              и регионам продавцы распределяют товары. Копируйте успешные стратегии поставок и рискуйте меньше"
             />
           </StyledAnalyticContainer>
           <StyledAnalyticContainer>

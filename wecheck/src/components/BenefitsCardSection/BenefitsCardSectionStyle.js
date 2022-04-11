@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const StyledSection = styled.section`
   background: #f4f5f6;
-  padding-top: 115px;
+  padding-top: 195px;
+  margin-top: -80px;
 `;
 export const StyledBlock1 = styled.div`
   display: flex;

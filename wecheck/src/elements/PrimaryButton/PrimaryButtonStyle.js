@@ -14,6 +14,10 @@ export const StyledButton = styled.button`
   font-weight: 400;
   font-size: 20px;
   line-height: 140%;
+  cursor: pointer;
+  &:hover {
+    color: #1daf5c;
+  }
   img {
     margin-right: 10px;
   }

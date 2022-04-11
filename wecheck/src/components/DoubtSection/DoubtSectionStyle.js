@@ -6,6 +6,7 @@ export const StyledSection = styled.section`
     linear-gradient(108.75deg, #18b65c 0%, #279d5a 101.48%);
   border-radius: 80px;
   background-repeat: no-repeat;
+  margin-top: -80px;
 `;
 
 export const StyledContent = styled.div`

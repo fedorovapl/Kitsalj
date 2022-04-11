@@ -9,6 +9,9 @@ import { BenefitsCard } from "./BenefitsCard/BenefitsCard";
 import { DoubtSection } from "./DoubtSection/DoubtSection";
 import { ChoseForSection } from "./ChoseForSection/ChoseForSection";
 import { RateSection } from "./RateSection/RateSection";
+import { AnswerSection } from "./AnswersSection/AnswersSection";
+import { ContactSection } from "./ContactSection/ContactSection";
+import { Footer } from "./Footer/Footer";
 
 export {
   HeaderComponent,
@@ -22,4 +25,7 @@ export {
   DoubtSection,
   ChoseForSection,
   RateSection,
+  AnswerSection,
+  ContactSection,
+  Footer,
 };
