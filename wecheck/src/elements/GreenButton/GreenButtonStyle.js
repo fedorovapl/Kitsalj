@@ -6,7 +6,6 @@ export const StyledButton = styled.button`
   padding: 12px 24px;
   border-radius: 100px;
   color: #279653;
-  font-family: "Sofia Pro", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -15,5 +14,9 @@ export const StyledButton = styled.button`
   &:hover {
     background: #f0fcf5;
     color: #279653;
+  }
+  @media (max-width: 480px) {
+    font-size: 16px;
+    padding: 8px 16px;
   }
 `;

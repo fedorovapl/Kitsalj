@@ -7,4 +7,12 @@ export const StyledContainer = styled.div`
   padding: 0 50px;
   box-sizing: border-box;
   ${(props) => props.head && "padding-bottom: 180px;"}
+  @media(max-width: 720px) {
+    padding: 0 25px;
+    ${(props) => props.head && "padding-bottom: 120px;"}
+  }
+  @media (max-width: 480px) {
+    padding: 0 16px;
+    ${(props) => props.head && "padding-bottom: 80px;"}
+  }
 `;

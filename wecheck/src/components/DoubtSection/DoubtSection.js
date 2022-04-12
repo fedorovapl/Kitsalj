@@ -7,8 +7,12 @@ import {
   StyledSubTitle,
   StyledText,
   StyledContentContainer,
+  StyledImageBg,
+  StyledImageContainer,
+  StyledItemCard,
 } from "./DoubtSectionStyle";
 import Fire from "../../assets/img/fire.png";
+import Doubt2 from "../../assets/img/doubt2.png";
 
 export const DoubtSection = () => {
   return (
@@ -16,8 +20,11 @@ export const DoubtSection = () => {
       <Container>
         <StyledContentContainer>
           <StyledTitle>Сомневаетесь?</StyledTitle>
+          <StyledImageContainer>
+            <StyledImageBg src={Doubt2} alt=""></StyledImageBg>
+          </StyledImageContainer>
           <StyledContent>
-            <div>
+            <StyledItemCard>
               <StyledSubTitle>
                 Закажите бесплатную демонстрацию платформы
               </StyledSubTitle>
@@ -27,8 +34,8 @@ export const DoubtSection = () => {
                 платформе на 24 часа
               </StyledText>
               <PrimaryButton icon={Fire}>Заказать демонстрацию</PrimaryButton>
-            </div>
-            <div>
+            </StyledItemCard>
+            <StyledItemCard>
               <StyledSubTitle>
                 Даем полный доступ к платформе на 24 часа
               </StyledSubTitle>
@@ -37,7 +44,7 @@ export const DoubtSection = () => {
                 мы даем вам полный доступ к нашему сервису на 24 часа
               </StyledText>
               <SecondaryButton>Попробовать</SecondaryButton>
-            </div>
+            </StyledItemCard>
           </StyledContent>
         </StyledContentContainer>
       </Container>

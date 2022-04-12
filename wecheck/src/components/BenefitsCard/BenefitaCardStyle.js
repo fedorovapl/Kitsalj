@@ -6,6 +6,12 @@ export const StyledCardContainer = styled.div`
   background: #fff;
   border-radius: 32px;
   cursor: pointer;
+  @media (max-width: 480px) {
+    padding: 30px;
+  }
+  @media (max-width: 480px) {
+    padding: 26px;
+  }
 `;
 
 export const StyledTitle = styled.p`
@@ -21,6 +27,14 @@ export const StyledTitle = styled.p`
   ${StyledCardContainer}:hover & {
     color: #279d5a;
   }
+  @media (max-width: 870px) {
+    font-size: 26px;
+    line-height: 31px;
+  }
+  @media (max-width: 560px) {
+    font-size: 20px;
+    line-height: 31px;
+  }
 `;
 
 export const StyledText = styled.p`
@@ -29,6 +43,9 @@ export const StyledText = styled.p`
   font-size: 18px;
   line-height: 26px;
   color: #396149;
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 export const StyledImgContainer = styled.div`
@@ -40,5 +57,6 @@ export const StyledImgContainer = styled.div`
   margin-top: 49px;
   img {
     width: 100%;
+    height: auto;
   }
 `;

@@ -10,6 +10,15 @@ export const StyledSection = styled.section`
 export const StyledContent = styled.div`
   display: flex;
   gap: 40px;
+  @media (max-width: 960px) {
+    flex-direction: column;
+    .div {
+      width: 100%;
+    }
+  }
+  @media (max-width: 560px) {
+    gap: 0;
+  }
 `;
 
 export const StyledTitle = styled.h4`
@@ -20,6 +29,15 @@ export const StyledTitle = styled.h4`
   letter-spacing: -0.3px;
   color: #213a2b;
   margin: 100px 0 80px;
+  @media (max-width: 870px) {
+    font-size: 36px;
+    line-height: 37px;
+    text-align: center;
+    margin: 60px 0 32px;
+  }
+  @media (max-width: 560px) {
+    font-size: 24px;
+  }
 `;
 
 export const StyledAlertContainer = styled.div`
@@ -30,6 +48,13 @@ export const StyledAlertContainer = styled.div`
   border-radius: 12px;
   padding: 20px 50px;
   margin-bottom: 100px;
+  @media (max-width: 910px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 export const StyledAlert = styled.div`
   border: 1px solid #ff0000;
@@ -41,6 +66,9 @@ export const StyledAlert = styled.div`
   font-size: 18px;
   line-height: 173.81%;
   color: #ff0000;
+  @media (max-width: 910px) {
+    margin-bottom: 15px;
+  }
 `;
 export const StyledAlertText = styled.p`
   margin: 0px 15px 0 10px;
@@ -49,6 +77,9 @@ export const StyledAlertText = styled.p`
   font-size: 18px;
   line-height: 173.81%;
   color: #6e6e6e;
+  @media (max-width: 910px) {
+    margin: 0 0 20px 0;
+  }
 `;
 export const StyledAlertButton = styled.p`
   justify-self: flex-end;

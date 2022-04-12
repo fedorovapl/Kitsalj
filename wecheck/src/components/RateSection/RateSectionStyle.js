@@ -5,6 +5,12 @@ export const StyledHeader = styled.div`
   align-items: center;
   padding: 100px 0 60px 0;
   justify-content: space-between;
+  @media (max-width: 870px) {
+    border-bottom: 1px solid #e7ebeb;
+    padding: 32px 0 30px 0;
+    justify-content: center;
+    margin-bottom: 52px;
+  }
 `;
 
 export const StyledSection = styled.section`
@@ -12,6 +18,10 @@ export const StyledSection = styled.section`
   padding-top: 100px;
   border-radius: 80px;
   z-index: 3;
+  @media (max-width: 870px) {
+    border-radius: 0;
+    padding-top: 0;
+  }
 `;
 
 export const StyledTitle = styled.h4`
@@ -22,11 +32,22 @@ export const StyledTitle = styled.h4`
   line-height: 48px;
   letter-spacing: -0.3px;
   color: #213a2b;
+  @media (max-width: 870px) {
+    font-size: 32px;
+    line-height: 37px;
+    text-align: center;
+  }
+  @media (max-width: 560px) {
+    font-size: 24px;
+  }
 `;
 
 export const StyledButtonGroup = styled.div`
   button {
     margin-left: 28px;
+  }
+  @media (max-width: 870px) {
+    display: none;
   }
 `;
 
@@ -37,5 +58,6 @@ export const StyledRateBlock = styled.div`
   @media (max-width: 1080px) {
     flex-direction: column;
     align-items: center;
+    padding-bottom: 0;
   }
 `;

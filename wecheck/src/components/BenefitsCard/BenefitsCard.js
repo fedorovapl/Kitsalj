@@ -7,11 +7,11 @@ import {
   StyledImgContainer,
 } from "./BenefitaCardStyle";
 
-export const BenefitsCard = ({ buttonText, ttitle, text, img }) => {
+export const BenefitsCard = ({ buttonText, title, text, img }) => {
   return (
     <StyledCardContainer>
       <GreenButton>{buttonText}</GreenButton>
-      <StyledTitle>{ttitle}</StyledTitle>
+      <StyledTitle>{title}</StyledTitle>
       <StyledText>{text}</StyledText>
       {img && (
         <StyledImgContainer>

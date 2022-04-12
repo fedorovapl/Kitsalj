@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^18.0.0",
+    "react-dimmer": "^1.0.7",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
     "reactjs-popup": "^2.0.5",

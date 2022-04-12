@@ -14,7 +14,7 @@ export const AnswerSection = () => {
   return (
     <StyledSection>
       <Container>
-        <StyledTitle>Ответы на ваши вопросы</StyledTitle>
+        <StyledTitle>Часто задаваемые вопросы</StyledTitle>
         <StyledAccordionContainer>
           {data.map((item, index) => {
             return (
@@ -28,7 +28,9 @@ export const AnswerSection = () => {
         </StyledAccordionContainer>
         <StyledTelegramContainer>
           <img src={TgIcon} alt=""></img>
-          <p>Остались вопросы? Задайте в Telegram чате ›</p>
+          <p>
+            Остались вопросы? Задайте в Telegram <span>чате ›</span>
+          </p>
         </StyledTelegramContainer>
       </Container>
     </StyledSection>

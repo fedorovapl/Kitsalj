@@ -27,6 +27,13 @@ export const StyledAccordionTitle = styled.div`
     color: #ffffff;
     ${(props) => props.isActive && "font-weight: 700;"}
   }
+  @media (max-width: 870px) {
+    p {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 173.81%;
+    }
+  }
 `;
 
 export const StyledAccordionContent = styled.div`
@@ -37,4 +44,8 @@ export const StyledAccordionContent = styled.div`
   line-height: 173.81%;
   color: #ffffff;
   margin-top: 12px;
+  @media (max-width: 870px) {
+    font-size: 16px;
+    line-height: 173.81%;
+  }
 `;

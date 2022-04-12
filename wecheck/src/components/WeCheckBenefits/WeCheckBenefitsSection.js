@@ -6,9 +6,11 @@ import {
   StyledContent,
   StyledText,
   StyledButtonContainer,
+  StyledImgContainer,
 } from "./WeCheckBenefitsSectionStyle";
 import { PrimaryButton } from "../../elements";
 import FireIcon from "../../assets/img/fire.png";
+import Laptop2 from "../../assets/img/laptop2.png";
 
 export const WeCheckBenefitsSection = () => {
   return (
@@ -29,9 +31,9 @@ export const WeCheckBenefitsSection = () => {
             </StyledButtonContainer>
           </div>
         </StyledContent>
-        {/* <div>
-          <img src={Laptop} alt=""></img>
-        </div> */}
+        <StyledImgContainer>
+          <img src={Laptop2} alt=""></img>
+        </StyledImgContainer>
       </Container>
     </StyledSection>
   );

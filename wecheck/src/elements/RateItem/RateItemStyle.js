@@ -7,6 +7,19 @@ export const StyledRateContainer = styled.div`
       ? "background-color: #fff; box-shadow: 0px 4px 80px rgba(39, 150, 83, 0.12); padding: 32px 40px 32px 40px; margin: 0 10px;"
       : ""}
   border-radius: 32px;
+  @media (max-width: 1080px) {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0;
+  }
+  @media (max-width: 450px) {
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0 0 30px 0;
+    padding: 0 10px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e7ebeb;
+  }
 `;
 export const StyledTitleContainer = styled.div``;
 export const StyledRecommend = styled.p`

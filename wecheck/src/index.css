@@ -41,3 +41,28 @@ body {
 section {
   position: relative;
 }
+
+.app-menu {
+  color: #313d53;
+  height: 100vh;
+  width: 70%;
+  background-color: #fff;
+  z-index: 200;
+
+  transform: translateX(100%);
+  transition: 0.3s;
+
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding: 50px;
+}
+
+.menu-open {
+  transform: translateX(0%);
+}

@@ -8,6 +8,7 @@ import {
   StyledRightBlock,
   StyledCopyright,
   StyledBorder,
+  StyledEmail,
 } from "./FooterStyle";
 import Mail from "../../assets/img/mail.png";
 import TgIcon from "../../assets/img/tg-icon.png";
@@ -19,7 +20,7 @@ export const Footer = () => {
     <StyledFooter>
       <Container>
         <StyledContent>
-          <div style={{ display: "flex" }}>
+          <StyledEmail style={{ display: "flex" }}>
             <div>
               <img src={Mail} alt="" />
             </div>
@@ -32,7 +33,7 @@ export const Footer = () => {
               <p style={{ textDecoration: "underline" }}>hello@wecheck.ru</p>
               <p style={{ textDecoration: "underline" }}>wecheck.ru</p>
             </StyledLeftBlock>
-          </div>
+          </StyledEmail>
           <StyledCentrBlock>
             <a href="">Маркетплейсы</a>
             <a href="">Парсинг</a>

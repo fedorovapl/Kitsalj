@@ -6,7 +6,9 @@ export const StyledAnalyticContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   margin-right: 40px;
+  width: 30%;
   @media (max-width: 1080px) {
+    width: 100%;
     flex-direction: row;
     margin-right: 0;
     justify-content: space-around;
@@ -22,11 +24,29 @@ export const StyledHeader2Text = styled.h2`
   letter-spacing: -0.3px;
   color: #213a2b;
   padding-top: 100px;
+  @media (max-width: 740px) {
+    font-size: 32px;
+    line-height: 37px;
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    font-size: 24px;
+    line-height: 37px;
+    text-align: center;
+  }
+`;
+export const StyledPrimaryBittonSmall = styled.div`
+  display: none;
+  @media (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const StyledAnalytic = styled.div`
   display: flex;
   margin: 80px 0 74px;
+  width: 100%;
   div:last-child {
     margin-right: 0;
   }

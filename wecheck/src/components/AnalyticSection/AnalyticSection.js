@@ -1,11 +1,12 @@
 import React from "react";
 import { AnalyticCardComponent } from "../AnalyticCard/AnalyticCardComponent";
-import { Container } from "../../elements";
+import { Container, PrimaryButton } from "../../elements";
 import {
   StyledAnalyticContainer,
   StyledHeader2Text,
   StyledAnalytic,
   StyledAnalyticSection,
+  StyledPrimaryBittonSmall,
 } from "./AnalyticSectionStyle";
 import { ReactComponent as Analytic1 } from "../../assets/svg/analytic1.svg";
 import { ReactComponent as Analytic2 } from "../../assets/svg/analytic2.svg";
@@ -13,6 +14,7 @@ import { ReactComponent as Analytic3 } from "../../assets/svg/analytic3.svg";
 import { ReactComponent as Analytic4 } from "../../assets/svg/analytic4.svg";
 import { ReactComponent as Analytic5 } from "../../assets/svg/analytic5.svg";
 import { ReactComponent as Analytic6 } from "../../assets/svg/analytic6.svg";
+import Fire from "../../assets/img/fire.png";
 
 export const AnalyticSection = () => {
   return (
@@ -73,6 +75,9 @@ export const AnalyticSection = () => {
               button="Демо-доступ бесплатно"
             />
           </StyledAnalyticContainer>
+          <StyledPrimaryBittonSmall>
+            <PrimaryButton icon={Fire}>Демо-доступ бесплатно</PrimaryButton>
+          </StyledPrimaryBittonSmall>
         </StyledAnalytic>
       </Container>
     </StyledAnalyticSection>

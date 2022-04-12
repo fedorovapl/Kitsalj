@@ -5,6 +5,11 @@ export const StyledSection = styled.section`
   padding: 160px 0 84px;
   margin-top: -80px;
   z-index: 1;
+  @media (max-width: 950px) {
+    background: #ffffff;
+    margin-top: 0;
+    padding: 40px 0;
+  }
 `;
 
 export const StyledContent = styled.div`
@@ -14,6 +19,12 @@ export const StyledContent = styled.div`
   background: #ffffff;
   border-radius: 32px;
   padding: 32px 48px;
+  gap: 40px;
+  @media (max-width: 950px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+  }
 `;
 
 export const StyledText = styled.div`

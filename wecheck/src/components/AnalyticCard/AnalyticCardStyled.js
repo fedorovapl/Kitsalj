@@ -6,10 +6,18 @@ export const StyledCardContainer = styled.div`
   background: #f9f9f9;
   border-radius: 32px;
   padding: 40px;
-  max-width: 373px;
   box-sizing: border-box;
   margin-bottom: 40px;
+  width: 100%;
   cursor: pointer;
+  @media (max-width: 740px) {
+    padding: 30px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 480px) {
+    padding: 26px;
+    margin-bottom: 16px;
+  }
 `;
 export const StyledIconContainer = styled.div`
   width: 44px;
@@ -64,5 +72,8 @@ export const StyledButtonContainer = styled.div`
     font-size: 18px;
     line-height: 140%;
     color: #213a2b;
+  }
+  @media (max-width: 480px) {
+    display: none;
   }
 `;

@@ -7,10 +7,18 @@ export const StyledSection = styled.section`
 `;
 export const StyledBlock1 = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-bottom: 40px;
   gap: 40px;
+  width: 100%;
   div {
-    max-width: 580px;
+    width: 50%;
+  }
+  @media (max-width: 810px) {
+    flex-direction: column;
+    div {
+      width: 100%;
+    }
   }
 `;
 export const StyledBlock2 = styled.div`
@@ -18,27 +26,43 @@ export const StyledBlock2 = styled.div`
 `;
 export const StyledBlock3 = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 40px;
+  width: 100%;
   margin-bottom: 40px;
 `;
 export const StyledBlock4 = styled.div`
   display: flex;
   gap: 40px;
   margin-bottom: 40px;
+  @media (max-width: 1300px) {
+    flex-direction: column-reverse;
+  }
 `;
 export const StyledBlock5 = styled.div`
   display: flex;
   gap: 40px;
   padding-bottom: 254px;
+  @media (max-width: 810px) {
+    flex-direction: column;
+    div {
+      width: 100%;
+    }
+  }
 `;
 
 export const StyledSubBloc1 = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 40px;
   justify-content: space-between;
   div {
-    max-width: 480px;
+    width: 50%;
+  }
+  @media (max-width: 810px) {
+    flex-direction: column;
+    div {
+      width: 100%;
+    }
   }
 `;
 
@@ -46,19 +70,35 @@ export const StyledSubBlock2 = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 100%;
   div {
-    max-width: 480px;
+    width: 100%;
+  }
+  @media (max-width: 1300px) {
+    flex-direction: row;
+    div {
+      width: 50%;
+    }
+  }
+  @media (max-width: 810px) {
+    flex-direction: column;
+    div {
+      width: 100%;
+    }
   }
 `;
 
 export const StyledSubBlock3 = styled.div`
   div {
-    max-width: 680px;
   }
 `;
 
 export const StyledSubBlock4 = styled.div`
+  width: 60%;
   div {
-    max-width: 680px;
+    width: 100%;
+  }
+  @media (max-width: 1300px) {
+    width: 100%;
   }
 `;
