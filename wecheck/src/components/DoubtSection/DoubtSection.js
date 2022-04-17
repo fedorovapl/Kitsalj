@@ -10,14 +10,16 @@ import {
   StyledImageBg,
   StyledImageContainer,
   StyledItemCard,
+  StyledBorderButtonFix,
+  StyledContainer,
 } from "./DoubtSectionStyle";
-import Fire from "../../assets/img/fire.png";
+import Fire from "../../assets/img/fire3.png";
 import Doubt2 from "../../assets/img/doubt2.png";
 
 export const DoubtSection = () => {
   return (
     <StyledSection>
-      <Container>
+      <StyledContainer>
         <StyledContentContainer>
           <StyledTitle>Сомневаетесь?</StyledTitle>
           <StyledImageContainer>
@@ -33,7 +35,15 @@ export const DoubtSection = () => {
                 более 20 минут. После демонстрации вы получите полный доступ к
                 платформе на 24 часа
               </StyledText>
-              <PrimaryButton icon={Fire}>Заказать демонстрацию</PrimaryButton>
+              <StyledBorderButtonFix>
+                <PrimaryButton
+                  title="Запрос демонстрации"
+                  type="demonstration"
+                  icon={Fire}
+                >
+                  Заказать демонстрацию
+                </PrimaryButton>
+              </StyledBorderButtonFix>
             </StyledItemCard>
             <StyledItemCard>
               <StyledSubTitle>
@@ -43,11 +53,16 @@ export const DoubtSection = () => {
                 Опробуете платформу и решите насколько она вам подходит, поэтому
                 мы даем вам полный доступ к нашему сервису на 24 часа
               </StyledText>
-              <SecondaryButton>Попробовать</SecondaryButton>
+              <SecondaryButton
+                type="demo_access"
+                title="Запрос на доступ 24 часа"
+              >
+                Попробовать
+              </SecondaryButton>
             </StyledItemCard>
           </StyledContent>
         </StyledContentContainer>
-      </Container>
+      </StyledContainer>
     </StyledSection>
   );
 };

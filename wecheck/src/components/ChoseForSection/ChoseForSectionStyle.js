@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledCardContainer } from "../AnalyticCard/AnalyticCardStyled";
 
 export const StyledSection = styled.section`
   padding-bottom: 2px;
@@ -10,9 +11,12 @@ export const StyledSection = styled.section`
 export const StyledContent = styled.div`
   display: flex;
   gap: 40px;
+  div${StyledCardContainer} p {
+    white-space: normal;
+  }
   @media (max-width: 960px) {
     flex-direction: column;
-    .div {
+    div${StyledCardContainer} {
       width: 100%;
     }
   }
@@ -48,12 +52,14 @@ export const StyledAlertContainer = styled.div`
   border-radius: 12px;
   padding: 20px 50px;
   margin-bottom: 100px;
+  cursor: pointer;
   @media (max-width: 910px) {
     flex-direction: column;
     align-items: flex-start;
   }
   @media (max-width: 600px) {
     padding: 20px;
+    margin-bottom: 76px;
   }
 `;
 export const StyledAlert = styled.div`
@@ -90,6 +96,7 @@ export const StyledAlertButton = styled.p`
   color: #299f5b;
   white-space: nowrap;
   cursor: pointer;
+  transition: 0.3s;
   &:hover {
     color: #333d37;
   }

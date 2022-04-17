@@ -16,7 +16,7 @@ export const StyledTextarea = styled.textarea`
   background: ${(props) => (props.disabled ? "#f8f8f8" : "#fff")};
   resize: none;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 135%;
   &:focus-visible {
     outline: none !important;
@@ -25,7 +25,7 @@ export const StyledTextarea = styled.textarea`
   }
   &::placeholder {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 135%;
     color: #b4bdc1;
   }
@@ -40,7 +40,7 @@ export const StyledHomeworkButton = styled.p`
   border-radius: 5px;
   padding: 13px 15px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s;
   &:hover {
     background: #ddc056;
   }

@@ -36,7 +36,6 @@ const StyledPopupAcceptDelet = styled(Popup)`
     padding: 20px;
     width: 430px;
     height: 110px;
-    margin: 100px auto !important;
     box-shadow: 0px 3px 10px rgba(0, 73, 129, 0.1);
     border-radius: 10px;
   }
@@ -129,6 +128,7 @@ export const EditFolderPopupComponent = ({
     if (currentStage === "folder") {
       dispatch(deleteFolder(selectedEditFolder.value))
         .then(() => setAcceptOpen(false))
+        .then(() => closeModal())
         .then(() => dispatch(getFolders(currentLesson.value)));
       setSelectedEditFolder({
         value: "no-value",
@@ -142,6 +142,7 @@ export const EditFolderPopupComponent = ({
     } else {
       dispatch(deleteSubFolder(selectedEditFolder.value))
         .then(() => setAcceptOpen(false))
+        .then(() => closeModal())
         .then(() => dispatch(getSubFolders(Number(subFolders.currentFolder))));
       setSelectedEditFolder({
         value: "no-value",
@@ -156,10 +157,13 @@ export const EditFolderPopupComponent = ({
   };
 
   const handlePostEditFolder = () => {
+    let name = newFolderName;
+    if (name === "") {
+      name = selectedEditFolder.label;
+      console.log(selectedEditFolder);
+    }
     if (currentStage === "folder") {
-      dispatch(
-        editFolder(selectedEditFolder.value, newFolderName, currentLesson.value)
-      )
+      dispatch(editFolder(selectedEditFolder.value, name, currentLesson.value))
         .then(() => closeModal())
         .then(() => dispatch(getFolders(currentLesson.value)));
       setSelectedEditFolder({
@@ -173,11 +177,7 @@ export const EditFolderPopupComponent = ({
       setNewFolderName("");
     } else {
       dispatch(
-        editSubFolder(
-          selectedEditFolder.value,
-          newFolderName,
-          selectedFolder.value
-        )
+        editSubFolder(selectedEditFolder.value, name, selectedFolder.value)
       )
         .then(() => closeModal())
         .then(() => dispatch(getSubFolders(Number(subFolders.currentFolder))));
@@ -300,7 +300,8 @@ export const EditFolderPopupComponent = ({
               <StyledButtonAdd
                 disabled={
                   currentStage === "subfolder" &&
-                  (selectedFolder.value === "no-value" ||
+                  selectedFolder.value === "no-value" &&
+                  (newFolderName === "" ||
                     selectedEditFolder.value === "no-value")
                 }
                 onClick={handlePostEditFolder}

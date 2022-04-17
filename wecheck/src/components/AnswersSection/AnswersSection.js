@@ -1,10 +1,10 @@
 import React from "react";
-import { Container } from "../../elements";
 import {
   StyledSection,
   StyledTitle,
   StyledAccordionContainer,
   StyledTelegramContainer,
+  StyledContainer,
 } from "./AnswersSectionStyle";
 import { AccordionItem } from "../../elements";
 import { data } from "./AnswerAccordionData";
@@ -13,8 +13,8 @@ import TgIcon from "../../assets/img/tg-icon.png";
 export const AnswerSection = () => {
   return (
     <StyledSection>
-      <Container>
-        <StyledTitle>Часто задаваемые вопросы</StyledTitle>
+      <StyledContainer>
+        {/* <StyledTitle>Часто задаваемые вопросы</StyledTitle>
         <StyledAccordionContainer>
           {data.map((item, index) => {
             return (
@@ -25,14 +25,18 @@ export const AnswerSection = () => {
               />
             );
           })}
-        </StyledAccordionContainer>
-        <StyledTelegramContainer>
+        </StyledAccordionContainer> */}
+        <StyledTelegramContainer
+          onClick={() => {
+            window.open("https://t.me/we_check");
+          }}
+        >
           <img src={TgIcon} alt=""></img>
           <p>
             Остались вопросы? Задайте в Telegram <span>чате ›</span>
           </p>
         </StyledTelegramContainer>
-      </Container>
+      </StyledContainer>
     </StyledSection>
   );
 };

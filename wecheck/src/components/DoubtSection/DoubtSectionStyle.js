@@ -12,19 +12,36 @@ export const StyledSection = styled.section`
   }
   @media (max-width: 870px) {
     border-radius: 0;
+    margin-top: 0;
   }
 `;
 
-export const StyledImageBg = styled.img`
-  display: none;
-  @media (max-width: 1200px) {
-    display: block;
+export const StyledContainer = styled.div`
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 50px;
+  box-sizing: border-box;
+  ${(props) => props.head && "padding-bottom: 210px;"}
+  @media(max-width: 720px) {
+    padding: 0 32px;
+    ${(props) => props.head && "padding-bottom: 150px;"}
+  }
+  @media (max-width: 480px) {
+    padding: 0 24px;
+    ${(props) => props.head && "padding-bottom: 40px;"}
   }
 `;
+export const StyledImageBg = styled.img``;
 export const StyledImageContainer = styled.div`
+  display: none;
   padding-bottom: 24px;
   margin-bottom: 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  @media (max-width: 1200px) {
+    display: block;
+    text-align: center;
+  }
 `;
 
 export const StyledContent = styled.div`
@@ -32,6 +49,7 @@ export const StyledContent = styled.div`
   gap: 40px;
   @media (max-width: 710px) {
     flex-direction: column;
+    gap: 0;
   }
 `;
 export const StyledContentContainer = styled.div`
@@ -40,6 +58,9 @@ export const StyledContentContainer = styled.div`
   @media (max-width: 1200px) {
     max-width: 100%;
     padding: 60px 0;
+  }
+  @media (max-width: 870px) {
+    padding: 40px 0;
   }
 `;
 export const StyledTitle = styled.p`
@@ -77,6 +98,9 @@ export const StyledSubTitle = styled.p`
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   @media (max-width: 560px) {
     font-size: 20px;
+    padding-bottom: 0;
+    margin-bottom: 24px;
+    border: none;
   }
 `;
 
@@ -87,12 +111,33 @@ export const StyledText = styled.p`
   line-height: 26px;
   color: #ffffff;
   margin-bottom: 40px;
+  @media (max-width: 560px) {
+    margin-bottom: 24px;
+  }
 `;
 export const StyledItemCard = styled.div`
   display: block;
+  button {
+    box-shadow: 0px 8px 60px rgba(41, 159, 92, 0.4);
+    width: 100%;
+    line-height: 140%;
+    padding: 16px;
+  }
   @media (max-width: 560px) {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+`;
+
+export const StyledBorderButtonFix = styled.div`
+  button {
+    border: 2px solid transparent;
+  }
+  @media (max-width: 560px) {
+    width: 100%;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 `;

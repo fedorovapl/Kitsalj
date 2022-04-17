@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Select from "react-select";
 
 export const StyledClosePopup = styled(ClosePopup)`
+  margin-bottom: 20px;
   align-self: flex-end;
   cursor: pointer;
   &:hover {

@@ -1,6 +1,14 @@
 import React from "react";
 import { StyledButton } from "./NavButtonStyle";
 
-export const NavButton = ({ children }) => {
-  return <StyledButton>{children}</StyledButton>;
+export const NavButton = ({ children, link }) => {
+  return (
+    <StyledButton
+      onClick={() => {
+        window.open(link);
+      }}
+    >
+      {children}
+    </StyledButton>
+  );
 };

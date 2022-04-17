@@ -35,20 +35,32 @@ export const Footer = () => {
             </StyledLeftBlock>
           </StyledEmail>
           <StyledCentrBlock>
-            <a href="">Маркетплейсы</a>
-            <a href="">Парсинг</a>
-            <a href="">Конкуренты</a>
-            <a href="">Главная</a>
+            <a href="https://www.wecheck.ru/">Маркетплейсы</a>
+            <a href="https://www.web.wecheck.ru/parsing">Парсинг</a>
+            <a href="https://www.web.wecheck.ru/competitors">Конкуренты</a>
+            <a href="#">Главная</a>
           </StyledCentrBlock>
           <StyledRightBlock>
             <div>
-              <a href="">
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open("https://t.me/wecheckru");
+                }}
+                href=""
+              >
                 <img src={TgIcon} alt="" />
               </a>
-              <a href="">
+              {/* <a href="">
                 <img src={FbIcon} alt="" />
-              </a>
-              <a href="">
+              </a> */}
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open("https://vk.com/wecheck");
+                }}
+                href=""
+              >
                 <img src={VkIcon} alt="" />
               </a>
             </div>
@@ -59,9 +71,15 @@ export const Footer = () => {
       <StyledBorder></StyledBorder>
       <Container>
         <StyledCopyright>
-          <p>© 2019-2020 We check. Все права защищены</p>
-          <p>Лицензионное соглашение</p>
-          <p>Политика конфиденциальности</p>
+          <p>© 2019-2022 WeCheck. Все права защищены</p>
+          <p
+            onClick={() => window.open("https://www.web.wecheck.ru/agreement")}
+          >
+            Договор оферта
+          </p>
+          <p onClick={() => window.open("https://www.docs.wecheck.ru/licence")}>
+            Политика конфиденциальности
+          </p>
         </StyledCopyright>
       </Container>
     </StyledFooter>

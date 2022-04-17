@@ -15,6 +15,7 @@ export const StyledLastAnswerHeader = styled.p`
   line-height: 17px;
   color: #6a7b83;
   cursor: pointer;
+  transition: 0.3s;
   &:hover {
     color: #4e4e4e;
     svg {
@@ -28,6 +29,7 @@ export const StyledLastAnswerHeader = styled.p`
 `;
 export const StyledTextarea = styled.textarea`
   font-family: "PT sans";
+  font-size: 16px;
   width: 100%;
   height: 210px;
   padding: 13px 10px;
@@ -37,7 +39,7 @@ export const StyledTextarea = styled.textarea`
   background: ${(props) => (props.disabled ? "#f8f8f8" : "#fff")};
   resize: none;
   font-weight: 400;
-  font-size: 14px;
+
   line-height: 135%;
   &:focus-visible {
     outline: none !important;
@@ -46,7 +48,7 @@ export const StyledTextarea = styled.textarea`
   }
   &::placeholder {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 135%;
     color: #b4bdc1;
   }

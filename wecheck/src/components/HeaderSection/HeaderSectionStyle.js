@@ -2,10 +2,31 @@ import styled from "styled-components";
 
 export const StyledHeadSection = styled.section`
   background: radial-gradient(
-      ellipse at bottom left,
-      #be20a54a 0%,
-      transparent 30%
+      at left bottom,
+      rgb(197 30 170 / 42%) 0%,
+      transparent 45%
     ),
-    radial-gradient(ellipse at bottom center, #be20a56b -50%, transparent 50%),
-    radial-gradient(ellipse at bottom right, #0069ff5e 0%, white 30%);
+    radial-gradient(
+      at center bottom,
+      rgb(190 32 165 / 32%) -70%,
+      transparent 45%
+    ),
+    radial-gradient(at right bottom, rgb(0 105 255 / 45%) 0%, transparent 40%);
+  @media (max-width: 870px) {
+    background: radial-gradient(
+        at left bottom,
+        rgb(197 30 170 / 42%) -30%,
+        transparent 35%
+      ),
+      radial-gradient(
+        at center bottom,
+        rgb(190 32 165 / 32%) -70%,
+        transparent 35%
+      ),
+      radial-gradient(
+        at right bottom,
+        rgb(0 105 255 / 45%) -30%,
+        transparent 35%
+      );
+  }
 `;

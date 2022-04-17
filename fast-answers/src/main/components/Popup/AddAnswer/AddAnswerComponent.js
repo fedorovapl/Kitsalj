@@ -6,8 +6,10 @@ import "reactjs-popup/dist/index.css";
 import styled from "styled-components";
 
 const StyledClosePopup = styled(ClosePopup)`
+  margin-bottom: 20px;
   align-self: flex-end;
   cursor: pointer;
+  transition: 0.3s;
   &:hover {
     path {
       stroke: #303030;
@@ -21,8 +23,9 @@ const StyledButtonAdd = styled.p`
   background: #fadb67;
   border-radius: 5px;
   box-sizing: border-box;
-  transition: 0.2s;
+  transition: 0.3s;
   cursor: pointer;
+
   &:hover {
     background: #ddc053;
   }
@@ -39,7 +42,7 @@ const StyledButtonCancel = styled.p`
   border: 1px solid #d5dfe4;
   box-sizing: border-box;
   border-radius: 5px;
-  transition: 0.2s;
+  transition: 0.3s;
   cursor: pointer;
   &:hover {
     background: #f1f1f1;
@@ -59,6 +62,7 @@ const StyledTextarea = styled.textarea`
   height: 210px;
   padding: 13px 10px;
   margin-top: 12px;
+  font-family: "PT Sans";
   box-sizing: border-box;
   border: 1px solid #d5dfe4;
   border-radius: 5px;
@@ -73,6 +77,7 @@ const StyledTextarea = styled.textarea`
     box-shadow: 0px 2px 4px rgba(56, 151, 240, 0.25);
   }
   &::placeholder {
+    font-family: "PT Sans";
     font-weight: 400;
     font-size: 14px;
     line-height: 135%;

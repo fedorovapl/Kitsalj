@@ -24,12 +24,14 @@ export const StyledHeader2Text = styled.h2`
   letter-spacing: -0.3px;
   color: #213a2b;
   padding-top: 100px;
-  @media (max-width: 740px) {
+  @media (max-width: 870px) {
+    padding-top: 60px;
     font-size: 32px;
     line-height: 37px;
     text-align: center;
   }
   @media (max-width: 480px) {
+    padding-top: 40px;
     font-size: 24px;
     line-height: 37px;
     text-align: center;
@@ -43,6 +45,15 @@ export const StyledPrimaryBittonSmall = styled.div`
   }
 `;
 
+export const StyledMobile = styled.div`
+  display: none;
+
+  margin: 32px 0 60px;
+  @media (max-width: 560px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 export const StyledAnalytic = styled.div`
   display: flex;
   margin: 80px 0 74px;
@@ -52,6 +63,11 @@ export const StyledAnalytic = styled.div`
   }
   @media (max-width: 1080px) {
     flex-direction: column;
+  }
+  @media (max-width: 560px) {
+    margin: 32px 0 74px;
+    flex-direction: column;
+    display: none;
   }
 `;
 
@@ -66,7 +82,11 @@ export const StyledHeadSection = styled.section`
 `;
 
 export const StyledAnalyticSection = styled.section`
-  border-radius: 50px 50px 0 0;
-  margin-top: -50px;
+  border-radius: 80px 80px 0 0;
+  margin-top: -80px;
   background: #fff;
+  @media (max-width: 870px) {
+    margin-top: 0;
+    border-radius: 0;
+  }
 `;

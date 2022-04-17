@@ -18,6 +18,7 @@ const StyledModalContent = styled.div`
   align-items: stretch;
 `;
 const StyledClosePopup = styled(ClosePopup)`
+  margin-bottom: 20px;
   align-self: flex-end;
   cursor: pointer;
   &:hover {

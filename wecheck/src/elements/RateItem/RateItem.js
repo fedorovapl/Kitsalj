@@ -17,14 +17,23 @@ import {
   StyledPopupContent,
   StyledButtonContainer,
   StyledSecondaryRateButton,
+  StyledDevider,
+  StyledPopupTooltip,
 } from "./RateItemStyle";
-import Popup from "reactjs-popup";
-import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
-import Fire from "../../assets/img/fire.png";
 
-export const RateItem = ({ detailArray, recommend, title, price, period }) => {
+import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import Fire from "../../assets/img/fire3.png";
+
+export const RateItem = ({
+  detailArray,
+  recommend,
+  title,
+  price,
+  period,
+  noDevider,
+}) => {
   return (
-    <StyledRateContainer recommend={recommend}>
+    <StyledRateContainer noDevider={noDevider} recommend={recommend}>
       <div>
         <StyledTitleContainer>
           {recommend && <StyledRecommend>Рекомендуемый</StyledRecommend>}
@@ -36,8 +45,8 @@ export const RateItem = ({ detailArray, recommend, title, price, period }) => {
         </StyledTitleContainer>
         <StyledDataAvailibleContainer>
           <p>{period}</p>
-          <div>
-            <Popup
+          <div style={{ width: "15px", height: "18px" }}>
+            <StyledPopupTooltip
               trigger={(open) => <Info />}
               position="bottom center"
               closeOnDocumentClick
@@ -47,18 +56,20 @@ export const RateItem = ({ detailArray, recommend, title, price, period }) => {
                 Какой то текст для подсказки будет идти тут, его должен кто то
                 написать
               </StyledPopupContent>
-            </Popup>
+            </StyledPopupTooltip>
           </div>
         </StyledDataAvailibleContainer>
         <div>
           <StyledDetailsTitle>Аналитика продаж</StyledDetailsTitle>
           {detailArray.map((item, index) => {
-            return (
+            return item.name === "devider" ? (
+              <StyledDevider key={index} />
+            ) : (
               <StyledDetailItem key={index}>
                 <StyledDetailItemName offered={item.offered}>
                   <p>{item.name}</p>
-                  <div>
-                    <Popup
+                  {/* <div style={{ width: "15px", height: "18px" }}>
+                    <StyledPopupTooltip
                       trigger={(open) => <Info />}
                       position="bottom center"
                       closeOnDocumentClick
@@ -68,8 +79,8 @@ export const RateItem = ({ detailArray, recommend, title, price, period }) => {
                         Какой то текст для подсказки будет идти тут, его должен
                         кто то написать
                       </StyledPopupContent>
-                    </Popup>
-                  </div>
+                    </StyledPopupTooltip>
+                  </div> */}
                 </StyledDetailItemName>
                 {item.offered ? <Check /> : <Cross />}
               </StyledDetailItem>
@@ -78,9 +89,17 @@ export const RateItem = ({ detailArray, recommend, title, price, period }) => {
         </div>
         <StyledButtonContainer>
           {recommend ? (
-            <PrimaryButton icon={Fire}>Начать прямо сейчас</PrimaryButton>
+            <PrimaryButton
+              popupDisable={true}
+              onClick={() => window.open("https://go.wecheck.ru/signup")}
+              icon={Fire}
+            >
+              Начать прямо сейчас
+            </PrimaryButton>
           ) : (
-            <StyledSecondaryRateButton>
+            <StyledSecondaryRateButton
+              onClick={() => window.open("https://go.wecheck.ru/signup")}
+            >
               Начать прямо сейчас
             </StyledSecondaryRateButton>
           )}

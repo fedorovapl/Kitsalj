@@ -6,11 +6,13 @@ export const StyledButton = styled.button`
   padding: 12px 24px;
   border-radius: 100px;
   color: #279653;
+  font-family: "Sofia Pro";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 140%;
   cursor: pointer;
+  transition: 0.3s;
   &:hover {
     background: #f0fcf5;
     color: #279653;

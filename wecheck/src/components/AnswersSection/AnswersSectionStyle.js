@@ -9,6 +9,23 @@ export const StyledSection = styled.section`
   @media (max-width: 870px) {
     border-radius: 0;
     padding: 80px 0 26px;
+    background: #289f5b;
+  }
+`;
+export const StyledContainer = styled.div`
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 50px;
+  box-sizing: border-box;
+  ${(props) => props.head && "padding-bottom: 210px;"}
+  @media(max-width: 720px) {
+    padding: 0 32px;
+    ${(props) => props.head && "padding-bottom: 150px;"}
+  }
+  @media (max-width: 480px) {
+    padding: 0 26px;
+    ${(props) => props.head && "padding-bottom: 40px;"}
   }
 `;
 
@@ -34,10 +51,14 @@ export const StyledTitle = styled.h4`
 
 export const StyledAccordionContainer = styled.div`
   margin-bottom: 82px;
+  @media (max-width: 560px) {
+    margin-bottom: 26px;
+  }
 `;
 
 export const StyledTelegramContainer = styled.div`
-  padding: 54px;
+  margin-top: 100px;
+  padding: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,12 +66,16 @@ export const StyledTelegramContainer = styled.div`
   box-shadow: 0px 4px 80px rgba(39, 150, 83, 0.12);
   border-radius: 32px;
   cursor: pointer;
+  img {
+    width: 56px;
+  }
   &:hover {
     p {
       color: #23a45b;
     }
   }
   p {
+    transition: 0.3s;
     font-family: "Gerbera";
     font-style: normal;
     font-weight: 400;

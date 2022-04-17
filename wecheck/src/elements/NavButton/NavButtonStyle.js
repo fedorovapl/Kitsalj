@@ -15,6 +15,7 @@ export const StyledButton = styled.button`
   box-sizing: border-box;
   border-bottom: 2px solid transparent;
   cursor: pointer;
+  transition: 0.3s;
   &:hover {
     color: #213a2b;
     border-bottom: 2px solid #279653;

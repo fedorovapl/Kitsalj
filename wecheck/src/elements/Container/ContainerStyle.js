@@ -6,13 +6,13 @@ export const StyledContainer = styled.div`
   margin: 0 auto;
   padding: 0 50px;
   box-sizing: border-box;
-  ${(props) => props.head && "padding-bottom: 180px;"}
+  ${(props) => props.head && "padding-bottom: 210px;"}
   @media(max-width: 720px) {
     padding: 0 25px;
-    ${(props) => props.head && "padding-bottom: 120px;"}
+    ${(props) => props.head && "padding-bottom: 150px;"}
   }
   @media (max-width: 480px) {
     padding: 0 16px;
-    ${(props) => props.head && "padding-bottom: 80px;"}
+    ${(props) => props.head && "padding-bottom: 40px;"}
   }
 `;

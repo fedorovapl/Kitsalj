@@ -17,18 +17,35 @@ import Benefits1 from "../../assets/img/benefits1.png";
 import Benefits2 from "../../assets/img/benefits2.png";
 import Benefits3 from "../../assets/img/benefits3.png";
 
+import MBenefits1 from "../../assets/img/m-benefits1.png";
+import MBenefits2 from "../../assets/img/m-benefits2.png";
+import MBenefits3 from "../../assets/img/m-benefits3.png";
+
+import PopupBen1 from "../../assets/img/popup-img/benefit1.png";
+import PopupBen2 from "../../assets/img/popup-img/benefit2.png";
+import PopupBen3 from "../../assets/img/popup-img/benefit3.png";
+// import PopupBen4 from "../../assets/img/popup-img/benefit4.png";
+import PopupBen5 from "../../assets/img/popup-img/benefit5.png";
+import PopupBen6 from "../../assets/img/popup-img/benefit6.png";
+import PopupBen7 from "../../assets/img/popup-img/benefit7.png";
+import PopupBen8 from "../../assets/img/popup-img/benefit8.png";
+import PopupBen9 from "../../assets/img/popup-img/benefit9.png";
+import PopupBen10 from "../../assets/img/popup-img/benefit10.png";
+
 export const BenefitsCardSection = () => {
   return (
     <StyledSection>
       <Container>
         <StyledBlock1>
           <BenefitsCard
+            popupImg={PopupBen1}
             buttonText="Динамика и тренды"
             title="Подбирайте нишу
             и следите за трендами"
             text="WeCheck покажет какие категории, продавцы и бренды набирают обороты, как меняется конкурентность и средний чек. Находите ниши, где продажи растут быстрее новых продавцов и становитесь лидерами в категориях"
           />
           <BenefitsCard
+            popupImg={PopupBen2}
             buttonText="Листинг в категориях"
             title="Отслеживать позиции
             товаров в категориях"
@@ -37,21 +54,25 @@ export const BenefitsCardSection = () => {
         </StyledBlock1>
         <StyledBlock2>
           <BenefitsCard
+            popupImg={PopupBen3}
             buttonText="Ценовая сегментация"
             title="Изучайте спрос по цене"
             text="Выбирать только нишу недостаточно. В каждой нише есть ценовые сегменты с большей и меньшей конкуренцией. WeCheck покажет какой ценовой сегмент имеет лучший потенциал. Подбирайте товары в правильном ценовом сегменте"
             img={Benefits1}
+            mImg={MBenefits1}
           />
         </StyledBlock2>
         <StyledBlock3>
           <StyledSubBloc1>
             <BenefitsCard
+              popupImg={""}
               buttonText="Отслеживание новинок"
               title="Следите
               за новинками"
               text="Изучайте с какими новинками выходят продавцы в каждой категории. Анализируйте продажи новинок и продавайте трендовые товары на пике спроса"
             />
             <BenefitsCard
+              popupImg={PopupBen5}
               buttonText="Изменение цен у товаров"
               title="Эффективно работайте с ценой и не теряйте маржу"
               text="WeCheck покажет когда продавцы меняет цену. Отслеживайте как изменение цены повлияло на продажи и лучше управляйте маржой"
@@ -59,30 +80,33 @@ export const BenefitsCardSection = () => {
           </StyledSubBloc1>
           <StyledSubBlock3>
             <BenefitsCard
+              popupImg={PopupBen6}
               buttonText="Аналитика поисковых запросов"
               title="Анализируйте поисковые запросы"
               text="Отслеживайте по каким поисковым запросам находят ваши товары и товары конкурентов. Отслеживайте позиции и оценивайте результаты SEO оптимизации"
               img={Benefits2}
+              mImg={MBenefits2}
             />
           </StyledSubBlock3>
         </StyledBlock3>
         <StyledBlock4>
           <StyledSubBlock4>
             <BenefitsCard
+              popupImg={PopupBen10}
               buttonText="Расширение для браузера"
               title="Смотрите аналитику на сайте маркетплейсов"
               text="Удобно смотреть аналитику продаж прямо на сайте маркетплейса. Просто установите расширение в Chrome и анализируйте продажи на сайтах Wildberries и Ozon"
               img={Benefits3}
+              mImg={MBenefits3}
             />
           </StyledSubBlock4>
           <StyledSubBlock2>
             <BenefitsCard
-              buttonText="Динамика и тренды"
-              title="Подбирайте нишу
-          и следите за трендами"
-              text="WeCheck покажет какие категории, продавцы и бренды набирают обороты, как меняется конкурентность и средний чек. Находите ниши, где продажи растут быстрее новых продавцов и становитесь лидерами в категориях"
+              video={true}
+              title="Посмотрите видео как работает WeCheck"
             />
             <BenefitsCard
+              popupImg={PopupBen7}
               buttonText="Анализ рекламы"
               title="Анализируйте
               эффективность рекламы"
@@ -92,6 +116,7 @@ export const BenefitsCardSection = () => {
         </StyledBlock4>
         <StyledBlock5>
           <BenefitsCard
+            popupImg={PopupBen8}
             buttonText="Рейтинги и отзывы"
             title="Следите за отзывами
             и рейтингами у товаров"
@@ -99,6 +124,7 @@ export const BenefitsCardSection = () => {
             на продажи у каждого товара"
           />
           <BenefitsCard
+            popupImg={PopupBen9}
             buttonText="Оценка качества контента"
             title="Заполненность характеристик и описания"
             text="Покажем когда продавец изменил фотографии, описание или заполнил характеристики товара"

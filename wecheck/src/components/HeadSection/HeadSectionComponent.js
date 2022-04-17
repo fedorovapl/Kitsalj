@@ -6,7 +6,7 @@ import {
   StyledButtonAdditionText,
 } from "./HeadSectionStyle";
 import { PrimaryButton } from "../../elements";
-import FireIcon from "../../assets/img/fire.png";
+import FireIcon from "../../assets/img/fire3.png";
 
 export const HeadSectionComponent = () => {
   return (

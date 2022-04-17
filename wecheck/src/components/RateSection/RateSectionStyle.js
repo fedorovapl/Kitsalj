@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledRateContainer } from "../../elements/RateItem/RateItemStyle";
 
 export const StyledHeader = styled.div`
   display: flex;
@@ -50,14 +51,36 @@ export const StyledButtonGroup = styled.div`
     display: none;
   }
 `;
-
-export const StyledRateBlock = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const StyledRateBlockMob = styled.div`
+  display: none;
   padding-bottom: 193px;
+  div {
+    width: 100%;
+  }
   @media (max-width: 1080px) {
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 0;
+    div {
+      width: auto;
+    }
+  }
+`;
+
+export const StyledRateBlock = styled.div`
+  display: flex;
+  padding-bottom: 193px;
+  div {
+    width: 100%;
+  }
+  @media (max-width: 1080px) {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0;
+    div {
+      width: auto;
+    }
   }
 `;

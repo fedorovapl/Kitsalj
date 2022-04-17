@@ -40,6 +40,9 @@ export const StyledLeftBlock = styled.div`
     color: #ffffff;
     opacity: 1;
   }
+  p:nth-child(3) {
+    margin: 15px 0;
+  }
   @media (max-width: 950px) {
     margin-left: 0;
     margin-bottom: 40px;

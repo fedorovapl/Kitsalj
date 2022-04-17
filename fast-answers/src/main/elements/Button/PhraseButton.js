@@ -36,7 +36,14 @@ const StyledTextFhrase = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+`;
+const StyledTextFhraseFull = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
 `;
 
@@ -62,7 +69,7 @@ export const FolderButton = ({
 }) => {
   return (
     <StyledButton id={"p" + id} onClick={onClick}>
-      {children.length > 185 ? (
+      {children.length > 100 ? (
         <StyledTooltipText
           trigger={() => (
             <StyledTextFhrase id={"pp" + id}>{children}</StyledTextFhrase>
@@ -71,7 +78,7 @@ export const FolderButton = ({
           on={["hover", "focus"]}
           closeOnDocumentClick
         >
-          <StyledTextFhrase>{children}</StyledTextFhrase>
+          <StyledTextFhraseFull>{children}</StyledTextFhraseFull>
         </StyledTooltipText>
       ) : (
         <div style={{ wordBreak: "break-word" }} id={"pp" + id}>

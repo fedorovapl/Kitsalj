@@ -1,24 +1,62 @@
 import styled from "styled-components";
+import Popup from "reactjs-popup";
 
+export const StyledPopupTooltip = styled(Popup)`
+  @keyframes anvil {
+    0% {
+      transform: scale(1) translateY(0px);
+      opacity: 0;
+      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    1% {
+      transform: scale(0.96) translateY(10px);
+      opacity: 0;
+      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    100% {
+      transform: scale(1) translateY(0px);
+      opacity: 1;
+      box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+    }
+  }
+  &-content {
+    display: flex;
+    background-color: #fff;
+    max-width: 80%;
+    -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+    @media (max-width: 600px) {
+      max-width: 100%;
+    }
+  }
+  &-overlay {
+    background: #0000008c;
+  }
+`;
 export const StyledRateContainer = styled.div`
   padding: 55px 0;
   ${(props) =>
-    props.recommend
-      ? "background-color: #fff; box-shadow: 0px 4px 80px rgba(39, 150, 83, 0.12); padding: 32px 40px 32px 40px; margin: 0 10px;"
-      : ""}
+    props.recommend &&
+    "background-color: #fff; box-shadow: 0px 4px 80px rgba(39, 150, 83, 0.12); padding: 32px 40px 32px 40px; margin: 0 40px;"}
   border-radius: 32px;
+  @media (max-width: 1140px) {
+    ${(props) =>
+      props.recommend && "padding: 32px 40px 32px 40px; margin: 0 20px;"}
+  }
   @media (max-width: 1080px) {
     flex-direction: column;
     align-items: center;
     padding-bottom: 0;
   }
   @media (max-width: 450px) {
+    border-radius: 0;
     background-color: transparent;
     box-shadow: none;
     margin: 0 0 30px 0;
     padding: 0 10px;
     padding-bottom: 30px;
-    border-bottom: 1px solid #e7ebeb;
+  }
+  @media (max-width: 450px) {
+    ${(props) => (props.noDevider ? "" : "border-bottom: 1px solid #e7ebeb;")}
   }
 `;
 export const StyledTitleContainer = styled.div``;
@@ -32,7 +70,6 @@ export const StyledRecommend = styled.p`
   color: #ff0000;
 `;
 export const StyledPriceContainer = styled.div`
-  max-width: 320px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,11 +82,11 @@ export const StyledRateName = styled.p`
   font-size: 30px;
   line-height: 147.07%;
   color: #333d37;
-  width: 100%;
+  width: 100% !important;
   &::after {
     content: "";
     flex-grow: 1;
-    width: 100%;
+    width: 100% !important;
     display: inline-block;
     margin: 0 5px 11px 5px;
     border-bottom: 1px dashed #c0d5d5;
@@ -88,6 +125,16 @@ export const StyledDataAvailibleContainer = styled.div`
   p {
     margin-right: 10px;
   }
+  svg {
+    margin-top: 2px;
+    cursor: pointer;
+    width: 15px;
+    &:hover {
+      path {
+        stroke: black;
+      }
+    }
+  }
 `;
 
 export const StyledDetailsTitle = styled.p`
@@ -96,6 +143,7 @@ export const StyledDetailsTitle = styled.p`
   font-size: 16px;
   line-height: 24px;
   color: #333d37;
+  margin-bottom: 8px;
 `;
 
 export const StyledDetailItem = styled.div`
@@ -119,9 +167,15 @@ export const StyledDetailItemName = styled.div`
   font-size: 16px;
   line-height: 24px;
 
-  width: 100%;
+  width: 100% !important;
   svg {
-    width: 25px;
+    cursor: pointer;
+    width: 15px;
+    &:hover {
+      path {
+        stroke: black;
+      }
+    }
   }
 
   p {
@@ -166,6 +220,11 @@ export const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 560px) {
+    p {
+      color: #219653;
+    }
+  }
 `;
 
 export const StyledSecondaryRateButton = styled.button`
@@ -186,4 +245,8 @@ export const StyledSecondaryRateButton = styled.button`
     background: #219653;
     color: #ffffff;
   }
+`;
+
+export const StyledDevider = styled.div`
+  height: 18px;
 `;

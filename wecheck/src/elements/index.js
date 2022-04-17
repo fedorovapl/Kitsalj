@@ -6,6 +6,9 @@ import { SecondaryButton } from "./SecondaryButton/SecondaryButton";
 import { RateButton } from "./RateButton/RateButton";
 import { RateItem } from "./RateItem/RateItem";
 import { AccordionItem } from "./Accordion/Accordion";
+import { ImgPopup } from "./ImgPopup/ImgPopup";
+import { RequestPopup } from "./RequestPopup/RequestPopup";
+import { EmailPopup } from "./EmailPopup/EmailPopup";
 export {
   NavButton,
   GreenButton,
@@ -15,4 +18,7 @@ export {
   RateButton,
   RateItem,
   AccordionItem,
+  ImgPopup,
+  RequestPopup,
+  EmailPopup,
 };

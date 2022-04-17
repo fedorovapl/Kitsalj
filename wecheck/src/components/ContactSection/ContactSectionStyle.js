@@ -1,4 +1,40 @@
 import styled from "styled-components";
+import { StyledButton } from "../../elements/PrimaryButton/PrimaryButtonStyle";
+
+export const StyledInputSubmit = styled.input`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0px 8px 60px rgba(235, 55, 0, 0.3);
+  border-radius: 100px;
+  color: #213a2b;
+  padding: 16px 32px;
+  font-family: "Sofia Pro", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    color: #1daf5c;
+  }
+  img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+  @media (max-width: 800px) {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  @media (max-width: 800px) {
+    padding: 16px 24px;
+  }
+`;
 
 export const StyledSection = styled.section`
   background: #f4f5f6;
@@ -31,7 +67,7 @@ export const StyledText = styled.div`
   p {
     font-family: "Gerbera";
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 24px;
     line-height: 32px;
     color: #333d37;
@@ -69,6 +105,9 @@ export const StyledCheckInput = styled.div`
   margin-top: 8px;
   display: flex;
   align-items: center;
+  input {
+    accent-color: #219653;
+  }
   label {
     margin-left: 8px;
     font-style: normal;
@@ -80,5 +119,29 @@ export const StyledCheckInput = styled.div`
       text-decoration: none;
       color: #219653;
     }
+  }
+`;
+
+export const StyleButtonFix = styled.div`
+  button {
+    padding: 17px 28px;
+    font-weight: 400;
+  }
+`;
+
+export const StyledContainer = styled.div`
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 50px;
+  box-sizing: border-box;
+  ${(props) => props.head && "padding-bottom: 210px;"}
+  @media(max-width: 720px) {
+    padding: 0 32px;
+    ${(props) => props.head && "padding-bottom: 150px;"}
+  }
+  @media (max-width: 480px) {
+    padding: 0 26px;
+    ${(props) => props.head && "padding-bottom: 40px;"}
   }
 `;

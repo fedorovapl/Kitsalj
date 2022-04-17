@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Logo from "../../assets/img/logo.png";
-import Wecheck from "../../assets/img/wecheck.png";
+
+import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
+import { ReactComponent as Wecheck } from "../../assets/svg/wecheck.svg";
+
 import Menu from "../../assets/img/menu.png";
 import {
   StyledNav,
@@ -8,8 +10,12 @@ import {
   StyledMenuGroup,
   StyledBurgerMenu,
   StyledBurgerButton,
+  StyledLogButton,
+  StyledHeaderContainer,
+  StyledHeader,
+  StyledCloseButton,
 } from "./HeaderStyle";
-import { NavButton, GreenButton, Container } from "../../elements";
+import { NavButton, GreenButton } from "../../elements";
 import { ReactDimmer } from "react-dimmer";
 
 export const HeaderComponent = () => {
@@ -20,20 +26,29 @@ export const HeaderComponent = () => {
   };
 
   return (
-    <header>
-      <Container>
+    <StyledHeader>
+      <StyledHeaderContainer>
         <StyledNav>
           <StyledLogoContainer>
-            <img src={Logo} alt=""></img>
-            <img src={Wecheck} alt=""></img>
+            <Logo style={{ marginRight: "17px" }} />
+            <Wecheck />
           </StyledLogoContainer>
           <StyledMenuGroup>
-            <NavButton>Отчеты и аналитика</NavButton>
-            <NavButton>Контент и продвижение</NavButton>
-            <NavButton>Поставки, склады и доставка</NavButton>
-            <NavButton>Конкуренты</NavButton>
-            <GreenButton>Войти</GreenButton>
+            <NavButton link="https://www.wecheck.ru/">Маркетплейсы</NavButton>
+            <NavButton link="https://www.web.wecheck.ru/parsing">
+              Парсинг
+            </NavButton>
+            <NavButton link="https://www.web.wecheck.ru/competitors">
+              Конкуренты
+            </NavButton>
+            {/* <NavButton>
+              <p>Документы</p> и законодательство
+            </NavButton> */}
           </StyledMenuGroup>
+          <StyledLogButton>
+            <GreenButton link="https://go.wecheck.ru/">Войти</GreenButton>
+          </StyledLogButton>
+
           <StyledBurgerButton onClick={handleMenu}>
             <img src={Menu} alt=""></img>
           </StyledBurgerButton>
@@ -44,15 +59,17 @@ export const HeaderComponent = () => {
             blur={1.5}
           />
         </StyledNav>
-      </Container>
+      </StyledHeaderContainer>
       <StyledBurgerMenu className={`app-menu ${isMenuOpen ? "menu-open" : ""}`}>
+        <StyledCloseButton onClick={() => setMenu(false)}></StyledCloseButton>
         <h2 style={{ textAlign: "center" }}>Меню</h2>
-        <NavButton>Отчеты и аналитика</NavButton>
-        <NavButton>Контент и продвижение</NavButton>
-        <NavButton>Поставки, склады и доставка</NavButton>
-        <NavButton>Конкуренты</NavButton>
-        <GreenButton>Войти</GreenButton>
+        <NavButton link="https://www.wecheck.ru/">Маркетплейсы</NavButton>
+        <NavButton link="https://www.web.wecheck.ru/parsing">Парсинг</NavButton>
+        <NavButton link="https://www.web.wecheck.ru/competitors">
+          Конкуренты
+        </NavButton>
+        <GreenButton link="https://go.wecheck.ru/">Войти</GreenButton>
       </StyledBurgerMenu>
-    </header>
+    </StyledHeader>
   );
 };

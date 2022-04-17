@@ -5,13 +5,13 @@
 
 @font-face {
   font-family: "Gerbera";
-  src: local("Gerbera"), url("./assets/fonts/Gerbera.woff") format("woff");
+  src: local("Gerbera"), url("assets/fonts/Gerbera.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Gerbera";
-  src: local("Gerbera"), url("./assets/fonts/Gerbera-Bold.woff") format("woff");
+  src: local("Gerbera"), url("assets/fonts/Gerbera-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
@@ -65,4 +65,27 @@ section {
 
 .menu-open {
   transform: translateX(0%);
+}
+
+.carousel .control-dots {
+  color: #289e5b;
+}
+
+.carousel .control-dots .dot {
+  width: 4px !important;
+  height: 4px !important;
+  background: #849e8f !important;
+}
+.carousel .control-dots .dot.selected {
+  width: 20px !important;
+  border-radius: 4px !important;
+  background: #289e5b !important;
+  box-shadow: none !important;
+}
+.carousel .slide {
+  text-align: left !important;
+}
+
+.carousel.carousel-slider {
+  padding-bottom: 18px;
 }

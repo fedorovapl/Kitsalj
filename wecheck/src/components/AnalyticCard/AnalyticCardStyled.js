@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Popup from "reactjs-popup";
 
 export const StyledCardContainer = styled.div`
   display: flex;
@@ -13,6 +14,12 @@ export const StyledCardContainer = styled.div`
   @media (max-width: 740px) {
     padding: 30px;
     margin-bottom: 20px;
+  }
+  @media (max-width: 560px) {
+    padding: 26px;
+    ${(props) => (props.height ? `height: ${props.height};` : "height: 450px;")}
+
+    margin-bottom: 16px;
   }
   @media (max-width: 480px) {
     padding: 26px;
@@ -33,7 +40,6 @@ export const StyledIconContainer = styled.div`
   margin-bottom: 16px;
 `;
 export const StyledTitleContainer = styled.div`
-  font-family: "Sofia Pro", sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -42,8 +48,49 @@ export const StyledTitleContainer = styled.div`
   padding-bottom: 16px;
   margin-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  p {
+    white-space: nowrap;
+    &::after {
+      content: "›";
+      opacity: 0;
+      margin-left: 5px;
+      color: #289e5b;
+    }
+  }
   ${StyledCardContainer}:hover & {
     color: #289e5b;
+    transition: 0.3s;
+    p {
+      white-space: nowrap;
+      &::after {
+        content: "›";
+        opacity: 1;
+        margin-left: 5px;
+      }
+    }
+  }
+  @media (max-width: 560px) {
+    font-size: 20px;
+    padding-bottom: 24px;
+    margin-bottom: 8px;
+    ${StyledCardContainer} & {
+      p {
+        &::after {
+          content: "›";
+          opacity: 1;
+          margin-left: 5px;
+          color: #1f202a;
+        }
+      }
+    }
+    p {
+      &::after {
+        content: "›";
+        opacity: 1;
+        margin-left: 5px;
+        color: #1f202a;
+      }
+    }
   }
 `;
 export const StyledTextContainer = styled.div`

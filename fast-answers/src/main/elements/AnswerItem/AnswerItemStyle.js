@@ -41,7 +41,7 @@ export const StyledAnswerContent = styled.div`
 
 export const StyledAnswerContentButtonGroup = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 15px;
   margin-top: 10px;
   p {
@@ -114,8 +114,8 @@ export const StyledPriorityContainer = styled.div`
       display: none;
     }
     input[type="radio"]:checked + label {
-      background: #fadb67;
-      border: 1px solid #fadb67;
+      background: #ffedab;
+      border: 1px solid #ffedab;
     }
     label:hover {
       background-color: #e7e7e7;

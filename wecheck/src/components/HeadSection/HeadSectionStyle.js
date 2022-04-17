@@ -38,40 +38,47 @@ export const StyledHead4Text = styled.h4`
     color: #0069ff;
   }
   @media (max-width: 560px) {
+    margin-top: 30px;
     font-size: 32px;
     line-height: 37px;
   }
   @media (max-width: 480px) {
+    margin-top: 12px;
     font-size: 24px;
     line-height: 37px;
   }
 `;
 
 export const StyledButtonAdditionText = styled.div`
+  margin-left: 24px;
+  padding-left: 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
   p {
     font-family: "Sofia Pro", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 140%;
-    color: #535a69;
+    color: #213a2b;
   }
   p:first-child {
     margin-bottom: 10px;
   }
   @media (max-width: 740px) {
     margin-left: 0;
+    padding-left: 0;
     margin-top: 24px;
+    border: none;
   }
 `;
 
 export const StyledButtonGroup = styled.div`
-  width: 100%;
-  max-width: 646px;
+  max-width: 670px;
   display: flex;
   align-items: center;
   margin-top: 60px;
   padding: 24px;
+  padding-right: 48px;
   box-sizing: border-box;
   border-radius: 100px;
   border: 2px solid #ffffff;
@@ -80,8 +87,12 @@ export const StyledButtonGroup = styled.div`
     border: none;
     flex-direction: column;
     padding: 0;
+    border-radius: 0;
   }
 
   @media (max-width: 480px) {
+    padding-top: 24px;
+    margin-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
   }
 `;

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { deletePhrases } from "../../Constructor/ConstructorAction";
 
 const StyledClosePopup = styled(ClosePopup)`
+  margin-bottom: 20px;
   align-self: flex-end;
   cursor: pointer;
   &:hover {
@@ -144,7 +145,6 @@ const StyledPopupAcceptDelet = styled(Popup)`
     padding: 20px;
     width: 430px;
     height: 110px;
-    margin: 100px auto !important;
     box-shadow: 0px 3px 10px rgba(0, 73, 129, 0.1);
     border-radius: 10px;
   }

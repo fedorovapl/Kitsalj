@@ -21,6 +21,7 @@ export const StyledIconButton = styled.a`
   line-height: 17px;
   color: #6a7b83;
   cursor: pointer;
+  transition: 0.3s;
   &:hover {
     color: #4e4e4e;
     svg {
@@ -51,6 +52,7 @@ export const StyledBreadcrumb = styled.div`
 export const StyledBreadItem = styled.div`
   cursor: pointer;
   color: #b4bdc1;
+  transition: 0.3s;
   &:hover {
     color: #828789;
   }
@@ -64,6 +66,7 @@ export const StyledBreadItem = styled.div`
 export const StyledBreadItemFirst = styled.div`
   cursor: pointer;
   color: #b4bdc1;
+  transition: 0.3s;
   &:hover {
     color: #828789;
   }

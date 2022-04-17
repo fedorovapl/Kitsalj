@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const StyledAccordionItem = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding-bottom: 16px;
-  margin-bottom: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
   cursor: pointer;
   &:hover {
     div {
@@ -18,6 +18,7 @@ export const StyledAccordionTitle = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   p {
     font-family: "Gerbera";
     font-style: normal;
@@ -32,6 +33,7 @@ export const StyledAccordionTitle = styled.div`
       font-weight: 700;
       font-size: 16px;
       line-height: 173.81%;
+      margin-right: 20px;
     }
   }
 `;

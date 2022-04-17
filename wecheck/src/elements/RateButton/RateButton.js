@@ -5,7 +5,7 @@ export const RateButton = ({ children, sale, active, handleClick }) => {
   return (
     <StyledButton onClick={handleClick} sale={sale} active={active}>
       {children}
-      {sale && <StyledSale>{sale}</StyledSale>}
+      {sale && <StyledSale active={active}>{sale}</StyledSale>}
     </StyledButton>
   );
 };

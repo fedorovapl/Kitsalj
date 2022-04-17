@@ -11,6 +11,7 @@ export const StyledErrorMessage = styled.p`
 `;
 
 export const StyledClosePopup = styled(ClosePopup)`
+  margin-bottom: 20px;
   align-self: flex-end;
   cursor: pointer;
   &:hover {
